@@ -1,16 +1,17 @@
+import cafecomImg from "../images/CAFECOM.png";
 // Mock data para el portafolio de Sara Duque
 export const personalInfo = {
     name: "Sara Duque",
     title: "Frontend Developer & UI Designer",
-    slogan: "Crafting digital experiences with code precision & design innovation",
-    bio: "Soy una desarrolladora frontend apasionada por crear experiencias digitales excepcionales. Me especializo en transformar ideas creativas en interfaces funcionales y atractivas, combinando mi amor por el código limpio con un ojo agudo para el diseño.",
-    extendedBio: "Con más de 3 años de experiencia en el desarrollo web, he trabajado en proyectos que van desde startups innovadoras hasta empresas establecidas. Mi enfoque se centra en crear soluciones que no solo se vean increíbles, sino que también ofrezcan una experiencia de usuario excepcional.",
-    motivation: "Me motiva la intersección entre tecnología y creatividad, donde cada línea de código puede dar vida a una experiencia visual impactante.",
-    philosophy: "Creo firmemente que el mejor código es aquel que es elegante, mantenible y accesible. Cada proyecto es una oportunidad para aprender algo nuevo y superar los límites de lo que es posible en el desarrollo web.",
+    slogan: "Precision Code. Intentional Design. Exceptional Experiences.",
+    bio: "Soy una Frontend Developer dedicada a la creación de interfaces donde el diseño y la ingeniería convergen. Mi especialidad es transformar conceptos creativos en productos digitales fluidos, priorizando siempre la armonía entre la estética visual y la eficiencia técnica.",
+    extendedBio: "Con más de 3 años de trayectoria, he colaborado con startups y empresas consolidadas para materializar soluciones de alto impacto. Mi enfoque va más allá de escribir código: optimizo la interacción humana con la tecnología, asegurando que cada píxel tenga un propósito y cada transición se sienta natural.",
+    motivation: "Me apasiona la intersección entre tecnología y arte; ese punto exacto donde el código limpio da vida a experiencias visuales que impactan y perduran.",
+    philosophy: "Creo firmemente que el desarrollo de excelencia es aquel que es elegante, escalable y, sobre todo, accesible. Para mí, cada proyecto es una oportunidad para superar los límites de la web y construir un entorno digital más inclusivo y performante.",
     avatar: "https://customer-assets.emergentagent.com/job_futuredev-hub/artifacts/luotwcgt_Sara.gif",
-    email: "sara.duque@email.com",
-    linkedin: "https://linkedin.com/in/saraduque",
-    github: "https://github.com/saraduque"
+    email: "luciaduque248@gmail.com",
+    linkedin: "www.linkedin.com/in/sara-duque-desarrolladora-frontend",
+    github: "https://github.com/luciaduque248"
 };
 
 export const projects = [
@@ -53,7 +54,107 @@ export const projects = [
         demoUrl: "https://demo-elearning.com",
         githubUrl: "https://github.com/saraduque/elearning",
         category: "Education"
+    },
+    {
+        id: 5,
+        name: "Health & Wellness App",
+        description: "Aplicación móvil para seguimiento de hábitos saludables con diseño centrado en el usuario",
+        image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=500&h=300&fit=crop",
+        technologies: ["Flutter", "Dart", "Firebase", "Lottie"],
+        demoUrl: "https://demo-healthapp.com",
+        githubUrl: "https://github.com/saraduque/healthapp",
+        category: "Mobile"
+    },
+    {
+        id: 6,
+        name: "Country Explorer",
+        description: "Sitio web para explorar países del mundo, con filtros por nombre y región,",
+        image: "https://upload.wikimedia.org/wikipedia/commons/8/87/Flag_Map_of_The_World.png",
+        technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+        demoUrl: "https://countries-app-eta-seven.vercel.app/",
+        githubUrl: "https://github.com/luciaduque248/CountriesApp.git",
+        category: "Web App"
+    },
+    {
+        id: 7,
+        name: "Music Player",
+        description: "Reproductor de música desarrollado con HTML, CSS y JavaScript. Permite reproducir, pausar, cambiar de canción y controlar el progreso de audio con una interfaz moderna y responsive.",
+        image: "https://images.unsplash.com/photo-1616356607338-fd87169ecf1a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        demoUrl: "https://luciaduque248.github.io/ReproductorDeMusica/",
+        githubUrl: "https://github.com/luciaduque248/ReproductorDeMusica.git",
+        category: "Web App"
+    },
+    {
+        id: 8,
+        name: "AgroInnova",
+        description: "Plataforma digital orientada a la innovación agropecuaria. Facilita la gestión de emprendimientos rurales, procesos de incubación y acompañamiento tecnológico. Proyecto desarrollado para empresa privada.",
+        image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=500&h=300&fit=crop",
+        technologies: ["React", "JavaScript", "Tailwind CSS", "Node.js", "APIs REST"],
+        demoUrl: "https://agroinnovacorp.org/",
+        githubUrl: null,
+        category: "Web App"
+    },
+    {
+        id: 9,
+        name: "CafeCom",
+        description: "Diseño UX/UI de una plataforma digital orientada al sector cafetero. El proyecto fue desarrollado en Figma, enfocándose en investigación de usuarios, arquitectura de información y diseño de interfaces para la comercialización y gestión de productos de café. Actualmente en fase de diseño, sin implementación en código.",
+        image: cafecomImg,
+        technologies: ["Figma", "UX Research", "UI Design", "Prototyping"],
+        demoUrl: "https://www.figma.com/proto/F9Fljzi1eZS5S76IIiQtAC/CafeCom?node-id=3-4&p=f&t=1ARjMevGkg2cU5OT-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A20",
+        githubUrl: null,
+        category: "UX/UI"
+    },
+    {
+        id: 10,
+        name: "HOTELIA",
+        description: "Diseño UX/UI de una plataforma web para reservas hoteleras. El proyecto aborda el flujo completo de búsqueda, selección de habitaciones, reservas y gestión de estancias, priorizando usabilidad, claridad visual y experiencia del usuario. Desarrollado en Figma como prototipo interactivo.",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&h=300&fit=crop",
+        technologies: ["Figma", "UX/UI Design", "User Flows", "Wireframing", "Prototyping"],
+        demoUrl: "https://www.figma.com/proto/aGuHBirVEIo2JphyaklEcw/Hotelia?node-id=86-142&p=f&t=72XCj9WGnym9XwA2-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=86%3A142&show-proto-sidebar=1",
+        githubUrl: "https://github.com/luciaduque248/HoteliaHL.git",
+        category: "UX/UI"
+    },
+    {
+        id: 11,
+        name: "Manage — Landing Page",
+        description:
+            "Landing page minimalista para presentar Manage. Communica de forma clara el valor del producto: “Manage makes it simple for software teams to plan day-to-day tasks while keeping the large team goals in view”.",
+        image:
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&h=300&fit=crop",
+        technologies: ["HTML", "CSS", "JavaScript"],
+        demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
+        githubUrl: "https://github.com/luciaduque248/Proyecto-Manage.git",
+        category: "Web App",
+    },
+    {
+        id: 12,
+        name: "Virtuosa",
+        description:
+            "Tienda online de ropa y maquillaje orientada a una experiencia de compra elegante y sencilla. Diseño enfocado en identidad de marca, navegación intuitiva y presentación visual de productos.",
+        image:
+            "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=300&fit=crop",
+        technologies: ["React", "Tailwind CSS", "E-commerce UI"],
+        demoUrl: "https://luciaduque248.github.io/VirtuosaCrud/",
+        githubUrl: "https://github.com/luciaduque248/VirtuosaCrud.git",
+        category: "Web App"
+    },
+    {
+        id: 13,
+        name: "Virtuosa",
+        description:
+            "Tienda online de ropa y maquillaje orientada a una experiencia de compra elegante y sencilla. Diseño enfocado en identidad de marca, navegación intuitiva y presentación visual de productos.",
+        image:
+            "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=300&fit=crop",
+        technologies: ["Figma", "UX/UI Design", "Prototyping"],
+        category: "UX/UI",
+        demoUrl: "https://www.figma.com/proto/77kBTXLVhpGbghkWRoRINb/VIRTUOSA?node-id=439-1931&p=f&t=hJKfr0Oc8jl4GpZk-9&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=439%3A1931&show-proto-sidebar=1",
+        githubUrl: null,
     }
+
+
+
+
 ];
 
 export const skills = {
