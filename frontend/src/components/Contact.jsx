@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Send, Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react';
 import { personalInfo } from '../data/mock';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,17 +22,32 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simular envío de formulario
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitStatus('');
+
+    try {
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: personalInfo.name, // opcional
+        },
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      );
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
-      
-      setTimeout(() => {
-        setSubmitStatus('');
-      }, 3000);
-    }, 2000);
+
+      setTimeout(() => setSubmitStatus(''), 3000);
+    } catch (err) {
+      console.error(err);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(''), 4000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -131,10 +147,18 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-purple-500/20">
             <h3 className="text-2xl font-bold text-white mb-6">Envía un mensaje</h3>
-            
+
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-500/20 border border-green-500/40 rounded-lg">
                 <p className="text-green-400 font-medium">¡Mensaje enviado con éxito! Te responderé pronto.</p>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-500/20 border border-red-500/40 rounded-lg">
+                <p className="text-red-400 font-medium">
+                  No se pudo enviar. Intenta de nuevo en unos segundos.
+                </p>
               </div>
             )}
 
@@ -190,9 +214,8 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 flex items-center justify-center space-x-2 ${
-                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                }`}
+                className={`w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
               >
                 {isSubmitting ? (
                   <>
