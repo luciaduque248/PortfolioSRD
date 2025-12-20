@@ -17,55 +17,60 @@ const About = () => {
 
         {/* Biography Extended */}
         <div className="mb-12 sm:mb-16">
+          {/* Row 1: Texto + Imagen */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
+            {/* Texto */}
+            <div className="space-y-4 sm:space-y-6">
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 {personalInfo.bio}
               </p>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 {personalInfo.extendedBio}
               </p>
-              
-              <div className="p-4 sm:p-6 bg-gray-800/30 backdrop-blur-sm rounded-lg border border-purple-500/20">
-                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center">
-                  <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-red-400 mr-2" />
-                  ¿Qué me motiva?
-                </h3>
-                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  {personalInfo.motivation}
-                </p>
-              </div>
-
-              <div className="p-4 sm:p-6 bg-gray-800/30 backdrop-blur-sm rounded-lg border border-blue-500/20">
-                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center">
-                  <Target className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 mr-2" />
-                  Mi filosofía
-                </h3>
-                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                  {personalInfo.philosophy}
-                </p>
-              </div>
             </div>
 
-            {/* Profile Image & Quick Stats */}
-            <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
-              <div className="relative">
-                <div className="w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-purple-500/30 flex items-center justify-center overflow-hidden">
+            {/* Imagen (derecha en desktop) */}
+            <div className="space-y-6 sm:space-y-8">
+              <div className="relative w-fit mx-auto">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-purple-500/30 flex items-center justify-center overflow-hidden">
                   <img
                     src={personalInfo.avatar}
                     alt={personalInfo.name}
                     className="w-56 h-56 sm:w-72 sm:h-72 rounded-full object-cover"
                   />
                 </div>
-                
-                {/* Floating achievement badges */}
+
+                {/* Floating badges */}
                 <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
                   3+ años
                 </div>
                 <div className="absolute -bottom-2 sm:-bottom-4 -left-2 sm:-left-4 bg-gradient-to-r from-purple-500 to-blue-600 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
-                  50+ proyectos
+                  +10 proyectos
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Row 2: Módulos debajo */}
+          <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <div className="p-4 sm:p-6 bg-gray-800/30 backdrop-blur-sm rounded-lg border border-purple-500/20">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center">
+                <Heart className="h-4 w-4 sm:h-5 sm:w-5 text-red-400 mr-2" />
+                ¿Qué me motiva?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                {personalInfo.motivation}
+              </p>
+            </div>
+
+            <div className="p-4 sm:p-6 bg-gray-800/30 backdrop-blur-sm rounded-lg border border-blue-500/20">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center">
+                <Target className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 mr-2" />
+                Mi filosofía
+              </h3>
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                {personalInfo.philosophy}
+              </p>
             </div>
           </div>
         </div>

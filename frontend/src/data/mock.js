@@ -212,7 +212,7 @@ export const achievements = [
         description: "Desarrollando experiencias digitales"
     },
     {
-        number: "50+",
+        number: "10+",
         label: "Proyectos completados",
         description: "Desde startups hasta empresas"
     },
