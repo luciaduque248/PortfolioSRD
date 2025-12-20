@@ -225,7 +225,7 @@ const Hero = () => {
                 <p className="text-gray-400 text-xs sm:text-sm animate-pulse text-center px-4">
                   {containerDimensions.width < 520
                     ? 'Toca y arrastra en el 3D ✨'
-                    : (isHovered ? 'Mueve el mouse para descubrir habilidades ✨' : 'Pasa el mouse por encima ✨')}
+                    : (isHovered ? 'Mueve el mouse para descubrir mis habilidades ✨' : 'Pasa el mouse por encima ✨')}
                 </p>
               </div>
             </div>
