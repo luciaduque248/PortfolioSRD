@@ -93,8 +93,7 @@ export const projects = [
         name: "AgroInnova",
         description:
             "Plataforma digital orientada a la innovación agropecuaria. Integra marketplace, gestión de emprendimientos y procesos de incubación, con interfaces diferenciadas para clientes, emprendedores, mentores, coordinadores y administradores.",
-        image:
-            AgroinnovaDemo,
+        image: AgroinnovaDemo,
         technologies: [
             "React",
             "TypeScript",
@@ -105,7 +104,8 @@ export const projects = [
         ],
         demoUrl: "https://agro-innova-demo.vercel.app/",
         githubUrl: null,
-        category: "Web App"
+        category: "Web App",
+        requiresDemoNotice: true
     },
     {
         id: 9,
