@@ -2,6 +2,20 @@ import React, { useRef, useState, useMemo } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { projects } from '../data/mock';
 
+/* ====== PALETA BASE ====== */
+const COLOR_PALETTE = [
+  'bg-blue-500/80',
+  'bg-purple-500/80',
+  'bg-green-500/80',
+  'bg-pink-500/80',
+  'bg-yellow-500/80',
+  'bg-red-500/80',
+  'bg-indigo-500/80',
+  'bg-cyan-500/80',
+  'bg-emerald-500/80',
+  'bg-orange-500/80',
+];
+
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const ITEMS_PER_PAGE = 6;
@@ -9,20 +23,6 @@ const Projects = () => {
   const titleRef = useRef(null);
 
   const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
-
-  /* ====== PALETA BASE (puedes ampliar) ====== */
-  const COLOR_PALETTE = [
-    'bg-blue-500/80',
-    'bg-purple-500/80',
-    'bg-green-500/80',
-    'bg-pink-500/80',
-    'bg-yellow-500/80',
-    'bg-red-500/80',
-    'bg-indigo-500/80',
-    'bg-cyan-500/80',
-    'bg-emerald-500/80',
-    'bg-orange-500/80',
-  ];
 
   /* ====== ASIGNACIÓN ESTABLE DE COLORES POR CATEGORÍA ====== */
   const categoryColors = useMemo(() => {
