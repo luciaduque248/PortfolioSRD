@@ -1,4 +1,7 @@
 import cafecomImg from "../images/CAFECOM.png";
+import MiPensumUnicauca from "../images/MiPensum.png";
+import AgroinnovaDemo from "../images/agroinnova.png";
+import ManageLandingPage from "../images/manageio.png";
 // Mock data para el portafolio de Sara Duque
 export const personalInfo = {
     name: "Sara Duque",
@@ -15,56 +18,56 @@ export const personalInfo = {
 };
 
 export const projects = [
-    {
-        id: 1,
-        name: "EcoTracker Dashboard",
-        description: "Dashboard interactivo para seguimiento de huella de carbono con visualizaciones en tiempo real",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
-        technologies: ["React", "TypeScript", "Chart.js", "Tailwind CSS"],
-        demoUrl: "https://demo-ecotracker.com",
-        githubUrl: "https://github.com/saraduque/ecotracker",
-        category: "Web App"
-    },
-    {
-        id: 2,
-        name: "FinTech Mobile UI",
-        description: "Diseño y desarrollo de interfaz móvil para aplicación de banca digital con animaciones fluidas",
-        image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop",
-        technologies: ["React Native", "Framer Motion", "Figma", "TypeScript"],
-        demoUrl: "https://demo-fintech.com",
-        githubUrl: "https://github.com/saraduque/fintech-ui",
-        category: "Mobile"
-    },
-    {
-        id: 3,
-        name: "AI Content Generator",
-        description: "Plataforma web para generación de contenido usando IA con interfaz intuitiva y moderna",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop",
-        technologies: ["Next.js", "OpenAI API", "Prisma", "PostgreSQL"],
-        demoUrl: "https://demo-aicontent.com",
-        githubUrl: "https://github.com/saraduque/ai-content",
-        category: "AI/ML"
-    },
-    {
-        id: 4,
-        name: "E-Learning Platform",
-        description: "Plataforma educativa interactiva con sistema de progreso y gamificación",
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop",
-        technologies: ["Vue.js", "Node.js", "MongoDB", "Socket.io"],
-        demoUrl: "https://demo-elearning.com",
-        githubUrl: "https://github.com/saraduque/elearning",
-        category: "Education"
-    },
-    {
-        id: 5,
-        name: "Health & Wellness App",
-        description: "Aplicación móvil para seguimiento de hábitos saludables con diseño centrado en el usuario",
-        image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=500&h=300&fit=crop",
-        technologies: ["Flutter", "Dart", "Firebase", "Lottie"],
-        demoUrl: "https://demo-healthapp.com",
-        githubUrl: "https://github.com/saraduque/healthapp",
-        category: "Mobile"
-    },
+    // {
+    //     id: 1,
+    //     name: "EcoTracker Dashboard",
+    //     description: "Dashboard interactivo para seguimiento de huella de carbono con visualizaciones en tiempo real",
+    //     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
+    //     technologies: ["React", "TypeScript", "Chart.js", "Tailwind CSS"],
+    //     demoUrl: "https://demo-ecotracker.com",
+    //     githubUrl: "https://github.com/saraduque/ecotracker",
+    //     category: "Web App"
+    // },
+    // {
+    //     id: 2,
+    //     name: "FinTech Mobile UI",
+    //     description: "Diseño y desarrollo de interfaz móvil para aplicación de banca digital con animaciones fluidas",
+    //     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop",
+    //     technologies: ["React Native", "Framer Motion", "Figma", "TypeScript"],
+    //     demoUrl: "https://demo-fintech.com",
+    //     githubUrl: "https://github.com/saraduque/fintech-ui",
+    //     category: "Mobile"
+    // },
+    // {
+    //     id: 3,
+    //     name: "AI Content Generator",
+    //     description: "Plataforma web para generación de contenido usando IA con interfaz intuitiva y moderna",
+    //     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop",
+    //     technologies: ["Next.js", "OpenAI API", "Prisma", "PostgreSQL"],
+    //     demoUrl: "https://demo-aicontent.com",
+    //     githubUrl: "https://github.com/saraduque/ai-content",
+    //     category: "AI/ML"
+    // },
+    // {
+    //     id: 4,
+    //     name: "E-Learning Platform",
+    //     description: "Plataforma educativa interactiva con sistema de progreso y gamificación",
+    //     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop",
+    //     technologies: ["Vue.js", "Node.js", "MongoDB", "Socket.io"],
+    //     demoUrl: "https://demo-elearning.com",
+    //     githubUrl: "https://github.com/saraduque/elearning",
+    //     category: "Education"
+    // },
+    // {
+    //     id: 5,
+    //     name: "Health & Wellness App",
+    //     description: "Aplicación móvil para seguimiento de hábitos saludables con diseño centrado en el usuario",
+    //     image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=500&h=300&fit=crop",
+    //     technologies: ["Flutter", "Dart", "Firebase", "Lottie"],
+    //     demoUrl: "https://demo-healthapp.com",
+    //     githubUrl: "https://github.com/saraduque/healthapp",
+    //     category: "Mobile"
+    // },
     {
         id: 6,
         name: "Country Explorer",
@@ -88,10 +91,19 @@ export const projects = [
     {
         id: 8,
         name: "AgroInnova",
-        description: "Plataforma digital orientada a la innovación agropecuaria. Facilita la gestión de emprendimientos rurales, procesos de incubación y acompañamiento tecnológico. Proyecto desarrollado para empresa privada.",
-        image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=500&h=300&fit=crop",
-        technologies: ["React", "JavaScript", "Tailwind CSS", "Node.js", "APIs REST"],
-        demoUrl: "https://agroinnovacorp.org/",
+        description:
+            "Plataforma digital orientada a la innovación agropecuaria. Integra marketplace, gestión de emprendimientos y procesos de incubación, con interfaces diferenciadas para clientes, emprendedores, mentores, coordinadores y administradores.",
+        image:
+            AgroinnovaDemo,
+        technologies: [
+            "React",
+            "TypeScript",
+            "Vite",
+            "Tailwind CSS",
+            "Firebase",
+            "APIs REST"
+        ],
+        demoUrl: "https://agro-innova-demo.vercel.app/",
         githubUrl: null,
         category: "Web App"
     },
@@ -121,7 +133,7 @@ export const projects = [
         description:
             "Landing page minimalista para presentar Manage. Communica de forma clara el valor del producto: “Manage makes it simple for software teams to plan day-to-day tasks while keeping the large team goals in view”.",
         image:
-            "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&h=300&fit=crop",
+            ManageLandingPage,
         technologies: ["HTML", "CSS", "JavaScript"],
         demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
         githubUrl: "https://github.com/luciaduque248/Proyecto-Manage.git",
@@ -150,11 +162,24 @@ export const projects = [
         category: "UX/UI",
         demoUrl: "https://www.figma.com/proto/77kBTXLVhpGbghkWRoRINb/VIRTUOSA?node-id=439-1931&p=f&t=hJKfr0Oc8jl4GpZk-9&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=439%3A1931&show-proto-sidebar=1",
         githubUrl: null,
+    },
+    {
+        id: 14,
+        name: "Mi Pensum Interactivo",
+        description:
+            "Plataforma web para gestionar el progreso académico de Ingeniería Electrónica y Telecomunicaciones en la Universidad del Cauca. Permite consultar el pensum, prerrequisitos, notas, horarios e historial académico, con persistencia de datos e integración por voz mediante Alexa.",
+        image: MiPensumUnicauca,
+        technologies: [
+            "React",
+            "TypeScript",
+            "Vite",
+            "Supabase",
+            "Alexa Skill"
+        ],
+        demoUrl: "https://pensum-unicauca.vercel.app/",
+        githubUrl: "https://github.com/luciaduque248/PensumUnicauca",
+        category: "Web App"
     }
-
-
-
-
 ];
 
 export const skills = {
