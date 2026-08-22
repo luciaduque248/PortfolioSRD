@@ -147,7 +147,7 @@ export const projects = [
         image:
             "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=300&fit=crop",
         technologies: ["React", "Tailwind CSS", "E-commerce UI"],
-        demoUrl: "https://luciaduque248.github.io/VirtuosaCrud/",
+        demoUrl: "https://virtuosa-crud.vercel.app/VirtuosaCrud/",
         githubUrl: "https://github.com/luciaduque248/VirtuosaCrud.git",
         category: "Web App"
     },
