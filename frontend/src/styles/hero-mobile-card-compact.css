@@ -67,3 +67,5 @@
     height: min(calc(46svh + 50px), 500px) !important;
   }
 }
+
+/* Deployment retry marker: portrait +50px mobile sizing is intentional. */
