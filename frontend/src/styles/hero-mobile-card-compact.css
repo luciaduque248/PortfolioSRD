@@ -1,6 +1,14 @@
 /* Final mobile-only sizing pass for the white hero summary card.
    Keep this file as the last mobile override so the compact card wins cascade order. */
 @media (max-width: 767px) {
+  /* Increase the portrait by roughly 50px without changing its aspect ratio or
+     allowing it to create horizontal overflow. The lower fade can sit behind
+     the summary card intentionally. */
+  .hero-person {
+    width: min(calc(94vw + 50px), 520px) !important;
+    height: min(calc(52svh + 50px), 595px) !important;
+  }
+
   .hero-mobile-summary {
     left: 50% !important;
     right: auto !important;
@@ -29,6 +37,11 @@
 }
 
 @media (max-width: 380px) {
+  .hero-person {
+    width: min(calc(92vw + 50px), 440px) !important;
+    height: min(calc(49svh + 50px), 530px) !important;
+  }
+
   .hero-mobile-summary {
     width: min(calc(100vw - 3rem), 19rem);
     padding: 0.58rem 0.62rem 0.62rem;
@@ -45,5 +58,12 @@
   .hero-mobile-tags span {
     padding-inline: 0.3rem;
     font-size: 0.42rem;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .hero-person {
+    width: min(calc(88vw + 50px), 460px) !important;
+    height: min(calc(46svh + 50px), 500px) !important;
   }
 }
