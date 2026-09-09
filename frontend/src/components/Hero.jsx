@@ -4,6 +4,7 @@ import { personalInfo } from '../data/mock';
 import { scrollToId } from '../utils/motion';
 import saraHeroPhoto from '../images/portraits/Portrait_Sara_sinfondo.PNG';
 import '../styles/hero-meta-refinements.css';
+import '../styles/hero-mobile-card-compact.css';
 
 const introLabel = "Hello, I'm Sara";
 
