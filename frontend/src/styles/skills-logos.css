@@ -1,0 +1,96 @@
+.skill-group-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.skill-tech {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 0.52rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  padding: 0.38rem 0.62rem 0.38rem 0.42rem;
+  color: var(--text);
+}
+
+.skill-tech-mark {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+  background: #fff;
+}
+
+.skill-tech-mark img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.skill-tech-mark svg {
+  width: 16px;
+  height: 16px;
+  color: var(--violet);
+  stroke-width: 1.8;
+}
+
+.skill-tech-fallback {
+  display: none;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: #0a0a0d;
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.skill-tech-name {
+  font-size: 0.63rem;
+  font-weight: 850;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+html.dark .skill-tech {
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+}
+
+@media (max-width: 1099px) {
+  .skill-group-items {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .skill-group-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .skill-tech {
+    min-width: 0;
+    padding-right: 0.48rem;
+  }
+
+  .skill-tech-name {
+    overflow: hidden;
+    font-size: 0.56rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .skill-group-items {
+    grid-template-columns: 1fr;
+  }
+}
