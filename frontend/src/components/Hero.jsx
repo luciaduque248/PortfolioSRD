@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 import { scrollToId } from '../utils/motion';
 import saraHeroPhoto from '../images/portraits/Portrait_Sara_sinfondo.PNG';
+import '../styles/hero-meta-refinements.css';
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -144,7 +145,7 @@ const Hero = () => {
           </div>
         </aside>
 
-        <aside className="hero-meta-stack" aria-label="Perfil profesional" data-hero-detail>
+        <aside className="hero-meta-stack hero-meta-compact" aria-label="Perfil profesional" data-hero-detail>
           <div className="hero-meta-card hero-meta-light">
             <span>01 / Focus</span>
             <strong>Web + Mobile</strong>
