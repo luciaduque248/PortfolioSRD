@@ -10,18 +10,18 @@ import pensumImg from "../images/project-covers/pensum-cover.svg";
 import cafecomMobileImg from "../images/cafecom-mobile.svg";
 import servichatMobileImg from "../images/servichat-mobile.svg";
 
-// Mock data para el portafolio de Sara Duque
+// Datos del portafolio de Sara Duque
 export const personalInfo = {
     name: "Sara Duque",
-    title: "Frontend Developer & UI Designer",
-    slogan: "Precision Code. Intentional Design. Exceptional Experiences.",
-    bio: "Soy una Frontend Developer dedicada a la creación de interfaces donde el diseño y la ingeniería convergen. Mi especialidad es transformar conceptos creativos en productos digitales fluidos, priorizando siempre la armonía entre la estética visual y la eficiencia técnica.",
-    extendedBio: "Con más de 3 años de trayectoria, he colaborado con startups y empresas consolidadas para materializar soluciones de alto impacto. Mi enfoque va más allá de escribir código: optimizo la interacción humana con la tecnología, asegurando que cada píxel tenga un propósito y cada transición se sienta natural.",
-    motivation: "Me apasiona la intersección entre tecnología y arte; ese punto exacto donde el código limpio da vida a experiencias visuales que impactan y perduran.",
-    philosophy: "Creo firmemente que el desarrollo de excelencia es aquel que es elegante, escalable y, sobre todo, accesible. Para mí, cada proyecto es una oportunidad para superar los límites de la web y construir un entorno digital más inclusivo y performante.",
+    title: "Frontend Developer · UX/UI · Mobile Apps",
+    slogan: "Diseño interfaces y las llevo a código: productos web, experiencias UX/UI y aplicaciones móviles.",
+    bio: "Trabajo entre diseño y desarrollo. Puedo empezar en Figma definiendo flujos, jerarquía y comportamiento, y continuar hasta una implementación funcional en React, TypeScript o React Native.",
+    extendedBio: "Me interesa que una interfaz no solo se vea bien: debe responder rápido, adaptarse al dispositivo y mantener una lógica visual consistente. En mis proyectos combino frontend, UX/UI y producto para reducir la distancia entre la idea, el prototipo y lo que finalmente usa una persona.",
+    motivation: "Me interesa convertir problemas reales en interfaces claras y funcionales, cuidando tanto la experiencia como la implementación.",
+    philosophy: "Cada decisión visual debe tener una razón: comunicar jerarquía, facilitar una acción, mejorar la comprensión o reforzar la identidad del producto.",
     avatar: "https://customer-assets.emergentagent.com/job_futuredev-hub/artifacts/luotwcgt_Sara.gif",
     email: "luciaduque248@gmail.com",
-    linkedin: "www.linkedin.com/in/sara-duque-desarrolladora-frontend",
+    linkedin: "https://www.linkedin.com/in/sara-duque-desarrolladora-frontend",
     github: "https://github.com/luciaduque248"
 };
 
@@ -195,68 +195,51 @@ export const skills = {
 
 export const roles = [
     {
-        title: "Frontend Developer",
-        description: "Desarrollo de interfaces modernas y responsivas",
-        icon: "💻",
-        skills: ["React", "Vue.js", "TypeScript", "Tailwind CSS"]
+        title: "Frontend",
+        description: "Implementación de interfaces responsive, componentes y flujos de producto en web.",
+        skills: ["React", "TypeScript", "Tailwind CSS"]
     },
     {
-        title: "Backend Developer",
-        description: "APIs robustas y arquitecturas escalables",
-        icon: "⚙️",
-        skills: ["Node.js", "Python", "PostgreSQL", "MongoDB"]
+        title: "UX/UI",
+        description: "Diseño de flujos, jerarquía visual, prototipos y sistemas de interfaz en Figma.",
+        skills: ["Figma", "User Flows", "Prototyping"]
     },
     {
-        title: "UX/UI Designer",
-        description: "Diseño centrado en el usuario y experiencias intuitivas",
-        icon: "🎨",
-        skills: ["Figma", "Prototyping", "User Research", "Design Systems"]
-    },
-    {
-        title: "Fullstack Developer",
-        description: "Soluciones completas de frontend a backend",
-        icon: "🚀",
-        skills: ["Full-stack", "DevOps", "CI/CD", "Cloud Deployment"]
+        title: "Mobile Apps",
+        description: "Experiencias móviles con foco en interacción táctil, Android y adaptación entre dispositivos.",
+        skills: ["React Native", "Expo", "Firebase"]
     }
 ];
 
 export const achievements = [
     {
         number: "3+",
-        label: "Años de experiencia",
-        description: "Desarrollando experiencias digitales"
+        label: "Años construyendo interfaces",
+        description: "Diseño y desarrollo en proyectos web y móviles"
     },
     {
         number: "10+",
-        label: "Proyectos completados",
-        description: "Desde startups hasta empresas"
+        label: "Proyectos en portafolio",
+        description: "Producto, frontend, UX/UI y aplicaciones"
     },
     {
-        number: "15+",
-        label: "Tecnologías dominadas",
-        description: "Frontend, backend y diseño"
-    },
-    {
-        number: "100%",
-        label: "Clientes satisfechos",
-        description: "Enfoque en calidad y resultados"
+        number: "3",
+        label: "Áreas conectadas",
+        description: "Frontend · UX/UI · Mobile"
     }
 ];
 
 export const values = [
     {
-        title: "Innovación Constante",
-        description: "Siempre explorando nuevas tecnologías y metodologías para crear soluciones más eficientes.",
-        icon: "💡"
+        title: "Diseño antes de decorar",
+        description: "La jerarquía, el flujo y el propósito de cada elemento deben estar claros antes de añadir efectos visuales."
     },
     {
-        title: "Código Limpio",
-        description: "Escribo código que no solo funciona, sino que es mantenible, escalable y fácil de entender.",
-        icon: "✨"
+        title: "Interacción que responde",
+        description: "Los controles deben dar feedback inmediato y el movimiento debe acompañar la intención de la persona, no competir con ella."
     },
     {
-        title: "Experiencia de Usuario",
-        description: "Cada decisión de diseño se toma pensando en brindar la mejor experiencia posible al usuario final.",
-        icon: "👥"
+        title: "Código que sostiene el diseño",
+        description: "La implementación debe conservar el detalle visual sin sacrificar accesibilidad, rendimiento ni mantenimiento."
     }
 ];
