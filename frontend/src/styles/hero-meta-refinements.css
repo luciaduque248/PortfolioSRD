@@ -35,27 +35,22 @@
   color: #0a0a0d;
 }
 
-/* One-time restrained typewriter reveal. The text remains real DOM text for
-   accessibility; only its visible width animates. */
+/* True character-based typewriter. React adds one full character at a time,
+   so proportional fonts can never clip the final letters. */
 .hero-typewriter {
   min-height: 1.1em;
 }
 
 .hero-typewriter span {
   display: inline-block;
-  width: 0;
-  max-width: 100%;
-  overflow: hidden;
-  border-right: 1px solid currentColor;
   white-space: nowrap;
-  animation:
-    heroTyping 1.15s steps(15, end) 480ms forwards,
-    heroCaret 700ms step-end 480ms 3;
+  padding-right: 0.12em;
+  border-right: 1px solid currentColor;
+  animation: heroCaret 700ms step-end infinite;
 }
 
-@keyframes heroTyping {
-  from { width: 0; }
-  to { width: 15ch; }
+.hero-typewriter span.is-complete {
+  animation: heroCaret 700ms step-end 3;
 }
 
 @keyframes heroCaret {
@@ -87,7 +82,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-typewriter span {
-    width: auto;
     border-right: 0;
     animation: none;
   }
