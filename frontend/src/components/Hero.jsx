@@ -14,35 +14,49 @@ const Hero = () => {
   const portraitRef = useRef(null);
   const progressRef = useRef(null);
   const [typedIntro, setTypedIntro] = useState('');
-  const [typingComplete, setTypingComplete] = useState(false);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reducedMotion) {
       setTypedIntro(introLabel);
-      setTypingComplete(true);
       return undefined;
     }
 
-    let intervalId;
-    const startId = window.setTimeout(() => {
+    let typingTimer;
+    let cycleTimer;
+    let cancelled = false;
+
+    const runCycle = () => {
+      if (cancelled) return;
+
+      setTypedIntro('');
       let index = 0;
-      intervalId = window.setInterval(() => {
+
+      const typeNext = () => {
+        if (cancelled) return;
+
         index += 1;
         setTypedIntro(introLabel.slice(0, index));
 
-        if (index >= introLabel.length) {
-          window.clearInterval(intervalId);
-          setTypedIntro(introLabel);
-          setTypingComplete(true);
+        if (index < introLabel.length) {
+          typingTimer = window.setTimeout(typeNext, 72);
+          return;
         }
-      }, 72);
-    }, 480);
+
+        // Reinicia el gesto aproximadamente cada 5 s sin recortar caracteres.
+        cycleTimer = window.setTimeout(runCycle, 3900);
+      };
+
+      typingTimer = window.setTimeout(typeNext, 300);
+    };
+
+    runCycle();
 
     return () => {
-      window.clearTimeout(startId);
-      if (intervalId) window.clearInterval(intervalId);
+      cancelled = true;
+      window.clearTimeout(typingTimer);
+      window.clearTimeout(cycleTimer);
     };
   }, []);
 
@@ -103,7 +117,7 @@ const Hero = () => {
 
       const mobile = window.innerWidth < 768;
       const maxTravel = mobile
-        ? Math.min(window.innerWidth * 0.16, 54)
+        ? Math.min(window.innerWidth * 0.11, 40)
         : Math.min(window.innerWidth * 0.19, 285);
 
       frontend.style.transform = `translate3d(${-maxTravel * progress}px, 0, 0)`;
@@ -166,9 +180,12 @@ const Hero = () => {
           />
         </div>
 
+        <div className="hero-bottom-fade" aria-hidden="true" />
+
         <aside className="hero-intro-panel hero-intro-panel-right" data-hero-detail>
           <p className="eyebrow hero-typewriter" aria-label={introLabel}>
-            <span aria-hidden="true" className={typingComplete ? 'is-complete' : ''}>{typedIntro}</span>
+            <span aria-hidden="true">{typedIntro}</span>
+            <i className="hero-typewriter-caret" aria-hidden="true" />
           </p>
           <p className="hero-intro-copy">
             Diseño y desarrollo productos digitales para <strong>web</strong> y <strong>mobile</strong>.
