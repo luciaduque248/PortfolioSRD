@@ -71,7 +71,7 @@ const Hero = () => {
 
               <button
                 onClick={() => scrollToId('contacto')}
-                className="rounded-xl border border-gray-700 bg-transparent px-6 py-3.5 text-sm font-semibold text-white transition-[background-color,border-color,transform] duration-150 ease-portfolio-out hover:border-gray-500 hover:bg-white/[0.04] active:scale-[0.98] sm:px-8 sm:text-base"
+                className="rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition-[background-color,border-color,color,transform,box-shadow] duration-150 ease-portfolio-out hover:border-slate-400 hover:bg-slate-50 active:scale-[0.98] dark:border-gray-700 dark:bg-transparent dark:text-white dark:shadow-none dark:hover:border-gray-500 dark:hover:bg-white/[0.04] sm:px-8 sm:text-base"
               >
                 Contactar
               </button>
