@@ -9,7 +9,7 @@ import virtuosaUxImg from "../images/project-covers/virtuosa-ux.svg";
 import pensumImg from "../images/project-covers/pensum-cover.svg";
 import cafecomMobileImg from "../images/cafecom-mobile.svg";
 import servichatMobileImg from "../images/servichat-mobile.svg";
-import saraAboutImg from "../sara_pc.png";
+import saraAboutImg from "../images/portraits/sara-about.webp";
 
 export const personalInfo = {
   name: "Sara Duque",
@@ -80,7 +80,7 @@ export const projects = [
   {
     id: 11,
     name: "Manage — Landing Page",
-    description: "Landing page minimalista para presentar Manage. Comunica de forma clara el valor del producto y organiza la información en una experiencia web responsive.",
+    description: "Landing page minimalista para presentar Manage y comunicar de forma clara el valor del producto.",
     image: manageImg,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
@@ -141,57 +141,69 @@ export const projects = [
 
 export const skills = {
   frameworks: [
-    { name: "React", icon: "⚛️" },
-    { name: "Next.js", icon: "▲" },
-    { name: "Vue.js", icon: "◆" },
-    { name: "Tailwind CSS", icon: "◫" },
-    { name: "Figma", icon: "F" },
-    { name: "Firebase", icon: "F" },
-    { name: "Git", icon: "G" },
-    { name: "Framer Motion", icon: "M" }
+    { name: "React", level: 95, icon: "⚛️" },
+    { name: "Next.js", level: 90, icon: "▲" },
+    { name: "Vue.js", level: 85, icon: "💚" },
+    { name: "Tailwind CSS", level: 95, icon: "🎨" },
+    { name: "Figma", level: 90, icon: "🎭" },
+    { name: "Firebase", level: 80, icon: "🔥" },
+    { name: "Git", level: 85, icon: "📦" },
+    { name: "Framer Motion", level: 85, icon: "🎬" }
   ],
   languages: [
-    { name: "JavaScript", icon: "JS" },
-    { name: "TypeScript", icon: "TS" },
-    { name: "HTML5", icon: "H" },
-    { name: "CSS3", icon: "C" },
-    { name: "Python", icon: "Py" },
-    { name: "SQL", icon: "SQL" }
+    { name: "JavaScript", level: 95, icon: "🟨" },
+    { name: "TypeScript", level: 90, icon: "🔷" },
+    { name: "HTML5", level: 98, icon: "🧡" },
+    { name: "CSS3", level: 95, icon: "💙" },
+    { name: "Python", level: 70, icon: "🐍" },
+    { name: "SQL", level: 75, icon: "🗄️" }
   ]
 };
 
 export const roles = [
   {
-    title: "Frontend Development",
-    description: "Implementación de interfaces responsive, componentes y flujos de producto.",
+    title: "Frontend",
+    description: "Implementación de interfaces responsive, componentes y flujos de producto en web.",
     skills: ["React", "TypeScript", "Tailwind CSS"]
   },
   {
     title: "Web Applications",
-    description: "Aplicaciones y experiencias web con navegación, estado y servicios reales.",
-    skills: ["React", "Next.js", "Vite"]
+    description: "Construcción de productos y experiencias web completas, desde interfaces hasta integración de servicios.",
+    skills: ["React", "Next.js", "TypeScript"]
   },
   {
     title: "Mobile Applications",
-    description: "Experiencias móviles con foco en interacción táctil y adaptación entre dispositivos.",
+    description: "Experiencias móviles con foco en interacción táctil, Android y adaptación entre dispositivos.",
     skills: ["React Native", "Expo", "Firebase"]
   },
   {
-    title: "UX/UI & Product Design",
-    description: "Flujos, jerarquía visual, prototipos y sistemas de interfaz.",
+    title: "UX/UI",
+    description: "Diseño de flujos, jerarquía visual, prototipos y sistemas de interfaz en Figma.",
     skills: ["Figma", "User Flows", "Prototyping"]
   },
   {
-    title: "Software Development",
-    description: "Soluciones funcionales donde interfaz, datos y lógica trabajan juntas.",
-    skills: ["Git", "Firebase", "SQL"]
+    title: "Software",
+    description: "Implementación de soluciones funcionales conectando interfaz, lógica, servicios y datos.",
+    skills: ["Firebase", "Supabase", "APIs REST"]
   }
 ];
 
 export const achievements = [
-  { number: "WEB", label: "Applications", description: "Frontend y productos para navegador" },
-  { number: "MOBILE", label: "Applications", description: "Experiencias táctiles y multiplataforma" },
-  { number: "UX/UI", label: "Design", description: "Flujos, prototipos y sistemas visuales" }
+  {
+    number: "WEB",
+    label: "Aplicaciones y experiencias web",
+    description: "Productos responsive, interfaces y frontend"
+  },
+  {
+    number: "MOBILE",
+    label: "Aplicaciones móviles",
+    description: "Experiencias Android y multiplataforma"
+  },
+  {
+    number: "UX/UI",
+    label: "Diseño de producto",
+    description: "Flujos, prototipos e interfaces"
+  }
 ];
 
 export const values = [
