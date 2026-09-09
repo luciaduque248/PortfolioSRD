@@ -1,0 +1,219 @@
+/* Refinements layered after index.css.
+   Keep the hero full-bleed; give editorial sections calmer desktop margins. */
+
+@media (min-width: 1100px) {
+  .editorial-container {
+    width: min(calc(100% - clamp(10rem, 18vw, 20rem)), 88rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1099px) {
+  .editorial-container {
+    width: min(calc(100% - 4rem), 72rem);
+  }
+}
+
+/* HERO — one word per line. FRONTEND remains the heavy sans anchor;
+   DEVELOPER uses one restrained editorial contrast instead of another effect. */
+.hero-type {
+  top: 21.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.02em;
+}
+
+.hero-type-word {
+  width: 100%;
+  font-size: clamp(4.9rem, 10.7vw, 11.4rem);
+  line-height: 0.78;
+}
+
+.hero-type-frontend {
+  text-align: left;
+}
+
+.hero-type-developer {
+  align-self: stretch;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(5rem, 10.9vw, 11.6rem);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+html.dark .hero-type-developer {
+  color: #f4f2f7;
+}
+
+/* ABOUT — scroll-linked movement is applied in About.jsx. Reserve visual room
+   so the portrait can travel without colliding with the next section. */
+.about-photo-column {
+  min-width: 0;
+  padding-bottom: 7rem;
+}
+
+.about-photo-wrap {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* MOBILE PROJECT VISUALS — treat the existing cover art as product artwork
+   inside real device proportions instead of cropping it past the screen. */
+.project-mobile-stage {
+  position: relative;
+  width: min(100%, 540px);
+  height: min(58vh, 560px);
+  isolation: isolate;
+}
+
+.project-phone {
+  overflow: hidden;
+  border: 8px solid #0b0b0d;
+  border-radius: 30px;
+  background: #f7f3ea;
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.24);
+}
+
+.project-phone::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  z-index: 2;
+  width: 30%;
+  height: 13px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #0b0b0d;
+}
+
+.project-phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 0.55rem 0.7rem;
+  background: #f7f3ea;
+  object-fit: contain;
+  object-position: center;
+}
+
+.project-phone-front {
+  right: 15%;
+  top: 5%;
+  width: min(42%, 238px);
+  height: 86%;
+  transform: rotate(1.5deg);
+}
+
+.project-phone-back {
+  left: 14%;
+  bottom: 7%;
+  width: min(38%, 210px);
+  height: 72%;
+  transform: rotate(-3deg);
+  opacity: 0.82;
+}
+
+@media (max-width: 1099px) {
+  .hero-type {
+    top: 22%;
+  }
+
+  .hero-type-word {
+    font-size: clamp(4rem, 12vw, 7.3rem);
+  }
+
+  .hero-type-developer {
+    font-size: clamp(4.05rem, 12.2vw, 7.45rem);
+  }
+
+  .about-photo-column {
+    padding-bottom: 4.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .editorial-container {
+    width: calc(100% - 2.3rem);
+  }
+
+  .hero-type {
+    top: 18.5%;
+    inset-inline: 0.8rem;
+    gap: 0.04em;
+  }
+
+  .hero-type-word {
+    font-size: clamp(3.3rem, 16.2vw, 4.9rem);
+    line-height: 0.8;
+  }
+
+  .hero-type-developer {
+    font-size: clamp(3.15rem, 15.2vw, 4.65rem);
+    line-height: 0.82;
+  }
+
+  .about-photo-column {
+    padding-bottom: 2.5rem;
+  }
+
+  .project-mobile-stage {
+    width: min(100%, 390px);
+    height: 330px;
+  }
+
+  .project-phone {
+    border-width: 6px;
+    border-radius: 24px;
+  }
+
+  .project-phone::before {
+    top: 6px;
+    height: 10px;
+  }
+
+  .project-phone img {
+    padding: 1.65rem 0.35rem 0.5rem;
+  }
+
+  .project-phone-front {
+    right: 9%;
+    top: 5%;
+    width: 48%;
+    height: 84%;
+    transform: rotate(1deg);
+  }
+
+  .project-phone-back {
+    left: 8%;
+    bottom: 8%;
+    width: 42%;
+    height: 70%;
+    transform: rotate(-2.5deg);
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-type-word {
+    font-size: clamp(3.05rem, 15.8vw, 4.25rem);
+  }
+
+  .hero-type-developer {
+    font-size: clamp(2.95rem, 14.8vw, 4.05rem);
+  }
+
+  .project-mobile-stage {
+    height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-photo-wrap {
+    transform: none !important;
+  }
+}
