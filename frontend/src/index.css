@@ -122,7 +122,7 @@ html.light .portfolio-shell {
 }
 
 html.light #inicio {
-  background-color: #f8fafc !important;
+  background-color: #f2f2ef !important;
 }
 
 html.light #sobre-mi {
@@ -256,6 +256,10 @@ html.light #inicio [aria-label="Carrusel de proyectos seleccionados"] article {
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
+  }
+
+  #inicio {
+    height: 100svh !important;
   }
 
   *,
