@@ -1,26 +1,19 @@
 import React, { useState } from 'react';
-import { Send, Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Send } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (event) => {
+    setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('');
 
@@ -32,140 +25,108 @@ const Contact = () => {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_name: personalInfo.name, // opcional
+          to_name: personalInfo.name,
         },
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       );
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
-
-      setTimeout(() => setSubmitStatus(''), 3000);
-    } catch (err) {
-      console.error(err);
+      window.setTimeout(() => setSubmitStatus(''), 3000);
+    } catch (error) {
+      console.error(error);
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus(''), 4000);
+      window.setTimeout(() => setSubmitStatus(''), 4000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contacto" className="py-20 bg-black relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent">
-              Contacto
-            </span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            ¿Tienes un proyecto en mente? Hablemos y hagamos algo increíble juntos
+    <section id="contacto" className="relative overflow-hidden bg-black py-20">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-14 max-w-3xl">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
+            Contacto
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mt-6"></div>
+          <h2 className="text-3xl font-bold leading-tight tracking-[-0.025em] text-white sm:text-4xl md:text-5xl">
+            Hablemos de lo que quieres construir.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-400 sm:text-lg">
+            Puedo ayudarte con frontend, UX/UI o una experiencia móvil. Cuéntame el contexto y el objetivo del proyecto.
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Información de contacto</h3>
-              <p className="text-gray-400 mb-8 leading-relaxed">
-                Estoy siempre abierta a discutir nuevas oportunidades, proyectos interesantes o simplemente charlar sobre tecnología y diseño.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg">
-                  <Mail className="h-6 w-6 text-blue-400" />
-                </div>
+        <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div>
+            <div className="divide-y divide-white/10 border-y border-white/10">
+              <div className="flex items-center gap-4 py-5">
+                <Mail className="h-5 w-5 text-blue-400" />
                 <div>
-                  <p className="text-white font-medium">Email</p>
-                  <p className="text-gray-400">{personalInfo.email}</p>
+                  <p className="text-sm font-medium text-white">Email</p>
+                  <a href={`mailto:${personalInfo.email}`} className="text-sm text-gray-400 hover:text-white">
+                    {personalInfo.email}
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg">
-                  <MapPin className="h-6 w-6 text-purple-400" />
-                </div>
+              <div className="flex items-center gap-4 py-5">
+                <MapPin className="h-5 w-5 text-purple-400" />
                 <div>
-                  <p className="text-white font-medium">Ubicación</p>
-                  <p className="text-gray-400">Colombia</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg">
-                  <Phone className="h-6 w-6 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">Disponibilidad</p>
-                  <p className="text-gray-400">Lun - Vie, 9:00 AM - 6:00 PM</p>
+                  <p className="text-sm font-medium text-white">Ubicación</p>
+                  <p className="text-sm text-gray-400">Colombia</p>
                 </div>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="pt-8">
-              <h4 className="text-white font-semibold mb-4">Encuéntrame en:</h4>
-              <div className="flex space-x-4">
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg transition-all duration-300 hover:scale-110 group"
-                >
-                  <Github className="h-6 w-6 text-gray-300 group-hover:text-white" />
-                </a>
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg transition-all duration-300 hover:scale-110 group"
-                >
-                  <Linkedin className="h-6 w-6 text-gray-300 group-hover:text-white" />
-                </a>
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg transition-all duration-300 hover:scale-110 group"
-                >
-                  <Mail className="h-6 w-6 text-gray-300 group-hover:text-white" />
-                </a>
-              </div>
+            <div className="mt-7 flex gap-2">
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-colors hover:border-gray-600 hover:text-white active:scale-95"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-colors hover:border-gray-600 hover:text-white active:scale-95"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-colors hover:border-gray-600 hover:text-white active:scale-95"
+                aria-label="Correo"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-purple-500/20">
-            <h3 className="text-2xl font-bold text-white mb-6">Envía un mensaje</h3>
+          <div className="border-t border-white/10 pt-6">
+            <h3 className="mb-6 text-xl font-semibold text-white">Enviar mensaje</h3>
 
             {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-500/20 border border-green-500/40 rounded-lg">
-                <p className="text-green-400 font-medium">¡Mensaje enviado con éxito! Te responderé pronto.</p>
+              <div className="mb-6 border-l-2 border-green-400 pl-4 text-sm text-green-400">
+                Mensaje enviado. Te responderé pronto.
               </div>
             )}
 
             {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-500/20 border border-red-500/40 rounded-lg">
-                <p className="text-red-400 font-medium">
-                  No se pudo enviar. Intenta de nuevo en unos segundos.
-                </p>
+              <div className="mb-6 border-l-2 border-red-400 pl-4 text-sm text-red-400">
+                No se pudo enviar. Intenta de nuevo en unos segundos.
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-white font-medium mb-2">
-                  Nombre completo
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-white">
+                  Nombre
                 </label>
                 <input
                   type="text"
@@ -174,13 +135,13 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-gray-400 transition-all duration-300"
-                  placeholder="Tu nombre completo"
+                  className="w-full rounded-xl border border-gray-800 bg-gray-950 px-4 py-3 text-white outline-none transition-colors placeholder:text-gray-600 focus:border-blue-400"
+                  placeholder="Tu nombre"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-white font-medium mb-2">
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-white">
                   Email
                 </label>
                 <input
@@ -190,13 +151,13 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-gray-400 transition-all duration-300"
-                  placeholder="tu.email@ejemplo.com"
+                  className="w-full rounded-xl border border-gray-800 bg-gray-950 px-4 py-3 text-white outline-none transition-colors placeholder:text-gray-600 focus:border-blue-400"
+                  placeholder="tu@email.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-white font-medium mb-2">
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-white">
                   Mensaje
                 </label>
                 <textarea
@@ -206,38 +167,27 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-gray-400 transition-all duration-300 resize-none"
-                  placeholder="Cuéntame sobre tu proyecto o idea..."
+                  className="w-full resize-none rounded-xl border border-gray-800 bg-gray-950 px-4 py-3 text-white outline-none transition-colors placeholder:text-gray-600 focus:border-blue-400"
+                  placeholder="Qué estás construyendo, para quién y qué necesitas resolver..."
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
-                  }`}
+                className={`inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-400 active:scale-[0.98] ${
+                  isSubmitting ? 'cursor-not-allowed opacity-60' : ''
+                }`}
               >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    <span>Enviando...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5" />
-                    <span>Enviar mensaje</span>
-                  </>
-                )}
+                <Send className="h-4 w-4" />
+                <span>{isSubmitting ? 'Enviando…' : 'Enviar mensaje'}</span>
               </button>
             </form>
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="mt-20 pt-8 border-t border-gray-800/50 text-center">
-          <p className="text-gray-400">
-            © 2024 {personalInfo.name}. Diseñado y desarrollado con 💜 usando React y Tailwind CSS.
-          </p>
+        <div className="mt-20 border-t border-white/10 pt-8 text-sm text-gray-500">
+          © {new Date().getFullYear()} {personalInfo.name}. React + Tailwind CSS.
         </div>
       </div>
     </section>
