@@ -35,27 +35,52 @@
   color: #0a0a0d;
 }
 
-/* True character-based typewriter. React adds one full character at a time,
-   so proportional fonts can never clip the final letters. */
+/* React renders complete characters; the caret is a separate element so the
+   final letter can never be clipped by width-based animation. */
 .hero-typewriter {
+  display: flex;
   min-height: 1.1em;
+  align-items: center;
+  gap: 0.12em;
 }
 
 .hero-typewriter span {
   display: inline-block;
   white-space: nowrap;
-  padding-right: 0.12em;
-  border-right: 1px solid currentColor;
-  animation: heroCaret 700ms step-end infinite;
 }
 
-.hero-typewriter span.is-complete {
-  animation: heroCaret 700ms step-end 3;
+.hero-typewriter-caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 0.95em;
+  flex: 0 0 auto;
+  background: currentColor;
+  animation: heroCaret 720ms step-end infinite;
 }
 
 @keyframes heroCaret {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: currentColor; }
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
+}
+
+/* Softly dissolves the portrait into the next section instead of ending on a
+   hard crop. The blur is masked so the face and torso stay sharp. */
+.hero-bottom-fade {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 5;
+  height: clamp(5.5rem, 11vh, 8.5rem);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 35%, transparent) 42%,
+    var(--bg) 100%
+  );
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 52%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 52%, #000 100%);
 }
 
 /* The former left column is now free, so actions balance the right-hand card. */
@@ -74,15 +99,113 @@
 }
 
 @media (max-width: 767px) {
+  /* Mobile gets its own composition instead of a scaled desktop hero. */
+  .hero-type {
+    top: 17.5%;
+    inset-inline: 0.8rem;
+  }
+
+  .hero-type-word {
+    font-size: clamp(3.2rem, 15.8vw, 4.85rem);
+    line-height: 0.8;
+  }
+
+  .hero-type-developer {
+    margin-top: 0.08em;
+  }
+
+  .hero-person {
+    bottom: 8.7rem;
+    width: min(86vw, 450px);
+    height: min(57svh, 540px);
+  }
+
+  .hero-person-image {
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .hero-bottom-fade {
+    height: 11.5rem;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      color-mix(in srgb, var(--bg) 48%, transparent) 38%,
+      var(--bg) 88%
+    );
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Product summary becomes an intentional white editorial card on touch. */
+  .hero-mobile-summary {
+    inset: auto 1rem 4.85rem;
+    z-index: 8;
+    border: 1px solid rgba(10, 10, 13, 0.13);
+    background: rgba(255, 255, 255, 0.96);
+    padding: 0.78rem 0.85rem 0.82rem;
+    color: #0a0a0d;
+    box-shadow: 0 14px 34px rgba(10, 8, 20, 0.1);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .hero-mobile-summary p {
+    max-width: none;
+    color: #0a0a0d;
+    font-size: 0.73rem;
+    line-height: 1.42;
+  }
+
+  .hero-mobile-tags {
+    gap: 0.35rem;
+    margin-top: 0.58rem;
+  }
+
+  .hero-mobile-tags span {
+    border: 1px solid rgba(10, 10, 13, 0.14);
+    background: #f6f5fa;
+    padding: 0.28rem 0.42rem;
+    color: #0a0a0d;
+    font-size: 0.49rem;
+    letter-spacing: 0.1em;
+  }
+
   .hero-actions {
-    left: 1.15rem;
-    right: 1.15rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.85rem;
+  }
+
+  .hero-actions .editorial-link-button {
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-type-word {
+    font-size: clamp(2.9rem, 15.2vw, 4.05rem);
+  }
+
+  .hero-person {
+    bottom: 8.5rem;
+    width: 84vw;
+    height: 54svh;
+  }
+
+  .hero-mobile-summary {
+    bottom: 4.7rem;
+    padding: 0.68rem 0.72rem 0.72rem;
+  }
+
+  .hero-mobile-summary p {
+    font-size: 0.68rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-typewriter span {
-    border-right: 0;
+  .hero-typewriter-caret {
+    display: none;
     animation: none;
   }
 }
