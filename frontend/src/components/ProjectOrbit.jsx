@@ -1,43 +1,14 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import {
-  ChevronLeft,
-  ChevronRight,
-  Code2,
-  LayoutTemplate,
-  Monitor,
-  Palette,
-  Smartphone,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { projects } from '../data/mock';
 
-const PROJECT_ORDER = [15, 8, 10, 14, 16, 12, 6, 9, 11, 7];
+const PROJECT_ORDER = [15, 8, 10, 14, 16, 12, 13, 6, 9, 11, 7];
 
-const ORBIT_NODES = [
-  {
-    label: 'Frontend',
-    icon: Code2,
-    className: 'top-[4%] left-[4%] sm:left-[8%] md:left-[12%]',
-  },
-  {
-    label: 'UX/UI',
-    icon: Palette,
-    className: 'top-[5%] right-[4%] sm:right-[8%] md:right-[12%]',
-  },
-  {
-    label: 'Mobile Apps',
-    icon: Smartphone,
-    className: 'top-[41%] left-0 sm:left-[3%] md:left-[7%]',
-  },
-  {
-    label: 'Web Apps',
-    icon: Monitor,
-    className: 'top-[43%] right-0 sm:right-[3%] md:right-[7%]',
-  },
-  {
-    label: 'Product Design',
-    icon: LayoutTemplate,
-    className: 'bottom-[3%] left-1/2 -translate-x-1/2',
-  },
+const PARTICLES = [
+  ['8%', '18%', 4, .34], ['17%', '67%', 3, .24], ['29%', '11%', 3, .26],
+  ['39%', '81%', 4, .20], ['52%', '7%', 2, .34], ['61%', '72%', 3, .24],
+  ['72%', '18%', 4, .22], ['84%', '64%', 3, .28], ['92%', '28%', 2, .35],
+  ['47%', '42%', 2, .18], ['70%', '47%', 2, .18], ['24%', '43%', 2, .18],
 ];
 
 const ProjectOrbit = () => {
@@ -51,14 +22,12 @@ const ProjectOrbit = () => {
   const touchStartX = useRef(null);
   const resumeTimer = useRef(null);
 
-  const activeProject = featuredProjects[activeIndex];
-
   useEffect(() => {
     if (paused || featuredProjects.length <= 1) return undefined;
 
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % featuredProjects.length);
-    }, 4500);
+    }, 5200);
 
     return () => window.clearInterval(timer);
   }, [paused, featuredProjects.length]);
@@ -74,7 +43,7 @@ const ProjectOrbit = () => {
 
     resumeTimer.current = window.setTimeout(() => {
       setPaused(false);
-    }, 8000);
+    }, 9000);
   };
 
   const changeProject = (direction) => {
@@ -83,11 +52,6 @@ const ProjectOrbit = () => {
       const next = current + direction;
       return (next + featuredProjects.length) % featuredProjects.length;
     });
-  };
-
-  const goToProject = (index) => {
-    pauseTemporarily();
-    setActiveIndex(index);
   };
 
   const handleTouchStart = (event) => {
@@ -101,166 +65,156 @@ const ProjectOrbit = () => {
     const difference = touchStartX.current - endX;
     touchStartX.current = null;
 
-    if (Math.abs(difference) < 36) return;
+    if (Math.abs(difference) < 38) return;
     changeProject(difference > 0 ? 1 : -1);
   };
 
-  if (!activeProject) return null;
+  if (!featuredProjects.length) return null;
 
-  const isMobileProject = activeProject.category === 'Mobile App';
-  const isUxProject = activeProject.category === 'UX/UI';
-  const visibleTechnologies = activeProject.technologies?.slice(0, 4) ?? [];
+  const activeProject = featuredProjects[activeIndex];
+  const prevProject = featuredProjects[(activeIndex - 1 + featuredProjects.length) % featuredProjects.length];
+  const nextProject = featuredProjects[(activeIndex + 1) % featuredProjects.length];
+  const visibleTechnologies = activeProject.technologies?.slice(0, 3) ?? [];
+
+  const cards = [
+    { project: prevProject, role: 'prev' },
+    { project: activeProject, role: 'active' },
+    { project: nextProject, role: 'next' },
+  ];
+
+  const cardStyle = {
+    prev: 'translate(-60%, -54%) rotate(-8deg) scale(.82)',
+    active: 'translate(-50%, -50%) rotate(-1.5deg) scale(1)',
+    next: 'translate(-40%, -45%) rotate(8deg) scale(.82)',
+  };
 
   return (
-    <div className="relative mx-auto w-full max-w-[720px] select-none">
+    <div
+      className="relative mx-auto w-full max-w-[720px] select-none"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onPointerEnter={() => setPaused(true)}
+      onPointerLeave={() => setPaused(false)}
+    >
       <style>{`
-        @keyframes projectOrbitFloat {
-          0%, 100% { transform: translateY(0px) rotateX(4deg) rotateY(-7deg); }
-          50% { transform: translateY(-10px) rotateX(2deg) rotateY(7deg); }
+        @keyframes stackFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
         }
-        @keyframes projectOrbitPulse {
-          0%, 100% { opacity: .28; transform: scale(.96); }
-          50% { opacity: .55; transform: scale(1.04); }
+        @keyframes particleBlink {
+          0%, 100% { opacity: .18; }
+          50% { opacity: .55; }
         }
       `}</style>
 
-      <div className="mb-3 text-center">
-        <span className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-purple-300 sm:text-xs">
-          Project Orbit
-        </span>
-        <p className="mt-2 text-sm text-gray-400 sm:text-base">
-          Un vistazo a proyectos de frontend, mobile y UX/UI.
-        </p>
-      </div>
-
-      <div
-        className="relative h-[330px] sm:h-[390px] md:h-[430px] touch-pan-y"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-        onPointerEnter={() => setPaused(true)}
-        onPointerLeave={() => setPaused(false)}
-      >
-        <div
-          className="absolute left-1/2 top-1/2 h-[235px] w-[235px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-fuchsia-500/10 blur-2xl sm:h-[300px] sm:w-[300px]"
-          style={{ animation: 'projectOrbitPulse 5.8s ease-in-out infinite' }}
-        />
+      <div className="relative h-[330px] sm:h-[380px] md:h-[410px] touch-pan-y">
+        <div className="absolute left-1/2 top-1/2 h-[230px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-blue-500/10 via-purple-500/15 to-fuchsia-500/10 blur-3xl sm:h-[280px] sm:w-[410px]" />
 
         <svg
-          className="absolute inset-0 h-full w-full opacity-45"
-          viewBox="0 0 700 430"
+          className="absolute inset-0 h-full w-full opacity-25"
+          viewBox="0 0 700 410"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
           <defs>
-            <linearGradient id="orbitLine" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.55" />
-              <stop offset="100%" stopColor="#a855f7" stopOpacity="0.25" />
+            <linearGradient id="stackLine" x1="0" x2="1">
+              <stop offset="0%" stopColor="#60a5fa" stopOpacity=".25" />
+              <stop offset="100%" stopColor="#a855f7" stopOpacity=".38" />
             </linearGradient>
           </defs>
-          <ellipse cx="350" cy="214" rx="245" ry="145" fill="none" stroke="url(#orbitLine)" strokeWidth="1.2" strokeDasharray="7 10" />
-          <ellipse cx="350" cy="214" rx="175" ry="185" fill="none" stroke="url(#orbitLine)" strokeWidth="1" strokeDasharray="4 12" />
-          <path d="M120 55 C210 105 255 130 350 214" fill="none" stroke="url(#orbitLine)" strokeWidth="1" />
-          <path d="M585 65 C490 115 450 145 350 214" fill="none" stroke="url(#orbitLine)" strokeWidth="1" />
-          <path d="M70 220 C175 215 245 215 350 214" fill="none" stroke="url(#orbitLine)" strokeWidth="1" />
-          <path d="M630 226 C525 220 450 218 350 214" fill="none" stroke="url(#orbitLine)" strokeWidth="1" />
-          <path d="M350 395 C350 330 350 280 350 214" fill="none" stroke="url(#orbitLine)" strokeWidth="1" />
+          <path d="M95 290 C185 215 245 205 350 205 C455 205 515 215 605 290" fill="none" stroke="url(#stackLine)" strokeWidth="1.2" />
+          <path d="M145 125 C245 90 455 90 555 125" fill="none" stroke="url(#stackLine)" strokeWidth="1" strokeDasharray="5 12" />
+          <path d="M140 325 C255 360 445 360 560 325" fill="none" stroke="url(#stackLine)" strokeWidth="1" strokeDasharray="4 11" />
         </svg>
 
-        {ORBIT_NODES.map(({ label, icon: Icon, className }) => (
-          <div key={label} className={`absolute z-20 ${className}`}>
-            <div className="flex items-center gap-1.5 rounded-full border border-gray-700/70 bg-gray-950/80 px-2.5 py-1.5 text-[10px] font-medium text-gray-300 shadow-lg shadow-black/30 backdrop-blur-md sm:px-3 sm:py-2 sm:text-xs">
-              <Icon className="h-3.5 w-3.5 text-purple-300 sm:h-4 sm:w-4" />
-              <span>{label}</span>
-            </div>
-          </div>
+        {PARTICLES.map(([left, top, size, opacity], index) => (
+          <span
+            key={`${left}-${top}`}
+            className="absolute rounded-full bg-purple-300"
+            style={{
+              left,
+              top,
+              width: size,
+              height: size,
+              opacity,
+              animation: `particleBlink ${3.4 + (index % 4) * .7}s ease-in-out infinite`,
+              animationDelay: `${index * .18}s`,
+            }}
+          />
         ))}
 
-        <div className="absolute inset-0 z-10 flex items-center justify-center px-12 sm:px-20">
-          <div
-            key={activeProject.id}
-            className="relative"
-            style={{
-              perspective: '1100px',
-              animation: 'projectOrbitFloat 5.5s ease-in-out infinite',
-              transformStyle: 'preserve-3d',
-            }}
-          >
-            {isMobileProject ? (
-              <div className="relative h-[245px] w-[132px] rounded-[28px] border border-white/15 bg-gray-950 p-2 shadow-2xl shadow-purple-950/50 sm:h-[292px] sm:w-[158px] sm:rounded-[32px] sm:p-2.5 md:h-[320px] md:w-[174px]">
-                <div className="absolute left-1/2 top-2 z-20 h-4 w-14 -translate-x-1/2 rounded-full bg-black sm:top-2.5 sm:h-5 sm:w-16" />
-                <div className="h-full w-full overflow-hidden rounded-[21px] bg-gray-900 sm:rounded-[24px]">
+        <div
+          className="absolute inset-0"
+          style={{
+            perspective: '1200px',
+            transformStyle: 'preserve-3d',
+            animation: 'stackFloat 6s ease-in-out infinite',
+          }}
+        >
+          {cards.map(({ project, role }) => {
+            const isActive = role === 'active';
+
+            return (
+              <div
+                key={`${project.id}-${role}`}
+                className={`absolute left-1/2 top-1/2 w-[76%] max-w-[390px] overflow-hidden rounded-2xl border bg-gray-950/90 shadow-2xl transition-all duration-700 ease-out sm:w-[72%] md:max-w-[430px] ${
+                  isActive
+                    ? 'z-30 border-purple-400/35 shadow-purple-950/45'
+                    : 'z-10 border-gray-700/40 opacity-55 saturate-75'
+                }`}
+                style={{
+                  transform: cardStyle[role],
+                  transformOrigin: 'center',
+                  backfaceVisibility: 'hidden',
+                }}
+              >
+                <div className="relative aspect-[16/9] overflow-hidden">
                   <img
-                    src={activeProject.image}
-                    alt={`Vista previa de ${activeProject.name}`}
+                    src={project.image}
+                    alt={`Portada de ${project.name}`}
                     className="h-full w-full object-cover"
                     draggable="false"
                   />
-                </div>
-                <div className="absolute -right-1 top-20 h-12 w-1 rounded-full bg-purple-400/50" />
-              </div>
-            ) : isUxProject ? (
-              <div className="relative w-[224px] rounded-[22px] border border-white/15 bg-gray-950 p-2.5 shadow-2xl shadow-purple-950/50 sm:w-[300px] sm:p-3 md:w-[340px]">
-                <div className="mb-2 flex items-center justify-between px-1">
-                  <div className="flex gap-1.5">
-                    <span className="h-2 w-2 rounded-full bg-gray-600" />
-                    <span className="h-2 w-2 rounded-full bg-gray-600" />
-                    <span className="h-2 w-2 rounded-full bg-gray-600" />
-                  </div>
-                  <span className="text-[8px] uppercase tracking-[0.2em] text-purple-300 sm:text-[9px]">Design frame</span>
-                </div>
-                <div className="aspect-[16/10] overflow-hidden rounded-[14px] bg-gray-900">
-                  <img
-                    src={activeProject.image}
-                    alt={`Vista previa de ${activeProject.name}`}
-                    className="h-full w-full object-cover"
-                    draggable="false"
-                  />
+                  {isActive && (
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent px-4 pb-3 pt-12">
+                      <span className="inline-flex rounded-full border border-white/15 bg-black/35 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm sm:text-[10px]">
+                        {project.category}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
-            ) : (
-              <div className="relative w-[235px] rounded-[18px] border border-white/15 bg-gray-950 p-2.5 shadow-2xl shadow-blue-950/50 sm:w-[320px] sm:p-3 md:w-[365px]">
-                <div className="mb-2 flex items-center gap-1.5 px-1">
-                  <span className="h-2 w-2 rounded-full bg-gray-600" />
-                  <span className="h-2 w-2 rounded-full bg-gray-600" />
-                  <span className="h-2 w-2 rounded-full bg-gray-600" />
-                  <div className="ml-2 h-4 flex-1 rounded-full bg-gray-800" />
-                </div>
-                <div className="aspect-[16/9] overflow-hidden rounded-[11px] bg-gray-900">
-                  <img
-                    src={activeProject.image}
-                    alt={`Vista previa de ${activeProject.name}`}
-                    className="h-full w-full object-cover"
-                    draggable="false"
-                  />
-                </div>
-                <div className="mx-auto mt-2 h-1 w-16 rounded-full bg-gradient-to-r from-blue-500/60 to-purple-500/60" />
-              </div>
-            )}
-          </div>
+            );
+          })}
         </div>
       </div>
 
-      <div className="mx-auto -mt-1 max-w-xl rounded-2xl border border-gray-800/80 bg-gray-950/65 p-4 backdrop-blur-md sm:p-5">
-        <div className="flex items-start justify-between gap-4">
+      <div className="mx-auto -mt-2 max-w-xl px-2 sm:px-5">
+        <div className="flex items-end justify-between gap-4">
           <div className="min-w-0 text-left">
-            <div className="mb-1 flex flex-wrap items-center gap-2">
-              <span className="rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-purple-200 sm:text-xs">
-                {activeProject.category}
-              </span>
-              <span className="text-[10px] tabular-nums text-gray-500 sm:text-xs">
-                {String(activeIndex + 1).padStart(2, '0')} / {String(featuredProjects.length).padStart(2, '0')}
-              </span>
+            <div className="mb-1 text-[10px] uppercase tracking-[0.22em] text-purple-300/80 sm:text-xs">
+              Selected work
             </div>
-            <h3 className="truncate text-base font-semibold text-white sm:text-lg">
+            <h3 className="truncate text-lg font-semibold text-white sm:text-xl">
               {activeProject.name}
             </h3>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {visibleTechnologies.map((technology) => (
+                <span
+                  key={technology}
+                  className="rounded-full border border-gray-700/70 bg-gray-900/70 px-2.5 py-1 text-[10px] text-gray-300 sm:text-xs"
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-shrink-0 gap-2">
             <button
               type="button"
               onClick={() => changeProject(-1)}
-              className="rounded-full border border-gray-700 bg-gray-900/90 p-2 text-gray-300 transition hover:border-purple-500/50 hover:text-white"
+              className="rounded-full border border-gray-700/80 bg-gray-900/80 p-2 text-gray-300 transition hover:border-purple-500/50 hover:text-white"
               aria-label="Proyecto anterior"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -268,7 +222,7 @@ const ProjectOrbit = () => {
             <button
               type="button"
               onClick={() => changeProject(1)}
-              className="rounded-full border border-gray-700 bg-gray-900/90 p-2 text-gray-300 transition hover:border-purple-500/50 hover:text-white"
+              className="rounded-full border border-gray-700/80 bg-gray-900/80 p-2 text-gray-300 transition hover:border-purple-500/50 hover:text-white"
               aria-label="Proyecto siguiente"
             >
               <ChevronRight className="h-4 w-4" />
@@ -276,34 +230,12 @@ const ProjectOrbit = () => {
           </div>
         </div>
 
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {visibleTechnologies.map((technology) => (
-            <span
-              key={technology}
-              className="rounded-full border border-blue-500/20 bg-blue-500/10 px-2 py-1 text-[10px] text-blue-200 sm:text-xs"
-            >
-              {technology}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-4 flex items-center justify-between gap-3">
-          <div className="flex max-w-[78%] gap-1.5 overflow-hidden">
-            {featuredProjects.map((project, index) => (
-              <button
-                key={project.id}
-                type="button"
-                onClick={() => goToProject(index)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  index === activeIndex
-                    ? 'w-6 bg-gradient-to-r from-blue-400 to-purple-500'
-                    : 'w-1.5 bg-gray-700 hover:bg-gray-500'
-                }`}
-                aria-label={`Mostrar ${project.name}`}
-              />
-            ))}
-          </div>
-          <span className="whitespace-nowrap text-[10px] text-gray-500 sm:text-xs">Desliza para explorar</span>
+        <div className="mt-4 flex items-center justify-between gap-4">
+          <div className="h-px flex-1 bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-transparent" />
+          <span className="text-[10px] tabular-nums text-gray-500 sm:text-xs">
+            {String(activeIndex + 1).padStart(2, '0')} / {String(featuredProjects.length).padStart(2, '0')}
+          </span>
+          <span className="text-[10px] text-gray-600 sm:text-xs">desliza</span>
         </div>
       </div>
     </div>
