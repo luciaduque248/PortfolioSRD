@@ -1,0 +1,1 @@
+Real portrait assets for the portfolio hero and About section. These are photographs supplied by Sara Duque and are used without AI reinterpretation.
