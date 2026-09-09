@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
 
 const spotlightOrder = [15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
@@ -17,34 +17,43 @@ const roleLabel = (category) => {
   return 'UX/UI · Product Design';
 };
 
+const mobileCanvasById = {
+  15: '#eadfc5', // CafeCom
+  16: '#20172f', // ServiChat
+};
+
 const ProjectVisual = ({ project }) => {
   if (project.category === 'Mobile App') {
     return (
-      <div className="project-mobile-stage">
-        <div className="project-phone project-phone-back"><img src={project.image} alt="" loading="lazy" /></div>
-        <div className="project-phone project-phone-front"><img src={project.image} alt={`Vista de ${project.name}`} loading="lazy" /></div>
-      </div>
-    );
-  }
-
-  if (project.category === 'UX/UI') {
-    return (
-      <div className="project-design-stage">
-        <div className="design-board-toolbar"><span /><span /><span /><strong>FIGMA / UX/UI</strong></div>
-        <img src={project.image} alt={`Vista de diseño de ${project.name}`} loading="lazy" />
-        <div className="design-board-grid" aria-hidden="true" />
+      <div
+        className="work-v2-mobile-canvas"
+        style={{ '--mobile-canvas': mobileCanvasById[project.id] || '#dfe4ff' }}
+      >
+        <div className="work-v2-mobile-label" aria-hidden="true">
+          <span>Mobile product</span>
+          <span>Portrait composition</span>
+        </div>
+        <img
+          src={project.image}
+          alt={`Portada del proyecto móvil ${project.name}`}
+          loading="lazy"
+          className="work-v2-mobile-art"
+        />
       </div>
     );
   }
 
   return (
-    <div className="project-browser-stage">
-      <div className="browser-chrome">
-        <div><span /><span /><span /></div>
-        <span className="browser-address">{project.name.toLowerCase().replace(/\s+/g, '-')}.web</span>
-        <span />
+    <div className="work-v2-full-canvas">
+      <img
+        src={project.image}
+        alt={`${categoryLabel(project.category)} — ${project.name}`}
+        loading="lazy"
+        className="work-v2-full-art"
+      />
+      <div className="work-v2-image-caption" aria-hidden="true">
+        <span>{project.category === 'Web App' ? 'Widescreen presentation' : 'Design presentation'}</span>
       </div>
-      <img src={project.image} alt={`Vista web de ${project.name}`} loading="lazy" />
     </div>
   );
 };
@@ -80,78 +89,91 @@ const Projects = () => {
 
   return (
     <>
-      <section id="proyectos" className="projects-section">
+      <section id="proyectos" className="projects-section work-v2-section">
         <div className="editorial-container">
           <div className="section-index section-index-dark" data-reveal>
             <span>03 — Selected work</span>
             <span>Web · Mobile · UX/UI</span>
           </div>
 
-          <div className="projects-heading" data-reveal>
-            <h2>Productos digitales con formatos e identidades diferentes.</h2>
+          <div className="work-v2-heading" data-reveal>
+            <div>
+              <p className="work-v2-kicker">Selected projects</p>
+              <h2>
+                Trabajo real, presentado según <em>su formato.</em>
+              </h2>
+            </div>
             <p>
-              La presentación cambia según el tipo de trabajo: browser para web, dispositivo para mobile y artboard para UX/UI.
+              Mobile conserva una composición pensada para producto vertical. Web y UX/UI ocupan la imagen completa de la tarjeta para que el proyecto, no el mockup, sea el protagonista.
             </p>
           </div>
 
-          <div className="project-filters" data-reveal aria-label="Filtrar proyectos">
-            {categories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setActiveFilter(category)}
-                aria-pressed={activeFilter === category}
-                className={activeFilter === category ? 'is-active' : ''}
-              >
-                {category === 'All' ? 'All work' : categoryLabel(category)}
-              </button>
-            ))}
+          <div className="work-v2-toolbar" data-reveal>
+            <div className="project-filters work-v2-filters" aria-label="Filtrar proyectos">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveFilter(category)}
+                  aria-pressed={activeFilter === category}
+                  className={activeFilter === category ? 'is-active' : ''}
+                >
+                  {category === 'All' ? 'All work' : categoryLabel(category)}
+                </button>
+              ))}
+            </div>
+            <span className="work-v2-count">{String(filteredProjects.length).padStart(2, '0')} projects</span>
           </div>
 
-          <div className="project-stack">
+          <div className="work-v2-mobile-hint" aria-hidden="true">
+            <span>Desliza para explorar</span>
+            <ArrowRight />
+          </div>
+
+          <div className="work-v2-grid" role="list">
             {filteredProjects.map((project, index) => (
               <article
                 key={project.id}
-                className={`project-story project-story-${project.category.toLowerCase().replace(/[^a-z]+/g, '-')}`}
-                style={{ '--project-top': `${86 + Math.min(index, 5) * 5}px` }}
+                className={`work-v2-card work-v2-card--${project.category.toLowerCase().replace(/[^a-z]+/g, '-')}`}
                 data-reveal
                 data-cursor={project.demoUrl ? 'VIEW PROJECT' : 'VIEW'}
+                role="listitem"
               >
-                <div className="project-story-media">
+                <div className="work-v2-media">
                   <ProjectVisual project={project} />
                 </div>
 
-                <div className="project-story-copy">
-                  <div className="project-story-topline">
+                <div className="work-v2-body">
+                  <div className="work-v2-topline">
                     <span>{String(index + 1).padStart(2, '0')} / {String(filteredProjects.length).padStart(2, '0')}</span>
                     <span>{categoryLabel(project.category)}</span>
                   </div>
 
-                  <h3>{project.name}</h3>
-                  <p className="project-role">{roleLabel(project.category)}</p>
-                  <p className="project-description">{project.description}</p>
+                  <div className="work-v2-title-row">
+                    <h3>{project.name}</h3>
+                    {project.requiresDemoNotice && <Building2 aria-label="Proyecto empresarial" />}
+                  </div>
 
-                  <dl className="project-meta-list">
-                    <div><dt>Category</dt><dd>{categoryLabel(project.category)}</dd></div>
-                    <div><dt>Role</dt><dd>{roleLabel(project.category)}</dd></div>
-                    <div><dt>Stack</dt><dd>{project.technologies.slice(0, 5).join(' · ')}</dd></div>
-                  </dl>
+                  <p className="work-v2-role">{roleLabel(project.category)}</p>
+                  <p className="work-v2-description">{project.description}</p>
 
-                  <div className="project-actions">
+                  <div className="work-v2-stack-line">
+                    <span>Stack</span>
+                    <p>{project.technologies.slice(0, 5).join(' · ')}</p>
+                  </div>
+
+                  <div className="work-v2-actions">
                     {project.demoUrl ? (
-                      <button type="button" onClick={() => openProjectDemo(project)} className="project-primary-action">
+                      <button type="button" onClick={() => openProjectDemo(project)} className="work-v2-primary-action">
                         View project <ArrowUpRight />
                       </button>
                     ) : (
-                      <span className="project-status">En desarrollo</span>
+                      <span className="work-v2-status">En desarrollo</span>
                     )}
                     {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="project-secondary-action">
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="work-v2-code-link">
                         <Github /> Code
                       </a>
-                    )}
-                    {project.requiresDemoNotice && (
-                      <span className="project-enterprise"><Building2 /> Empresarial</span>
                     )}
                   </div>
                 </div>
