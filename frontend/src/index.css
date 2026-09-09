@@ -162,7 +162,7 @@ textarea:focus-visible {
 @media (min-width: 1024px) {
   .portfolio-panel-editorial {
     position: sticky;
-    top: calc(92px + min(var(--panel-index), 5) * 5px);
+    top: var(--panel-top, 92px);
   }
 }
 
