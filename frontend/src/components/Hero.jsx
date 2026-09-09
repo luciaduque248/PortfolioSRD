@@ -2,13 +2,14 @@ import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react'
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 import { personalInfo, skills } from '../data/mock';
 import SplineScene from './SplineScene';
+import ProjectOrbit from './ProjectOrbit';
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
-  // Medición real del contenedor (responsive)
+  // Medición real del contenedor 3D de escritorio
   const containerRef = useRef(null);
   const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 });
 
@@ -100,7 +101,6 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Layout responsive: en mobile stack, en lg 2 columnas */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-10 sm:py-16 min-h-screen">
           {/* Left */}
           <div
@@ -160,73 +160,79 @@ const Hero = () => {
 
           {/* Right */}
           <div className={`relative transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            {/* Contenedor responsive: cuadrado, ancho limitado por breakpoints */}
-            <div
-              id="hero-interactive-area"
-              className=" relative mx-auto w-full max-w-[240px] sm:max-w-[360px] md:max-w-[520px] lg:max-w-[600px] xl:max-w-[700px] aspect-square overflow-visible"
-              ref={containerRef}
-            >
+            {/* Mobile + tablet: showcase optimizado y táctil */}
+            <div className="xl:hidden pb-8">
+              <ProjectOrbit />
+            </div>
+
+            {/* Desktop: conserva la experiencia 3D original */}
+            <div className="hidden xl:block">
               <div
-                className={`absolute inset-0 overflow-visible transition-all duration-500 ${isHovered ? 'brightness-150 contrast-125 saturate-150' : ''}`}
+                id="hero-interactive-area"
+                className="relative mx-auto w-full max-w-[600px] xl:max-w-[700px] aspect-square overflow-visible"
+                ref={containerRef}
               >
-                <SplineScene />
-              </div>
+                <div
+                  className={`absolute inset-0 overflow-visible transition-all duration-500 ${isHovered ? 'brightness-150 contrast-125 saturate-150' : ''}`}
+                >
+                  <SplineScene />
+                </div>
 
-              {/* Skills: solo en hover. En mobile se desactiva para evitar UX mala */}
-              {isHovered && containerDimensions.width >= 520 && (
-                <div className="absolute inset-0 pointer-events-none">
-                  {skillBubbles
-                    .filter((skill) => {
-                      const bubbleX = (skill.baseX / 100) * containerDimensions.width;
-                      const bubbleY = (skill.baseY / 100) * containerDimensions.height;
-                      const dx = mousePosition.x - bubbleX;
-                      const dy = mousePosition.y - bubbleY;
-                      const distance = Math.sqrt(dx * dx + dy * dy);
-                      return distance < detectionRadius;
-                    })
-                    .slice(0, 3)
-                    .map((skill) => {
-                      const bubbleX = (skill.baseX / 100) * containerDimensions.width;
-                      const bubbleY = (skill.baseY / 100) * containerDimensions.height;
+                {isHovered && containerDimensions.width >= 520 && (
+                  <div className="absolute inset-0 pointer-events-none">
+                    {skillBubbles
+                      .filter((skill) => {
+                        const bubbleX = (skill.baseX / 100) * containerDimensions.width;
+                        const bubbleY = (skill.baseY / 100) * containerDimensions.height;
+                        const dx = mousePosition.x - bubbleX;
+                        const dy = mousePosition.y - bubbleY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        return distance < detectionRadius;
+                      })
+                      .slice(0, 3)
+                      .map((skill) => {
+                        const bubbleX = (skill.baseX / 100) * containerDimensions.width;
+                        const bubbleY = (skill.baseY / 100) * containerDimensions.height;
 
-                      const dx = mousePosition.x - bubbleX;
-                      const dy = mousePosition.y - bubbleY;
-                      const distance = Math.sqrt(dx * dx + dy * dy);
+                        const dx = mousePosition.x - bubbleX;
+                        const dy = mousePosition.y - bubbleY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
 
-                      const opacity = Math.max(0.3, 1 - distance / detectionRadius);
-                      const scale = 0.9 + (1 - distance / detectionRadius) * 0.2;
+                        const opacity = Math.max(0.3, 1 - distance / detectionRadius);
+                        const scale = 0.9 + (1 - distance / detectionRadius) * 0.2;
 
-                      return (
-                        <div
-                          key={skill.id}
-                          className="absolute transition-opacity duration-300 ease-out"
-                          style={{
-                            left: `${skill.baseX}%`,
-                            top: `${skill.baseY}%`,
-                            opacity,
-                            transform: `translate(-50%, -50%) scale(${scale})`,
-                            zIndex: 15
-                          }}
-                        >
-                          <div className="bg-gradient-to-r from-blue-600/95 to-purple-600/95 backdrop-blur-md border border-blue-500/60 rounded-full px-3 py-2 shadow-xl flex items-center space-x-2 min-w-[120px] whitespace-nowrap">
-                            <span className="text-lg flex-shrink-0">{skill.icon}</span>
-                            <div className="flex flex-col min-w-0">
-                              <span className="text-white text-sm font-medium truncate">{skill.name}</span>
-                              <span className="text-xs text-gray-200">{skill.level}%</span>
+                        return (
+                          <div
+                            key={skill.id}
+                            className="absolute transition-opacity duration-300 ease-out"
+                            style={{
+                              left: `${skill.baseX}%`,
+                              top: `${skill.baseY}%`,
+                              opacity,
+                              transform: `translate(-50%, -50%) scale(${scale})`,
+                              zIndex: 15
+                            }}
+                          >
+                            <div className="bg-gradient-to-r from-blue-600/95 to-purple-600/95 backdrop-blur-md border border-blue-500/60 rounded-full px-3 py-2 shadow-xl flex items-center space-x-2 min-w-[120px] whitespace-nowrap">
+                              <span className="text-lg flex-shrink-0">{skill.icon}</span>
+                              <div className="flex flex-col min-w-0">
+                                <span className="text-white text-sm font-medium truncate">{skill.name}</span>
+                                <span className="text-xs text-gray-200">{skill.level}%</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                </div>
-              )}
+                        );
+                      })}
+                  </div>
+                )}
 
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-75 pointer-events-none">
-                <p className="text-gray-400 text-xs sm:text-sm animate-pulse text-center px-4">
-                  {containerDimensions.width < 520
-                    ? 'Toca y arrastra en el 3D ✨'
-                    : (isHovered ? 'Mueve el mouse para descubrir mis habilidades ✨' : 'Pasa el mouse por encima ✨')}
-                </p>
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-75 pointer-events-none">
+                  <p className="text-gray-400 text-sm animate-pulse text-center px-4">
+                    {isHovered
+                      ? 'Mueve el mouse para descubrir mis habilidades ✨'
+                      : 'Pasa el mouse por encima ✨'}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
