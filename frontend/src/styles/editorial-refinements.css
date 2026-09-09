@@ -41,8 +41,6 @@
   isolation: isolate;
 }
 
-/* The backing belongs to the word itself, so it travels with the existing
-   scroll-linked transform instead of feeling like a separate decoration. */
 .hero-type-frontend::before {
   content: "";
   position: absolute;
@@ -76,8 +74,7 @@ html.dark .hero-type-developer {
   color: #f4f2f7;
 }
 
-/* ABOUT — scroll-linked movement is applied in About.jsx. Reserve visual room
-   so the portrait can travel without colliding with the next section. */
+/* ABOUT — scroll-linked movement is applied in About.jsx. */
 .about-photo-column {
   min-width: 0;
   padding-bottom: 7rem;
@@ -88,61 +85,341 @@ html.dark .hero-type-developer {
   transform: translate3d(0, 0, 0);
 }
 
-/* MOBILE PROJECT VISUALS — treat the existing cover art as product artwork
-   inside real device proportions instead of cropping it past the screen. */
-.project-mobile-stage {
-  position: relative;
-  width: min(100%, 540px);
-  height: min(58vh, 560px);
-  isolation: isolate;
-}
-
-.project-phone {
+/* SELECTED WORK V2
+   Desktop = 2-column editorial grid.
+   Mobile = native horizontal rail with scroll snap.
+   Mobile projects use a contained branded canvas; Web/UX fill the visual area. */
+.work-v2-section {
   overflow: hidden;
-  border: 8px solid #0b0b0d;
-  border-radius: 30px;
-  background: #f7f3ea;
-  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.24);
 }
 
-.project-phone::before {
-  content: "";
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  z-index: 2;
-  width: 30%;
-  height: 13px;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: #0b0b0d;
+.work-v2-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+  margin-top: clamp(2.6rem, 6vw, 5rem);
 }
 
-.project-phone img {
+.work-v2-kicker {
+  margin: 0 0 0.9rem;
+  color: var(--violet-soft);
+  font-size: 0.67rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.work-v2-heading h2 {
+  margin: 0;
+  max-width: 13ch;
+  font-size: clamp(2.8rem, 5.5vw, 5.8rem);
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.work-v2-heading h2 em {
+  color: var(--violet-soft);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.work-v2-heading > p {
+  margin: 0 0 0.35rem;
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(0.92rem, 1.25vw, 1.08rem);
+  line-height: 1.65;
+}
+
+.work-v2-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: clamp(2.8rem, 5vw, 4.5rem);
+  padding-block: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.work-v2-filters {
+  margin: 0;
+}
+
+.work-v2-count {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.44);
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.work-v2-mobile-hint {
+  display: none;
+}
+
+.work-v2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.2rem, 2vw, 1.7rem);
+  margin-top: clamp(2.2rem, 4.6vw, 4rem);
+}
+
+.work-v2-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+  background: #15121b;
+  color: #fff;
+  transition:
+    border-color 180ms var(--ease-out),
+    transform 180ms var(--ease-out),
+    background-color 180ms var(--ease-out);
+}
+
+.work-v2-card:hover {
+  border-color: rgba(213, 186, 255, 0.42);
+  background: #18141f;
+  transform: translateY(-2px);
+}
+
+.work-v2-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.work-v2-full-canvas,
+.work-v2-mobile-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Web + UX/UI: the image owns the complete visual field. */
+.work-v2-full-canvas {
+  background: #09080d;
+}
+
+.work-v2-full-art {
   display: block;
   width: 100%;
   height: 100%;
-  padding: 2rem 0.55rem 0.7rem;
-  background: #f7f3ea;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 280ms var(--ease-out), opacity 180ms var(--ease-out);
+}
+
+.work-v2-card:hover .work-v2-full-art {
+  transform: scale(1.012);
+}
+
+.work-v2-image-caption {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.75rem;
+  padding: 0.38rem 0.55rem;
+  background: rgba(8, 7, 12, 0.72);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.54rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+/* Mobile: no fake phone frame around a horizontal cover.
+   The existing branded artwork already contains its mobile language, so it is
+   shown intact on a dedicated canvas instead of being cropped into a device. */
+.work-v2-mobile-canvas {
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: var(--mobile-canvas, #dfe4ff);
+}
+
+.work-v2-mobile-canvas::after {
+  content: "";
+  position: absolute;
+  inset: auto 7% 7% auto;
+  width: 16%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(20, 16, 28, 0.16);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.work-v2-mobile-art {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center;
+  filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.12));
 }
 
-.project-phone-front {
-  right: 15%;
-  top: 5%;
-  width: min(42%, 238px);
-  height: 86%;
-  transform: rotate(1.5deg);
+.work-v2-mobile-label {
+  position: absolute;
+  z-index: 2;
+  inset: 0.7rem 0.8rem auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(20, 16, 28, 0.52);
+  font-size: 0.52rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
 }
 
-.project-phone-back {
-  left: 14%;
-  bottom: 7%;
-  width: min(38%, 210px);
-  height: 72%;
-  transform: rotate(-3deg);
-  opacity: 0.82;
+.work-v2-card--mobile-app:nth-child(even) .work-v2-mobile-label {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.work-v2-body {
+  display: flex;
+  min-height: 20rem;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+}
+
+.work-v2-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.44);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.work-v2-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.35rem;
+}
+
+.work-v2-title-row h3 {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.work-v2-title-row svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  color: var(--violet-soft);
+}
+
+.work-v2-role {
+  margin: 0.75rem 0 0;
+  color: var(--violet-soft);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.work-v2-description {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 1.2rem 0 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.94rem;
+  line-height: 1.62;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.work-v2-stack-line {
+  display: grid;
+  grid-template-columns: 3.6rem minmax(0, 1fr);
+  gap: 0.8rem;
+  margin-top: 1.45rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.work-v2-stack-line span {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.work-v2-stack-line p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.work-v2-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.work-v2-primary-action,
+.work-v2-code-link,
+.work-v2-status {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.work-v2-primary-action {
+  padding: 0.72rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.work-v2-primary-action:hover {
+  border-color: var(--violet-soft);
+  background: rgba(213, 186, 255, 0.08);
+}
+
+.work-v2-primary-action svg,
+.work-v2-code-link svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.work-v2-code-link {
+  color: rgba(255, 255, 255, 0.66);
+  text-decoration: none;
+}
+
+.work-v2-status {
+  color: rgba(255, 255, 255, 0.46);
 }
 
 @media (max-width: 1099px) {
@@ -160,6 +437,24 @@ html.dark .hero-type-developer {
 
   .about-photo-column {
     padding-bottom: 4.5rem;
+  }
+
+  .work-v2-heading {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .work-v2-heading h2 {
+    max-width: 11ch;
+  }
+
+  .work-v2-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-v2-card {
+    max-width: 780px;
+    margin-inline: auto;
   }
 }
 
@@ -196,39 +491,127 @@ html.dark .hero-type-developer {
     padding-bottom: 2.5rem;
   }
 
-  .project-mobile-stage {
-    width: min(100%, 390px);
-    height: 330px;
+  .work-v2-heading {
+    margin-top: 2.5rem;
   }
 
-  .project-phone {
-    border-width: 6px;
-    border-radius: 24px;
+  .work-v2-heading h2 {
+    max-width: 9ch;
+    font-size: clamp(2.55rem, 13vw, 4.2rem);
   }
 
-  .project-phone::before {
-    top: 6px;
-    height: 10px;
+  .work-v2-heading > p {
+    font-size: 0.88rem;
   }
 
-  .project-phone img {
-    padding: 1.65rem 0.35rem 0.5rem;
+  .work-v2-toolbar {
+    display: block;
+    margin-top: 2.3rem;
+    padding-block: 0.85rem;
   }
 
-  .project-phone-front {
-    right: 9%;
-    top: 5%;
-    width: 48%;
-    height: 84%;
-    transform: rotate(1deg);
+  .work-v2-filters {
+    display: flex;
+    width: 100%;
+    gap: 0.65rem 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scrollbar-width: none;
   }
 
-  .project-phone-back {
-    left: 8%;
-    bottom: 8%;
-    width: 42%;
-    height: 70%;
-    transform: rotate(-2.5deg);
+  .work-v2-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .work-v2-filters button {
+    flex: 0 0 auto;
+  }
+
+  .work-v2-count {
+    display: block;
+    margin-top: 0.8rem;
+  }
+
+  .work-v2-mobile-hint {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    color: rgba(255, 255, 255, 0.46);
+    font-size: 0.6rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .work-v2-mobile-hint svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .work-v2-grid {
+    display: flex;
+    width: 100vw;
+    gap: 0.9rem;
+    margin-top: 1.15rem;
+    margin-left: calc(50% - 50vw);
+    overflow-x: auto;
+    padding: 0 1.15rem 0.4rem;
+    scroll-padding-inline: 1.15rem;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .work-v2-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .work-v2-card {
+    width: min(86vw, 360px);
+    min-width: min(86vw, 360px);
+    max-width: none;
+    margin: 0;
+    scroll-snap-align: start;
+  }
+
+  .work-v2-card:hover {
+    transform: none;
+  }
+
+  .work-v2-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .work-v2-mobile-canvas {
+    padding: 0.65rem;
+  }
+
+  .work-v2-mobile-label {
+    inset: 0.5rem 0.55rem auto;
+    font-size: 0.46rem;
+  }
+
+  .work-v2-body {
+    min-height: 19rem;
+    padding: 1.15rem;
+  }
+
+  .work-v2-title-row {
+    margin-top: 1rem;
+  }
+
+  .work-v2-title-row h3 {
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+  }
+
+  .work-v2-description {
+    font-size: 0.86rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .work-v2-stack-line {
+    grid-template-columns: 3rem minmax(0, 1fr);
   }
 }
 
@@ -241,13 +624,20 @@ html.dark .hero-type-developer {
     font-size: clamp(2.95rem, 14.8vw, 4.05rem);
   }
 
-  .project-mobile-stage {
-    height: 300px;
+  .work-v2-card {
+    width: 84vw;
+    min-width: 84vw;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .about-photo-wrap {
+    transform: none !important;
+  }
+
+  .work-v2-card,
+  .work-v2-full-art {
+    transition: none !important;
     transform: none !important;
   }
 }
