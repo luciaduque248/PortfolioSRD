@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "@/index.css";
+import "@/styles/editorial-refinements.css";
 import App from "@/App";
 
 // Aplica el tema antes de montar React para evitar parpadeos entre modos.
