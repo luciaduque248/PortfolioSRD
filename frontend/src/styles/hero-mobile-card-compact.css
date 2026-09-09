@@ -1,4 +1,5 @@
-/* Final mobile-only sizing pass for the white hero summary card. */
+/* Final mobile-only sizing pass for the white hero summary card.
+   Keep this file as the last mobile override so the compact card wins cascade order. */
 @media (max-width: 767px) {
   .hero-mobile-summary {
     left: 50% !important;
