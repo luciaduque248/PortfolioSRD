@@ -21,56 +21,59 @@ const Hero = () => {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frameId = null;
-    let introTimer = null;
 
-    const intro = () => {
+    const playIntro = () => {
       if (reduceMotion.matches) return;
+
       frontend.animate(
         [
-          { transform: 'translate3d(-10vw, 110%, 0)', clipPath: 'inset(100% 0 0 0)', opacity: 0 },
-          { transform: 'translate3d(0, 0, 0)', clipPath: 'inset(0 0 0 0)', opacity: 1 },
+          { opacity: 0, clipPath: 'inset(100% 0 0 0)' },
+          { opacity: 1, clipPath: 'inset(0 0 0 0)' },
         ],
-        { duration: 850, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'both' }
-      );
-      developer.animate(
-        [
-          { transform: 'translate3d(10vw, 110%, 0)', clipPath: 'inset(100% 0 0 0)', opacity: 0 },
-          { transform: 'translate3d(0, 0, 0)', clipPath: 'inset(0 0 0 0)', opacity: 1 },
-        ],
-        { duration: 850, delay: 110, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'both' }
-      );
-      portrait.animate(
-        [
-          { transform: 'translate3d(-50%, 24px, 0)', opacity: 0 },
-          { transform: 'translate3d(-50%, 0, 0)', opacity: 1 },
-        ],
-        { duration: 780, delay: 250, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'both' }
+        { duration: 620, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'both' }
       );
 
-      introTimer = window.setTimeout(() => {
-        frontend.getAnimations().forEach((animation) => animation.cancel());
-        developer.getAnimations().forEach((animation) => animation.cancel());
-        portrait.getAnimations().forEach((animation) => animation.cancel());
-      }, 1250);
+      developer.animate(
+        [
+          { opacity: 0, clipPath: 'inset(100% 0 0 0)' },
+          { opacity: 1, clipPath: 'inset(0 0 0 0)' },
+        ],
+        { duration: 620, delay: 90, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'both' }
+      );
+
+      portrait.animate(
+        [
+          { opacity: 0 },
+          { opacity: 1 },
+        ],
+        { duration: 520, delay: 190, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'both' }
+      );
     };
 
     const render = () => {
       frameId = null;
+
       const rect = section.getBoundingClientRect();
-      const travel = Math.max(section.offsetHeight - window.innerHeight, 1);
-      const progress = Math.min(1, Math.max(0, -rect.top / travel));
+      const viewport = Math.max(window.innerHeight, 1);
+      const progress = Math.min(1, Math.max(0, -rect.top / (viewport * 0.82)));
+
       progressLine.style.transform = `scaleX(${progress})`;
 
-      if (reduceMotion.matches) return;
+      if (reduceMotion.matches) {
+        frontend.style.transform = 'translate3d(0, 0, 0)';
+        developer.style.transform = 'translate3d(0, 0, 0)';
+        portrait.style.transform = 'translate3d(-50%, 0, 0)';
+        return;
+      }
 
       const mobile = window.innerWidth < 768;
       const maxTravel = mobile
-        ? Math.min(window.innerWidth * 0.17, 62)
-        : Math.min(window.innerWidth * 0.16, 250);
+        ? Math.min(window.innerWidth * 0.16, 54)
+        : Math.min(window.innerWidth * 0.19, 285);
 
       frontend.style.transform = `translate3d(${-maxTravel * progress}px, 0, 0)`;
       developer.style.transform = `translate3d(${maxTravel * progress}px, 0, 0)`;
-      portrait.style.transform = `translate3d(-50%, ${mobile ? 0 : 8 * progress}px, 0)`;
+      portrait.style.transform = `translate3d(-50%, ${mobile ? 0 : 6 * progress}px, 0)`;
     };
 
     const requestRender = () => {
@@ -78,22 +81,30 @@ const Hero = () => {
       frameId = window.requestAnimationFrame(render);
     };
 
-    intro();
+    playIntro();
     render();
+
     window.addEventListener('scroll', requestRender, { passive: true });
     window.addEventListener('resize', requestRender);
 
     return () => {
       if (frameId !== null) window.cancelAnimationFrame(frameId);
-      if (introTimer !== null) window.clearTimeout(introTimer);
       window.removeEventListener('scroll', requestRender);
       window.removeEventListener('resize', requestRender);
     };
   }, []);
 
   return (
-    <section ref={sectionRef} id="inicio" className="hero-stage">
-      <div className="hero-sticky">
+    <section
+      ref={sectionRef}
+      id="inicio"
+      className="hero-stage"
+      style={{ height: '100svh', minHeight: '100svh', overflow: 'clip' }}
+    >
+      <div
+        className="hero-sticky"
+        style={{ position: 'relative', top: 'auto', height: '100svh', minHeight: '100svh' }}
+      >
         <div className="hero-background" aria-hidden="true">
           <div className="hero-orbit hero-orbit-left" />
           <div className="hero-orbit hero-orbit-right" />
@@ -109,11 +120,12 @@ const Hero = () => {
           <span ref={developerRef} className="hero-type-word hero-type-developer">Developer</span>
         </div>
 
-        <div ref={portraitRef} className="hero-person">
+        <div ref={portraitRef} className="hero-person" style={{ background: 'transparent' }}>
           <img
             src={saraHeroPhoto}
             alt="Sara Duque, Frontend Developer"
             className="hero-person-image"
+            style={{ background: 'transparent' }}
             fetchPriority="high"
             decoding="async"
           />
