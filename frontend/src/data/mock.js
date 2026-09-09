@@ -9,7 +9,7 @@ import virtuosaUxImg from "../images/project-covers/virtuosa-ux.svg";
 import pensumImg from "../images/project-covers/pensum-cover.svg";
 import cafecomMobileImg from "../images/cafecom-mobile.svg";
 import servichatMobileImg from "../images/servichat-mobile.svg";
-import saraAboutImg from "../images/portraits/sara-about.webp";
+import saraAboutImg from "../images/portraits/Portrait_Sara_fondoBlanco.PNG";
 
 export const personalInfo = {
   name: "Sara Duque",
@@ -33,49 +33,48 @@ export const projects = [
     image: countryExplorerImg,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://countries-app-eta-seven.vercel.app/",
-    githubUrl: "https://github.com/luciaduque248/CountriesApp.git",
+    githubUrl: "https://github.com/luciaduque248/countries-app",
     category: "Web App"
   },
   {
     id: 7,
     name: "Music Player",
-    description: "Reproductor de música desarrollado con HTML, CSS y JavaScript. Permite reproducir, pausar, cambiar de canción y controlar el progreso de audio con una interfaz moderna y responsive.",
+    description: "Reproductor musical web desarrollado con JavaScript, HTML y CSS.",
     image: musicPlayerImg,
-    technologies: ["HTML", "CSS", "JavaScript"],
-    demoUrl: "https://luciaduque248.github.io/ReproductorDeMusica/",
-    githubUrl: "https://github.com/luciaduque248/ReproductorDeMusica.git",
+    technologies: ["JavaScript", "HTML", "CSS"],
+    demoUrl: "https://luciaduque248.github.io/music-player/",
+    githubUrl: "https://github.com/luciaduque248/music-player",
     category: "Web App"
   },
   {
     id: 8,
     name: "AgroInnova",
-    description: "Plataforma digital orientada a la innovación agropecuaria. Integra marketplace, gestión de emprendimientos y procesos de incubación, con interfaces diferenciadas para clientes, emprendedores, mentores, coordinadores y administradores.",
+    description: "Plataforma web orientada al sector agropecuario para conectar tecnología, información y usuarios.",
     image: agroinnovaImg,
-    technologies: ["React", "TypeScript", "Vite", "Tailwind CSS", "Firebase", "APIs REST"],
-    demoUrl: "https://agro-innova-demo.vercel.app/",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    demoUrl: "https://agroinnova.vercel.app/",
     githubUrl: null,
-    category: "Web App",
-    requiresDemoNotice: true
+    category: "Web App"
   },
   {
     id: 9,
-    name: "CafeCom",
-    description: "Diseño UX/UI de una plataforma digital orientada al sector cafetero. El proyecto fue desarrollado en Figma, enfocándose en investigación de usuarios, arquitectura de información y diseño de interfaces para la comercialización y gestión de productos de café. Actualmente en fase de diseño, sin implementación en código.",
+    name: "CafeCom — UX/UI",
+    description: "Diseño UX/UI de la experiencia móvil de CafeCom, con flujos y pantallas para caficultores.",
     image: cafecomUxImg,
-    technologies: ["Figma", "UX Research", "UI Design", "Prototyping"],
-    demoUrl: "https://www.figma.com/proto/F9Fljzi1eZS5S76IIiQtAC/CafeCom?node-id=3-4&p=f&t=1ARjMevGkg2cU5OT-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A20",
+    technologies: ["Figma", "UX/UI", "Mobile UX", "Prototyping"],
+    demoUrl: "https://www.figma.com/design/F9Fljzi1eZS5S76IIiQtAC/CafeCom?node-id=0-1",
     githubUrl: null,
     category: "UX/UI"
   },
   {
     id: 10,
     name: "HOTELIA",
-    description: "Diseño UX/UI de una plataforma web para reservas hoteleras. El proyecto aborda el flujo completo de búsqueda, selección de habitaciones, reservas y gestión de estancias, priorizando usabilidad, claridad visual y experiencia del usuario. Desarrollado en Figma como prototipo interactivo.",
+    description: "Experiencia web para hotelería con una interfaz editorial y enfoque responsive.",
     image: hoteliaImg,
-    technologies: ["Figma", "UX/UI Design", "User Flows", "Wireframing", "Prototyping"],
-    demoUrl: "https://www.figma.com/proto/aGuHBirVEIo2JphyaklEcw/Hotelia?node-id=86-142&p=f&t=72XCj9WGnym9XwA2-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=86%3A142&show-proto-sidebar=1",
-    githubUrl: "https://github.com/luciaduque248/HoteliaHL.git",
-    category: "UX/UI"
+    technologies: ["HTML", "CSS", "JavaScript"],
+    demoUrl: null,
+    githubUrl: null,
+    category: "Web App"
   },
   {
     id: 11,
@@ -84,37 +83,37 @@ export const projects = [
     image: manageImg,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
-    githubUrl: "https://github.com/luciaduque248/Proyecto-Manage.git",
+    githubUrl: "https://github.com/luciaduque248/Proyecto-Manage",
     category: "Web App"
   },
   {
     id: 12,
-    name: "Virtuosa",
-    description: "Tienda online de ropa y maquillaje orientada a una experiencia de compra elegante y sencilla. Diseño enfocado en identidad de marca, navegación intuitiva y presentación visual de productos.",
+    name: "Virtuosa — Web",
+    description: "Sitio web de identidad visual y contenido editorial para una marca creativa.",
     image: virtuosaWebImg,
-    technologies: ["React", "Tailwind CSS", "E-commerce UI"],
-    demoUrl: "https://virtuosa-crud.vercel.app/VirtuosaCrud/",
-    githubUrl: "https://github.com/luciaduque248/VirtuosaCrud.git",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    demoUrl: null,
+    githubUrl: null,
     category: "Web App"
   },
   {
     id: 13,
-    name: "Virtuosa",
-    description: "Tienda online de ropa y maquillaje orientada a una experiencia de compra elegante y sencilla. Diseño enfocado en identidad de marca, navegación intuitiva y presentación visual de productos.",
+    name: "Virtuosa — UX/UI",
+    description: "Propuesta UX/UI para Virtuosa, enfocada en identidad, jerarquía y experiencia visual.",
     image: virtuosaUxImg,
-    technologies: ["Figma", "UX/UI Design", "Prototyping"],
-    category: "UX/UI",
-    demoUrl: "https://www.figma.com/proto/77kBTXLVhpGbghkWRoRINb/VIRTUOSA?node-id=439-1931&p=f&t=hJKfr0Oc8jl4GpZk-9&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=439%3A1931&show-proto-sidebar=1",
-    githubUrl: null
+    technologies: ["Figma", "UX/UI", "Visual Design"],
+    demoUrl: null,
+    githubUrl: null,
+    category: "UX/UI"
   },
   {
     id: 14,
     name: "Mi Pensum Interactivo",
-    description: "Plataforma web para gestionar el progreso académico de Ingeniería Electrónica y Telecomunicaciones en la Universidad del Cauca. Permite consultar el pensum, prerrequisitos, notas, horarios e historial académico, con persistencia de datos e integración por voz mediante Alexa.",
+    description: "Aplicación web para visualizar y explorar un pensum académico de forma interactiva.",
     image: pensumImg,
-    technologies: ["React", "TypeScript", "Vite", "Supabase", "Alexa Skill"],
-    demoUrl: "https://pensum-unicauca.vercel.app/",
-    githubUrl: "https://github.com/luciaduque248/PensumUnicauca",
+    technologies: ["React", "JavaScript", "CSS"],
+    demoUrl: null,
+    githubUrl: null,
     category: "Web App"
   },
   {
@@ -195,16 +194,8 @@ export const achievements = [
 ];
 
 export const values = [
-  {
-    title: "Diseño antes de decorar",
-    description: "La jerarquía, el flujo y el propósito de cada elemento deben estar claros antes de añadir efectos visuales."
-  },
-  {
-    title: "Interacción que responde",
-    description: "Los controles deben dar feedback inmediato y el movimiento debe acompañar la intención de la persona, no competir con ella."
-  },
-  {
-    title: "Código que sostiene el diseño",
-    description: "La implementación debe conservar el detalle visual sin sacrificar accesibilidad, rendimiento ni mantenimiento."
-  }
+  "Interfaces claras antes que ruido visual",
+  "Diseño y código trabajando como un solo producto",
+  "Responsive desde la estructura, no como parche final",
+  "Interacciones con propósito y rendimiento"
 ];
