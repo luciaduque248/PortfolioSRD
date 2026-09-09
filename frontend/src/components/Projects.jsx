@@ -113,7 +113,7 @@ const Projects = () => {
               <article
                 key={project.id}
                 className={`project-story project-story-${project.category.toLowerCase().replace(/[^a-z]+/g, '-')}`}
-                style={{ '--project-index': index }}
+                style={{ '--project-top': `${86 + Math.min(index, 5) * 5}px` }}
                 data-reveal
                 data-cursor={project.demoUrl ? 'VIEW PROJECT' : 'VIEW'}
               >
