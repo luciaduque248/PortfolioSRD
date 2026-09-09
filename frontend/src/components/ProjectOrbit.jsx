@@ -71,7 +71,7 @@ const ProjectOrbit = () => {
                 className="min-w-0 flex-[0_0_84%] px-2 sm:flex-[0_0_72%] md:flex-[0_0_58%]"
               >
                 <article
-                  className={`overflow-hidden rounded-[22px] border bg-gray-950 shadow-2xl transition-[opacity,transform,border-color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+                  className={`overflow-hidden rounded-[22px] border bg-gray-950 shadow-2xl transition-[opacity,transform,border-color] duration-200 ease-portfolio-out ${
                     isActive
                       ? 'scale-100 border-white/15 opacity-100 shadow-black/35'
                       : 'scale-[0.96] border-white/5 opacity-70'
@@ -113,7 +113,7 @@ const ProjectOrbit = () => {
             <button
               type="button"
               onClick={scrollPrev}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-500 hover:text-white active:scale-95"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-[border-color,color,transform] duration-150 ease-portfolio-out hover:border-gray-500 hover:text-white active:scale-95"
               aria-label="Proyecto anterior"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -121,7 +121,7 @@ const ProjectOrbit = () => {
             <button
               type="button"
               onClick={scrollNext}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-500 hover:text-white active:scale-95"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-[border-color,color,transform] duration-150 ease-portfolio-out hover:border-gray-500 hover:text-white active:scale-95"
               aria-label="Proyecto siguiente"
             >
               <ChevronRight className="h-4 w-4" />
