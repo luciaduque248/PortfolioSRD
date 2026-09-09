@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 import { scrollToId } from '../utils/motion';
-import saraAbout from '../images/portraits/sara-about.webp';
+import saraAbout from '../images/portraits/Portrait_Sara_fondoBlanco.PNG';
 
 const profileMeta = [
   ['FOCUS', 'Web + Mobile'],
