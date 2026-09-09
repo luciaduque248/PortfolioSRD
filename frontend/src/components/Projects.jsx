@@ -67,7 +67,7 @@ const Projects = () => {
                 key={project.id}
                 data-reveal
                 className="portfolio-panel-editorial reveal-up overflow-hidden rounded-[28px] border border-white/15 bg-[#111] shadow-[0_30px_80px_rgba(0,0,0,.32)]"
-                style={{ '--panel-index': index }}
+                style={{ '--panel-top': `${92 + Math.min(index, 5) * 5}px` }}
               >
                 <div className={`grid min-h-[620px] ${index % 2 === 0 ? 'lg:grid-cols-[1.25fr_.75fr]' : 'lg:grid-cols-[.75fr_1.25fr]'}`}>
                   <div className={`relative min-h-[300px] overflow-hidden bg-[#1a1a1a] sm:min-h-[420px] ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
