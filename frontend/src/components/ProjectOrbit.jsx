@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { projects } from '../data/mock';
+import { prefersReducedMotion } from '../utils/motion';
 
 const PROJECT_ORDER = [15, 8, 10, 14, 16, 12, 13, 6, 9, 11, 7];
 
@@ -12,13 +13,14 @@ const ProjectOrbit = () => {
   );
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = prefersReducedMotion();
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'center',
     skipSnaps: false,
     dragFree: false,
     containScroll: false,
-    duration: 24,
+    duration: reduceMotion ? 1 : 24,
   });
 
   const syncSelection = useCallback(() => {
@@ -69,10 +71,10 @@ const ProjectOrbit = () => {
                 className="min-w-0 flex-[0_0_84%] px-2 sm:flex-[0_0_72%] md:flex-[0_0_58%]"
               >
                 <article
-                  className={`overflow-hidden rounded-[22px] border bg-gray-950 shadow-2xl transition-[opacity,transform,border-color] duration-300 ease-out ${
+                  className={`overflow-hidden rounded-[22px] border bg-gray-950 shadow-2xl transition-[opacity,transform,border-color] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
                     isActive
                       ? 'scale-100 border-white/15 opacity-100 shadow-black/35'
-                      : 'scale-[0.92] border-white/5 opacity-45'
+                      : 'scale-[0.96] border-white/5 opacity-70'
                   }`}
                   aria-hidden={!isActive}
                 >
@@ -111,7 +113,7 @@ const ProjectOrbit = () => {
             <button
               type="button"
               onClick={scrollPrev}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-colors hover:border-gray-500 hover:text-white active:scale-95"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-500 hover:text-white active:scale-95"
               aria-label="Proyecto anterior"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -119,7 +121,7 @@ const ProjectOrbit = () => {
             <button
               type="button"
               onClick={scrollNext}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-colors hover:border-gray-500 hover:text-white active:scale-95"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-gray-300 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-500 hover:text-white active:scale-95"
               aria-label="Proyecto siguiente"
             >
               <ChevronRight className="h-4 w-4" />
