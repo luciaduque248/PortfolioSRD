@@ -1,0 +1,83 @@
+/* Desktop navigation replaces the off-canvas menu at large breakpoints. */
+.site-desktop-nav {
+  display: none;
+}
+
+.site-offcanvas-menu {
+  display: block;
+}
+
+@media (min-width: 1100px) {
+  .site-header-role {
+    display: none !important;
+  }
+
+  .site-desktop-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.9rem, 1.35vw, 1.55rem);
+    margin-right: clamp(0.4rem, 0.8vw, 0.9rem);
+  }
+
+  .site-desktop-nav-link {
+    position: relative;
+    padding: 0.55rem 0;
+    background: transparent;
+    color: var(--text-soft);
+    font-size: clamp(0.58rem, 0.62vw, 0.68rem);
+    font-weight: 850;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 160ms var(--ease-out), transform 160ms var(--ease-out);
+  }
+
+  .site-desktop-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.12rem;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 180ms var(--ease-out);
+  }
+
+  .site-desktop-nav-link:hover,
+  .site-desktop-nav-link:focus-visible,
+  .site-desktop-nav-link.is-active {
+    color: var(--text);
+  }
+
+  .site-desktop-nav-link:hover::after,
+  .site-desktop-nav-link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .site-desktop-nav-link:active {
+    transform: translateY(1px);
+  }
+
+  .site-offcanvas-menu {
+    display: none;
+  }
+
+  .site-header-actions {
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 1099px) {
+  .site-desktop-nav {
+    display: none;
+  }
+
+  .site-offcanvas-menu {
+    display: block;
+  }
+}
