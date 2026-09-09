@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">CafeCom Mobile App</title>
+  <desc id="desc">Portada visual para el proyecto móvil CafeCom.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7EEDB"/>
+      <stop offset="1" stop-color="#E7CFA7"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFDF7"/>
+      <stop offset="1" stop-color="#F4E7CF"/>
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#3A2116" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="190" fill="#8A5A3B" opacity="0.08"/>
+  <circle cx="120" cy="530" r="220" fill="#5D3A28" opacity="0.07"/>
+
+  <g transform="translate(115 135)">
+    <path d="M64 26c42-39 111-31 143 16-44 3-84 19-119 52-21-22-31-45-24-68Z" fill="#6D8D4C"/>
+    <path d="M74 37c38 17 70 35 97 61" fill="none" stroke="#F7EEDB" stroke-width="9" stroke-linecap="round" opacity="0.85"/>
+    <path d="M136 112c-16-40 8-88 54-100 15 39 9 76-17 109-15 1-27-2-37-9Z" fill="#88A95F"/>
+    <ellipse cx="132" cy="117" rx="54" ry="70" transform="rotate(24 132 117)" fill="#6B3E2B"/>
+    <path d="M119 62c24 33 32 71 23 113" fill="none" stroke="#F7EEDB" stroke-width="10" stroke-linecap="round" opacity="0.85"/>
+  </g>
+
+  <g filter="url(#shadow)" transform="translate(735 55)">
+    <rect x="0" y="0" width="300" height="500" rx="48" fill="#2D211C"/>
+    <rect x="15" y="15" width="270" height="470" rx="38" fill="url(#screen)"/>
+    <rect x="112" y="28" width="76" height="10" rx="5" fill="#2D211C" opacity="0.65"/>
+    <circle cx="150" cy="115" r="42" fill="#7A4A32"/>
+    <path d="M126 113c12-22 39-25 53-7-12 20-37 28-53 7Z" fill="#F7EEDB"/>
+    <path d="M112 197h76" stroke="#6D8D4C" stroke-width="14" stroke-linecap="round"/>
+    <rect x="58" y="235" width="184" height="74" rx="18" fill="#FFF" opacity="0.82"/>
+    <rect x="58" y="328" width="184" height="74" rx="18" fill="#FFF" opacity="0.82"/>
+    <circle cx="88" cy="272" r="13" fill="#88A95F"/>
+    <circle cx="88" cy="365" r="13" fill="#8A5A3B"/>
+    <rect x="113" y="259" width="96" height="9" rx="4.5" fill="#584238" opacity="0.72"/>
+    <rect x="113" y="278" width="72" height="8" rx="4" fill="#8B776C" opacity="0.55"/>
+    <rect x="113" y="352" width="96" height="9" rx="4.5" fill="#584238" opacity="0.72"/>
+    <rect x="113" y="371" width="62" height="8" rx="4" fill="#8B776C" opacity="0.55"/>
+  </g>
+
+  <text x="115" y="350" fill="#4A2E20" font-family="Montserrat, Arial, sans-serif" font-size="78" font-weight="700">CafeCom</text>
+  <text x="118" y="405" fill="#6F594D" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="600" letter-spacing="5">MOBILE APP</text>
+  <text x="118" y="462" fill="#7C6659" font-family="Montserrat, Arial, sans-serif" font-size="24">Tecnología para el sector cafetero</text>
+</svg>
