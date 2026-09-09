@@ -9,32 +9,43 @@ const Hero = () => {
   const frontendRef = useRef(null);
   const developerRef = useRef(null);
   const portraitRef = useRef(null);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     const frontend = frontendRef.current;
     const developer = developerRef.current;
     const portrait = portraitRef.current;
-    if (!section || !frontend || !developer || !portrait) return undefined;
+    const progressLine = progressRef.current;
+
+    if (!section || !frontend || !developer || !portrait || !progressLine) return undefined;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frameId = null;
     let introTimer = null;
 
-    if (!reducedMotion.matches) {
-      frontend.style.transform = 'translate3d(calc(-50% - 12vw), 0, 0)';
-      developer.style.transform = 'translate3d(calc(-50% + 12vw), 0, 0)';
+    const setIntroState = () => {
+      if (reducedMotion.matches) {
+        frontend.style.opacity = '1';
+        developer.style.opacity = '1';
+        portrait.style.opacity = '1';
+        return;
+      }
+
+      frontend.style.transform = 'translate3d(-18vw, 0, 0)';
+      developer.style.transform = 'translate3d(18vw, 0, 0)';
       frontend.style.opacity = '0';
       developer.style.opacity = '0';
       portrait.style.opacity = '0';
       portrait.style.transform = 'translate3d(-50%, 28px, 0) scale(.985)';
 
       requestAnimationFrame(() => {
-        frontend.style.transition = 'transform 900ms var(--ease-out), opacity 500ms var(--ease-out)';
-        developer.style.transition = 'transform 900ms var(--ease-out), opacity 500ms var(--ease-out)';
-        portrait.style.transition = 'transform 800ms var(--ease-out) 120ms, opacity 500ms var(--ease-out) 120ms';
-        frontend.style.transform = 'translate3d(-50%, 0, 0)';
-        developer.style.transform = 'translate3d(-50%, 0, 0)';
+        frontend.style.transition = 'transform 900ms var(--ease-out), opacity 520ms var(--ease-out)';
+        developer.style.transition = 'transform 900ms var(--ease-out), opacity 520ms var(--ease-out)';
+        portrait.style.transition = 'transform 820ms var(--ease-out) 120ms, opacity 520ms var(--ease-out) 120ms';
+
+        frontend.style.transform = 'translate3d(0, 0, 0)';
+        developer.style.transform = 'translate3d(0, 0, 0)';
         frontend.style.opacity = '1';
         developer.style.opacity = '1';
         portrait.style.opacity = '1';
@@ -45,24 +56,23 @@ const Hero = () => {
         frontend.style.transition = 'none';
         developer.style.transition = 'none';
         portrait.style.transition = 'none';
-      }, 1050);
-    } else {
-      frontend.style.opacity = '1';
-      developer.style.opacity = '1';
-      portrait.style.opacity = '1';
-    }
+      }, 1080);
+    };
 
     const render = () => {
       frameId = null;
-      if (reducedMotion.matches) return;
 
       const rect = section.getBoundingClientRect();
       const travel = Math.max(section.offsetHeight - window.innerHeight, 1);
       const progress = Math.min(1, Math.max(0, -rect.top / travel));
-      const horizontalTravel = Math.min(window.innerWidth * 0.22, 300);
 
-      frontend.style.transform = `translate3d(calc(-50% - ${horizontalTravel * progress}px), ${-8 * progress}px, 0)`;
-      developer.style.transform = `translate3d(calc(-50% + ${horizontalTravel * progress}px), ${8 * progress}px, 0)`;
+      progressLine.style.transform = `scaleX(${progress})`;
+
+      if (reducedMotion.matches) return;
+
+      const horizontalTravel = Math.min(window.innerWidth * 0.28, 360);
+      frontend.style.transform = `translate3d(${-horizontalTravel * progress}px, 0, 0)`;
+      developer.style.transform = `translate3d(${horizontalTravel * progress}px, 0, 0)`;
       portrait.style.transform = `translate3d(-50%, ${18 * progress}px, 0) scale(${1 - progress * 0.025})`;
     };
 
@@ -70,6 +80,9 @@ const Hero = () => {
       if (frameId !== null) return;
       frameId = window.requestAnimationFrame(render);
     };
+
+    setIntroState();
+    render();
 
     window.addEventListener('scroll', requestRender, { passive: true });
     window.addEventListener('resize', requestRender);
@@ -83,23 +96,34 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="inicio" className="relative h-[145svh] bg-[#f4f3ef] text-[#0b0b0b]">
-      <div className="sticky top-0 h-[100svh] min-h-[620px] overflow-hidden bg-[#f4f3ef]">
-        <div className="absolute inset-x-5 top-24 z-30 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.2em] sm:inset-x-8 sm:text-xs lg:inset-x-12">
-          <span>Sara Duque</span>
-          <span className="text-right text-black/50">Frontend · UX/UI · Mobile</span>
+    <section ref={sectionRef} id="inicio" className="hero-editorial relative h-[158svh] text-[#0a0a0d] dark:text-white">
+      <div className="sticky top-0 h-[100svh] min-h-[620px] overflow-hidden">
+        <div className="hero-color-field hero-color-field-blue" aria-hidden="true" />
+        <div className="hero-color-field hero-color-field-violet" aria-hidden="true" />
+        <div className="hero-arc" aria-hidden="true" />
+
+        <div className="absolute inset-x-5 top-24 z-40 flex items-start justify-between gap-6 sm:inset-x-8 lg:inset-x-12">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] sm:text-xs">Sara Duque</p>
+            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-black/45 dark:text-white/45 sm:text-[10px]">
+              Portfolio · Colombia
+            </p>
+          </div>
+          <p className="max-w-[150px] text-right text-[9px] font-semibold uppercase leading-relaxed tracking-[0.16em] text-black/45 dark:text-white/45 sm:max-w-none sm:text-[10px]">
+            Frontend · UX/UI · Mobile
+          </p>
         </div>
 
-        <div className="pointer-events-none absolute inset-0 z-0 select-none">
+        <div className="pointer-events-none absolute inset-x-0 top-[33%] z-10 flex -translate-y-1/2 items-center justify-center gap-[clamp(.5rem,2.2vw,2.5rem)] px-2 sm:top-[35%] sm:px-6">
           <span
             ref={frontendRef}
-            className="absolute left-1/2 top-[29%] whitespace-nowrap text-[clamp(4.2rem,15vw,13.5rem)] font-black uppercase leading-none tracking-[-0.085em] text-black will-change-transform"
+            className="hero-word hero-word-frontend text-right"
           >
             Frontend
           </span>
           <span
             ref={developerRef}
-            className="absolute left-1/2 top-[45%] whitespace-nowrap text-[clamp(4.2rem,15vw,13.5rem)] font-black uppercase leading-none tracking-[-0.085em] text-black will-change-transform"
+            className="hero-word hero-word-developer text-left"
           >
             Developer
           </span>
@@ -107,22 +131,21 @@ const Hero = () => {
 
         <div
           ref={portraitRef}
-          className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-[78svh] w-[min(94vw,690px)] origin-bottom will-change-transform sm:h-[84vh] sm:w-[min(72vw,720px)] lg:h-[87vh] lg:w-[min(58vw,760px)]"
+          className="hero-portrait-shell pointer-events-none absolute bottom-0 left-1/2 z-20 h-[77svh] w-[min(92vw,700px)] origin-bottom overflow-hidden sm:h-[84vh] sm:w-[min(70vw,730px)] lg:h-[88vh] lg:w-[min(56vw,780px)]"
         >
-          <img
-            src={saraHeroPhoto}
-            alt="Sara Duque, Frontend Developer"
-            className="h-full w-full object-contain object-bottom mix-blend-multiply"
-            fetchPriority="high"
-            decoding="async"
+          <div
+            className="hero-portrait-photo h-full w-full"
+            role="img"
+            aria-label="Sara Duque, Frontend Developer"
+            style={{ backgroundImage: `url(${saraHeroPhoto})` }}
           />
         </div>
 
-        <div className="absolute inset-x-5 bottom-6 z-30 flex items-end justify-between gap-4 sm:inset-x-8 sm:bottom-8 lg:inset-x-12 lg:bottom-10">
-          <div className="hidden max-w-xs md:block">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em]">Diseño → Código → Producto</p>
-            <p className="mt-2 text-sm leading-relaxed text-black/55">
-              Interfaces, experiencias web y productos móviles construidos con intención.
+        <div className="absolute inset-x-5 bottom-6 z-40 flex items-end justify-between gap-4 sm:inset-x-8 sm:bottom-8 lg:inset-x-12 lg:bottom-10">
+          <div className="hidden max-w-sm md:block">
+            <p className="text-sm font-black uppercase tracking-[0.15em]">Diseño → Código → Producto</p>
+            <p className="mt-2 text-sm leading-relaxed text-black/55 dark:text-white/55">
+              Interfaces, productos web y experiencias móviles construidas con una lógica visual clara.
             </p>
           </div>
 
@@ -146,12 +169,16 @@ const Hero = () => {
         <button
           type="button"
           onClick={() => scrollToId('sobre-mi')}
-          className="absolute bottom-[5.8rem] left-1/2 z-30 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45 transition-colors hover:text-black sm:flex"
+          className="absolute bottom-[5.8rem] left-1/2 z-40 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-black/45 transition-colors hover:text-black dark:text-white/45 dark:hover:text-white sm:flex"
           aria-label="Continuar a Sobre mí"
         >
           <span>Scroll</span>
           <ArrowDown className="h-4 w-4" />
         </button>
+
+        <div className="absolute inset-x-0 bottom-0 z-50 h-[3px] bg-black/10 dark:bg-white/10" aria-hidden="true">
+          <div ref={progressRef} className="h-full origin-left bg-[#3157ff] will-change-transform" style={{ transform: 'scaleX(0)' }} />
+        </div>
       </div>
     </section>
   );
