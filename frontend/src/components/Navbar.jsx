@@ -3,13 +3,12 @@ import { Menu, Moon, Sun, X } from 'lucide-react';
 import { scrollToId } from '../utils/motion';
 
 const getInitialTheme = () => {
-  if (typeof window === 'undefined') return 'dark';
-
+  if (typeof window === 'undefined') return 'light';
   try {
     const savedTheme = window.localStorage.getItem('portfolio-theme');
-    return savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+    return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light';
   } catch {
-    return 'dark';
+    return 'light';
   }
 };
 
@@ -19,9 +18,9 @@ const Navbar = () => {
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 32);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 28);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -29,122 +28,95 @@ const Navbar = () => {
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
     root.dataset.theme = theme;
-
     try {
       window.localStorage.setItem('portfolio-theme', theme);
     } catch {
-      // El cambio visual sigue funcionando aunque localStorage no esté disponible.
+      // Theme still works without persistence.
     }
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'));
-  };
+  const navItems = [
+    { id: 'sobre-mi', label: 'About' },
+    { id: 'proyectos', label: 'Work' },
+    { id: 'habilidades', label: 'Stack' },
+    { id: 'contacto', label: 'Contact' },
+  ];
 
-  const scrollToSection = (sectionId) => {
-    scrollToId(sectionId);
+  const goTo = (id) => {
+    scrollToId(id);
     setIsMobileMenuOpen(false);
   };
 
-  const navItems = [
-    { id: 'inicio', label: 'Inicio' },
-    { id: 'sobre-mi', label: 'Sobre mí' },
-    { id: 'proyectos', label: 'Proyectos' },
-    { id: 'habilidades', label: 'Habilidades' },
-    { id: 'contacto', label: 'Contacto' }
-  ];
-
-  const themeButtonLabel = theme === 'dark'
-    ? 'Activar modo claro'
-    : 'Activar modo oscuro';
+  const themeLabel = theme === 'light' ? 'Activar modo oscuro' : 'Activar modo claro';
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-portfolio-out ${
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-portfolio-out ${
         isScrolled
-          ? 'bg-white/82 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:bg-black/72 dark:shadow-[0_8px_30px_rgba(0,0,0,0.22)]'
-          : 'bg-white/60 backdrop-blur-lg dark:bg-black/25'
+          ? 'bg-[#f4f3ef]/90 shadow-[0_1px_0_rgba(0,0,0,.08)] backdrop-blur-xl dark:bg-[#080808]/90 dark:shadow-[0_1px_0_rgba(255,255,255,.08)]'
+          : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <button
-            type="button"
-            onClick={() => scrollToSection('inicio')}
-            className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-2xl font-bold text-transparent active:scale-[0.97]"
-            aria-label="Ir al inicio"
-          >
-            SD
-          </button>
-
-          <div className="flex items-center gap-2 md:gap-4">
-            <div className="hidden md:block">
-              <div className="flex items-center gap-1 lg:gap-3">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => scrollToSection(item.id)}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-slate-900/[0.04] hover:text-slate-950 active:scale-[0.97] dark:text-gray-300 dark:hover:bg-white/[0.05] dark:hover:text-white"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900/[0.05] text-slate-700 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:text-gray-200 dark:hover:bg-white/[0.12]"
-              aria-label={themeButtonLabel}
-              title={themeButtonLabel}
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-5 w-5" aria-hidden="true" />
-              ) : (
-                <Moon className="h-5 w-5" aria-hidden="true" />
-              )}
-            </button>
-
-            <div className="md:hidden">
-              <button
-                type="button"
-                onClick={() => setIsMobileMenuOpen((open) => !open)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900/[0.05] transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:hover:bg-white/[0.12]"
-                aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-                aria-expanded={isMobileMenuOpen}
-                aria-controls="mobile-navigation"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-5 w-5 text-slate-800 dark:text-white" />
-                ) : (
-                  <Menu className="h-5 w-5 text-slate-800 dark:text-white" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div
-          id="mobile-navigation"
-          className="mobile-menu-shell absolute left-4 right-4 top-16 md:hidden"
-          data-open={isMobileMenuOpen ? 'true' : 'false'}
-          aria-hidden={!isMobileMenuOpen}
+      <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
+        <button
+          type="button"
+          onClick={() => goTo('inicio')}
+          className="text-left text-sm font-black uppercase tracking-[-0.02em] text-black dark:text-white"
+          aria-label="Ir al inicio"
         >
-          <div className="overflow-hidden rounded-2xl bg-white/95 p-2 shadow-xl backdrop-blur-xl dark:bg-gray-950/95">
+          Sara Duque
+        </button>
+
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="hidden items-center gap-6 md:flex">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 type="button"
-                tabIndex={isMobileMenuOpen ? 0 : -1}
-                onClick={() => scrollToSection(item.id)}
-                className="block w-full rounded-xl px-4 py-3 text-left text-base font-medium text-slate-700 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-slate-900/[0.04] active:scale-[0.99] dark:text-gray-300 dark:hover:bg-white/[0.05]"
+                onClick={() => goTo(item.id)}
+                className="text-xs font-semibold uppercase tracking-[0.16em] text-black/55 transition-colors hover:text-black dark:text-white/55 dark:hover:text-white"
               >
                 {item.label}
               </button>
             ))}
           </div>
+
+          <button
+            type="button"
+            onClick={() => setTheme((current) => (current === 'light' ? 'dark' : 'light'))}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/45 text-black transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-white active:scale-95 dark:border-white/10 dark:bg-white/[.05] dark:text-white dark:hover:bg-white/[.1]"
+            aria-label={themeLabel}
+            title={themeLabel}
+          >
+            {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/45 text-black transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-white active:scale-95 dark:border-white/10 dark:bg-white/[.05] dark:text-white dark:hover:bg-white/[.1] md:hidden"
+            aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      <div className="mobile-menu-shell absolute left-5 right-5 top-[76px] md:hidden" data-open={isMobileMenuOpen ? 'true' : 'false'}>
+        <div className="overflow-hidden rounded-3xl border border-black/10 bg-[#f4f3ef]/96 p-2 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-[#0b0b0b]/96">
+          {navItems.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => goTo(item.id)}
+              tabIndex={isMobileMenuOpen ? 0 : -1}
+              className="flex w-full items-center justify-between rounded-2xl px-4 py-4 text-left text-lg font-semibold text-black transition-colors hover:bg-black/[.05] dark:text-white dark:hover:bg-white/[.06]"
+            >
+              <span>{item.label}</span>
+              <span className="text-xs font-medium text-black/35 dark:text-white/35">0{index + 1}</span>
+            </button>
+          ))}
         </div>
       </div>
     </nav>
