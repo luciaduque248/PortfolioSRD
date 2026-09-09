@@ -1,0 +1,72 @@
+/* Compact hero metadata rail.
+   Keeps profile context visible without covering the FRONTEND / DEVELOPER headline. */
+
+.hero-meta-stack.hero-meta-compact {
+  top: 13.6%;
+  right: var(--page-pad);
+  width: min(34rem, 44vw);
+  transform: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 10px 30px rgba(11, 9, 18, 0.05);
+}
+
+.hero-meta-compact .hero-meta-card {
+  min-height: 54px;
+  padding: 0.55rem 0.7rem 0.6rem;
+  border: 0;
+  justify-content: flex-start;
+  gap: 0.42rem;
+}
+
+.hero-meta-compact .hero-meta-card + .hero-meta-card {
+  margin-top: 0;
+  border-left: 1px solid var(--line);
+}
+
+.hero-meta-compact .hero-meta-card span {
+  font-size: 0.46rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+}
+
+.hero-meta-compact .hero-meta-card strong {
+  margin-top: 0;
+  font-size: 0.66rem;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.hero-meta-compact .hero-meta-dark {
+  border-color: transparent;
+}
+
+.hero-meta-compact .hero-meta-violet {
+  border-color: transparent;
+}
+
+@media (max-width: 1099px) and (min-width: 768px) {
+  .hero-meta-stack.hero-meta-compact {
+    top: 13.8%;
+    right: 1rem;
+    width: min(31rem, 55vw);
+  }
+
+  .hero-meta-compact .hero-meta-card {
+    min-height: 50px;
+    padding: 0.48rem 0.58rem 0.52rem;
+  }
+
+  .hero-meta-compact .hero-meta-card strong {
+    font-size: 0.61rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-meta-stack.hero-meta-compact {
+    display: none;
+  }
+}
