@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 import { scrollToId } from '../utils/motion';
-import saraHeroCutout from '../sara_pc_sinfondo.png';
-import saraHeroFallback from '../sara_pc.png';
+import saraHeroPhoto from '../images/portraits/sara-hero.webp';
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -11,7 +10,6 @@ const Hero = () => {
   const developerRef = useRef(null);
   const portraitRef = useRef(null);
   const progressRef = useRef(null);
-  const [portraitSrc, setPortraitSrc] = useState(saraHeroCutout);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -113,8 +111,7 @@ const Hero = () => {
 
         <div ref={portraitRef} className="hero-person">
           <img
-            src={portraitSrc}
-            onError={() => setPortraitSrc(saraHeroFallback)}
+            src={saraHeroPhoto}
             alt="Sara Duque, Frontend Developer"
             className="hero-person-image"
             fetchPriority="high"
