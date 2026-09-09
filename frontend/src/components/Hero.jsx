@@ -35,7 +35,7 @@ const Hero = () => {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid min-h-screen items-center gap-10 py-12 sm:py-16 lg:grid-cols-2 lg:gap-14">
           <div
-            className={`mt-20 space-y-7 text-center transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] sm:mt-24 lg:mt-0 lg:text-left ${
+            className={`mt-20 space-y-7 text-center transition-[opacity,transform] duration-500 ease-portfolio-out sm:mt-24 lg:mt-0 lg:text-left ${
               mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}
           >
@@ -64,14 +64,14 @@ const Hero = () => {
             <div className="flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
               <button
                 onClick={() => scrollToId('proyectos')}
-                className="rounded-xl bg-blue-500 px-6 py-3.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-blue-400 active:scale-[0.98] sm:px-8 sm:text-base"
+                className="rounded-xl bg-blue-500 px-6 py-3.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-blue-400 active:scale-[0.98] sm:px-8 sm:text-base"
               >
                 Ver proyectos
               </button>
 
               <button
                 onClick={() => scrollToId('contacto')}
-                className="rounded-xl border border-gray-700 bg-transparent px-6 py-3.5 text-sm font-semibold text-white transition-[background-color,border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-500 hover:bg-white/[0.04] active:scale-[0.98] sm:px-8 sm:text-base"
+                className="rounded-xl border border-gray-700 bg-transparent px-6 py-3.5 text-sm font-semibold text-white transition-[background-color,border-color,transform] duration-150 ease-portfolio-out hover:border-gray-500 hover:bg-white/[0.04] active:scale-[0.98] sm:px-8 sm:text-base"
               >
                 Contactar
               </button>
@@ -82,7 +82,7 @@ const Hero = () => {
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-600 hover:text-white active:scale-95"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-[border-color,color,transform] duration-150 ease-portfolio-out hover:border-gray-600 hover:text-white active:scale-95"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
@@ -92,7 +92,7 @@ const Hero = () => {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-600 hover:text-white active:scale-95"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-[border-color,color,transform] duration-150 ease-portfolio-out hover:border-gray-600 hover:text-white active:scale-95"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -100,7 +100,7 @@ const Hero = () => {
 
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gray-600 hover:text-white active:scale-95"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-800 text-gray-400 transition-[border-color,color,transform] duration-150 ease-portfolio-out hover:border-gray-600 hover:text-white active:scale-95"
                 aria-label="Correo"
               >
                 <Mail className="h-5 w-5" />
@@ -109,7 +109,7 @@ const Hero = () => {
           </div>
 
           <div
-            className={`relative transition-opacity duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+            className={`relative transition-opacity duration-500 ease-portfolio-out ${
               mounted ? 'opacity-100' : 'opacity-0'
             }`}
           >
