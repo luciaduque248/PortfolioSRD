@@ -1,16 +1,11 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { Building2, ExternalLink, Github, X } from 'lucide-react';
+import { ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
-import { scrollToElement } from '../utils/motion';
-
-const ITEMS_PER_PAGE = 6;
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
-  const [currentPage, setCurrentPage] = useState(1);
   const [demoModalProject, setDemoModalProject] = useState(null);
-  const titleRef = useRef(null);
 
   const categories = useMemo(
     () => ['All', ...Array.from(new Set(projects.map((project) => project.category)))],
@@ -21,25 +16,12 @@ const Projects = () => {
     ? projects
     : projects.filter((project) => project.category === activeFilter);
 
-  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
-  const paginatedProjects = filteredProjects.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
-
-  const handleFilterChange = (category) => {
-    setActiveFilter(category);
-    setCurrentPage(1);
-  };
-
   const openProjectDemo = (project) => {
     if (!project.demoUrl) return;
-
     if (project.requiresDemoNotice) {
       setDemoModalProject(project);
       return;
     }
-
     window.open(project.demoUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -49,226 +31,139 @@ const Projects = () => {
     setDemoModalProject(null);
   };
 
-  const goToPage = (page) => {
-    setCurrentPage(page);
-    scrollToElement(titleRef.current, { block: 'start' });
-  };
-
   return (
     <>
-      <section id="proyectos" className="bg-gray-900 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div ref={titleRef} className="mb-12 max-w-3xl scroll-mt-24">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
-              Proyectos
-            </p>
-            <h2 className="text-3xl font-bold leading-tight tracking-[-0.025em] text-white sm:text-4xl md:text-5xl">
-              Trabajo de frontend, UX/UI y aplicaciones móviles.
+      <section id="proyectos" className="bg-black py-24 text-white sm:py-32">
+        <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
+          <div data-reveal className="reveal-up grid gap-8 border-t border-white/20 pt-5 lg:grid-cols-[.7fr_1.3fr] lg:gap-16">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/45">02 — Selected work</p>
+              <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3">
+                {categories.map((category) => {
+                  const active = activeFilter === category;
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setActiveFilter(category)}
+                      className={`text-xs font-semibold uppercase tracking-[.14em] transition-colors ${active ? 'text-white' : 'text-white/35 hover:text-white/70'}`}
+                      aria-pressed={active}
+                    >
+                      {category}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <h2 className="max-w-5xl text-[clamp(3rem,7.7vw,8.7rem)] font-black uppercase leading-[.86] tracking-[-.07em]">
+              Proyectos con identidad propia.
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-400 sm:text-lg">
-              Cada proyecto conserva su propia identidad visual. Aquí muestro qué construí, con qué herramientas y en qué estado está.
-            </p>
           </div>
 
-          <div className="mb-10 flex flex-wrap gap-2" aria-label="Filtrar proyectos">
-            {categories.map((category) => {
-              const isActive = activeFilter === category;
-
-              return (
-                <button
-                  type="button"
-                  key={category}
-                  onClick={() => handleFilterChange(category)}
-                  aria-pressed={isActive}
-                  className={`rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,transform] duration-150 ease-portfolio-out active:scale-[0.98] ${
-                    isActive
-                      ? 'bg-white text-gray-950 dark:bg-white dark:text-gray-950'
-                      : 'bg-transparent text-gray-400 hover:bg-white/[0.05] hover:text-white'
-                  }`}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2">
-            {paginatedProjects.map((project) => (
+          <div className="mt-20 space-y-8 sm:mt-28 sm:space-y-12">
+            {filteredProjects.map((project, index) => (
               <article
                 key={project.id}
-                className="overflow-hidden rounded-2xl border border-white/10 bg-gray-950/55 transition-colors duration-150 hover:border-white/20"
+                data-reveal
+                className="portfolio-panel-editorial reveal-up overflow-hidden rounded-[28px] border border-white/15 bg-[#111] shadow-[0_30px_80px_rgba(0,0,0,.32)]"
+                style={{ '--panel-index': index }}
               >
-                <div className="relative overflow-hidden bg-gray-950">
-                  <img
-                    src={project.image}
-                    alt={`Portada de ${project.name}`}
-                    className="h-52 w-full object-cover sm:h-60"
-                  />
-
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-5 pb-4 pt-14">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">
+                <div className={`grid min-h-[620px] ${index % 2 === 0 ? 'lg:grid-cols-[1.25fr_.75fr]' : 'lg:grid-cols-[.75fr_1.25fr]'}`}>
+                  <div className={`relative min-h-[300px] overflow-hidden bg-[#1a1a1a] sm:min-h-[420px] ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+                    <img
+                      src={project.image}
+                      alt={`Portada de ${project.name}`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                    <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/30 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[.16em] text-white backdrop-blur-md sm:left-7 sm:top-7">
                       {project.category}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6 sm:p-7">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-xl font-semibold tracking-[-0.015em] text-white sm:text-2xl">
-                      {project.name}
-                    </h3>
-
-                    {project.requiresDemoNotice && (
-                      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-purple-300">
-                        <Building2 className="h-3.5 w-3.5" />
-                        Empresarial
-                      </span>
-                    )}
+                    </div>
                   </div>
 
-                  <p className="mt-4 text-sm leading-relaxed text-gray-400 sm:text-[15px]">
-                    {project.description}
-                  </p>
+                  <div className={`flex flex-col justify-between p-6 sm:p-9 lg:p-10 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                    <div>
+                      <div className="flex items-start justify-between gap-5">
+                        <span className="text-xs font-semibold uppercase tracking-[.16em] text-white/35">
+                          {String(index + 1).padStart(2, '0')} / {String(filteredProjects.length).padStart(2, '0')}
+                        </span>
+                        {project.requiresDemoNotice && (
+                          <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[.12em] text-white/45">
+                            <Building2 className="h-3.5 w-3.5" /> Empresarial
+                          </span>
+                        )}
+                      </div>
 
-                  <p className="mt-5 text-xs leading-relaxed text-gray-500 sm:text-sm">
-                    {project.technologies.join(' · ')}
-                  </p>
+                      <h3 className="mt-10 text-[clamp(2.2rem,4.4vw,5.3rem)] font-black uppercase leading-[.9] tracking-[-.055em]">
+                        {project.name}
+                      </h3>
+                      <p className="mt-7 text-sm leading-relaxed text-white/55 sm:text-base">
+                        {project.description}
+                      </p>
+                      <p className="mt-6 border-t border-white/15 pt-5 text-xs font-semibold uppercase leading-relaxed tracking-[.11em] text-white/35">
+                        {project.technologies.join(' · ')}
+                      </p>
+                    </div>
 
-                  <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/10 pt-5">
-                    {project.demoUrl ? (
-                      <button
-                        type="button"
-                        onClick={() => openProjectDemo(project)}
-                        className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-blue-400 active:scale-[0.98]"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        Ver demo
-                      </button>
-                    ) : (
-                      <span className="rounded-xl bg-white/[0.05] px-4 py-2.5 text-sm font-medium text-gray-500">
-                        En desarrollo
-                      </span>
-                    )}
+                    <div className="mt-10 flex flex-wrap items-center gap-3">
+                      {project.demoUrl ? (
+                        <button type="button" onClick={() => openProjectDemo(project)} className="editorial-cta-inverse">
+                          Ver proyecto <ArrowUpRight className="h-4 w-4" />
+                        </button>
+                      ) : (
+                        <span className="inline-flex min-h-11 items-center rounded-full border border-white/15 px-5 text-xs font-semibold uppercase tracking-[.12em] text-white/40">
+                          En desarrollo
+                        </span>
+                      )}
 
-                    {project.githubUrl ? (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-gray-300 transition-[border-color,color,transform] duration-150 ease-portfolio-out hover:border-white/20 hover:text-white active:scale-[0.98]"
-                      >
-                        <Github className="h-4 w-4" />
-                        Código
-                      </a>
-                    ) : (
-                      <span className="text-xs text-gray-600">Código no público</span>
-                    )}
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 text-xs font-semibold uppercase tracking-[.12em] text-white/60 transition-colors hover:border-white/35 hover:text-white"
+                        >
+                          <Github className="h-4 w-4" /> Código
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </article>
             ))}
           </div>
-
-          {totalPages > 1 && (
-            <nav className="mt-12 flex items-center justify-center gap-2" aria-label="Paginación de proyectos">
-              <button
-                type="button"
-                onClick={() => goToPage(Math.max(currentPage - 1, 1))}
-                disabled={currentPage === 1}
-                className="min-h-11 rounded-lg px-3 py-2 text-sm text-gray-400 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.05] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 active:scale-[0.98]"
-              >
-                Anterior
-              </button>
-
-              {Array.from({ length: totalPages }).map((_, index) => {
-                const page = index + 1;
-                const isActive = currentPage === page;
-
-                return (
-                  <button
-                    type="button"
-                    key={page}
-                    onClick={() => goToPage(page)}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`h-11 w-11 rounded-lg text-sm font-medium transition-[background-color,color,transform] duration-150 ease-portfolio-out active:scale-95 ${
-                      isActive
-                        ? 'bg-white text-gray-950'
-                        : 'text-gray-500 hover:bg-white/[0.05] hover:text-white'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                );
-              })}
-
-              <button
-                type="button"
-                onClick={() => goToPage(Math.min(currentPage + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="min-h-11 rounded-lg px-3 py-2 text-sm text-gray-400 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.05] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 active:scale-[0.98]"
-              >
-                Siguiente
-              </button>
-            </nav>
-          )}
         </div>
       </section>
 
-      <Dialog.Root
-        open={Boolean(demoModalProject)}
-        onOpenChange={(open) => {
-          if (!open) setDemoModalProject(null);
-        }}
-      >
+      <Dialog.Root open={Boolean(demoModalProject)} onOpenChange={(open) => !open && setDemoModalProject(null)}>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm" />
           {demoModalProject && (
-            <Dialog.Content
-              className="fixed left-1/2 top-1/2 z-[101] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/10 bg-gray-950 p-6 shadow-2xl outline-none sm:p-8"
-              aria-describedby="demo-notice-description"
-            >
+            <Dialog.Content className="fixed left-1/2 top-1/2 z-[101] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-[28px] border border-white/15 bg-[#111] p-6 text-white shadow-2xl outline-none sm:p-8">
               <div className="flex items-start justify-between gap-5">
                 <div>
-                  <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-purple-300">
-                    <Building2 className="h-4 w-4" />
-                    Proyecto empresarial
-                  </div>
-                  <Dialog.Title className="text-2xl font-semibold tracking-[-0.02em] text-white">
+                  <p className="text-[10px] font-semibold uppercase tracking-[.16em] text-white/45">Proyecto empresarial</p>
+                  <Dialog.Title className="mt-3 text-3xl font-black uppercase leading-none tracking-[-.04em]">
                     Antes de abrir {demoModalProject.name}
                   </Dialog.Title>
                 </div>
-
                 <Dialog.Close asChild>
-                  <button
-                    type="button"
-                    className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-gray-500 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.06] hover:text-white active:scale-95"
-                    aria-label="Cerrar aviso"
-                  >
+                  <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/60 hover:text-white" aria-label="Cerrar">
                     <X className="h-5 w-5" />
                   </button>
                 </Dialog.Close>
               </div>
-
-              <Dialog.Description id="demo-notice-description" className="mt-5 text-sm leading-relaxed text-gray-400 sm:text-base">
-                Esta demo es una adaptación pública para portafolio de un proyecto empresarial. Puede diferir de la versión de producción y no contiene información privada del cliente.
+              <Dialog.Description className="mt-6 text-sm leading-relaxed text-white/55">
+                Esta demo es una adaptación pública para portafolio y no contiene información privada del cliente.
               </Dialog.Description>
-
-              <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+              <div className="mt-8 flex flex-wrap justify-end gap-3">
                 <Dialog.Close asChild>
-                  <button
-                    type="button"
-                    className="min-h-11 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-400 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.05] hover:text-white active:scale-[0.98]"
-                  >
-                    Cancelar
-                  </button>
+                  <button type="button" className="min-h-11 rounded-full px-5 text-xs font-semibold uppercase tracking-[.12em] text-white/50 hover:text-white">Cancelar</button>
                 </Dialog.Close>
-                <button
-                  type="button"
-                  onClick={continueToDemo}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-blue-400 active:scale-[0.98]"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Continuar a la demo
+                <button type="button" onClick={continueToDemo} className="editorial-cta-inverse">
+                  <ExternalLink className="h-4 w-4" /> Continuar
                 </button>
               </div>
             </Dialog.Content>
