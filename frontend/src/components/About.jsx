@@ -1,5 +1,6 @@
 import React from 'react';
 import { personalInfo, achievements, roles, values } from '../data/mock';
+import { scrollToId } from '../utils/motion';
 
 const About = () => {
   return (
@@ -99,8 +100,8 @@ const About = () => {
             <p className="mt-1 text-sm text-gray-400">Podemos hablar de producto, interfaz o implementación.</p>
           </div>
           <button
-            onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
-            className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-400 active:scale-[0.98]"
+            onClick={() => scrollToId('contacto')}
+            className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-blue-400 active:scale-[0.98]"
           >
             Hablemos
           </button>
