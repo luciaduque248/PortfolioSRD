@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 import { Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
 import { scrollToElement } from '../utils/motion';
@@ -26,26 +27,10 @@ const Projects = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  useEffect(() => {
+  const handleFilterChange = (category) => {
+    setActiveFilter(category);
     setCurrentPage(1);
-  }, [activeFilter]);
-
-  useEffect(() => {
-    if (!demoModalProject) return undefined;
-
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') setDemoModalProject(null);
-    };
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, [demoModalProject]);
+  };
 
   const openProjectDemo = (project) => {
     if (!project.demoUrl) return;
@@ -93,7 +78,7 @@ const Projects = () => {
                 <button
                   type="button"
                   key={category}
-                  onClick={() => setActiveFilter(category)}
+                  onClick={() => handleFilterChange(category)}
                   aria-pressed={isActive}
                   className={`rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] ${
                     isActive
@@ -229,62 +214,67 @@ const Projects = () => {
         </div>
       </section>
 
-      {demoModalProject && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="demo-notice-title"
-          onMouseDown={(event) => {
-            if (event.currentTarget === event.target) setDemoModalProject(null);
-          }}
-        >
-          <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-gray-950 p-6 shadow-2xl sm:p-8">
-            <div className="flex items-start justify-between gap-5">
-              <div>
-                <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-purple-300">
-                  <Building2 className="h-4 w-4" />
-                  Proyecto empresarial
+      <Dialog.Root
+        open={Boolean(demoModalProject)}
+        onOpenChange={(open) => {
+          if (!open) setDemoModalProject(null);
+        }}
+      >
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm" />
+          {demoModalProject && (
+            <Dialog.Content
+              className="fixed left-1/2 top-1/2 z-[101] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/10 bg-gray-950 p-6 shadow-2xl outline-none sm:p-8"
+              aria-describedby="demo-notice-description"
+            >
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-purple-300">
+                    <Building2 className="h-4 w-4" />
+                    Proyecto empresarial
+                  </div>
+                  <Dialog.Title className="text-2xl font-semibold tracking-[-0.02em] text-white">
+                    Antes de abrir {demoModalProject.name}
+                  </Dialog.Title>
                 </div>
-                <h3 id="demo-notice-title" className="text-2xl font-semibold tracking-[-0.02em] text-white">
-                  Antes de abrir {demoModalProject.name}
-                </h3>
+
+                <Dialog.Close asChild>
+                  <button
+                    type="button"
+                    className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-gray-500 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.06] hover:text-white active:scale-95"
+                    aria-label="Cerrar aviso"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </Dialog.Close>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setDemoModalProject(null)}
-                className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-gray-500 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.06] hover:text-white active:scale-95"
-                aria-label="Cerrar aviso"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
+              <Dialog.Description id="demo-notice-description" className="mt-5 text-sm leading-relaxed text-gray-400 sm:text-base">
+                Esta demo es una adaptación pública para portafolio de un proyecto empresarial. Puede diferir de la versión de producción y no contiene información privada del cliente.
+              </Dialog.Description>
 
-            <p className="mt-5 text-sm leading-relaxed text-gray-400 sm:text-base">
-              Esta demo es una adaptación pública para portafolio de un proyecto empresarial. Puede diferir de la versión de producción y no contiene información privada del cliente.
-            </p>
-
-            <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-              <button
-                type="button"
-                onClick={() => setDemoModalProject(null)}
-                className="min-h-11 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-400 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.05] hover:text-white active:scale-[0.98]"
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                onClick={continueToDemo}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-blue-400 active:scale-[0.98]"
-              >
-                <ExternalLink className="h-4 w-4" />
-                Continuar a la demo
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+              <div className="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                <Dialog.Close asChild>
+                  <button
+                    type="button"
+                    className="min-h-11 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-400 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.05] hover:text-white active:scale-[0.98]"
+                  >
+                    Cancelar
+                  </button>
+                </Dialog.Close>
+                <button
+                  type="button"
+                  onClick={continueToDemo}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-blue-400 active:scale-[0.98]"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Continuar a la demo
+                </button>
+              </div>
+            </Dialog.Content>
+          )}
+        </Dialog.Portal>
+      </Dialog.Root>
     </>
   );
 };
