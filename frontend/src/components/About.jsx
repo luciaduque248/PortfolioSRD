@@ -101,7 +101,7 @@ const About = () => {
           </div>
           <button
             onClick={() => scrollToId('contacto')}
-            className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-blue-400 active:scale-[0.98]"
+            className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-blue-400 active:scale-[0.98]"
           >
             Hablemos
           </button>
