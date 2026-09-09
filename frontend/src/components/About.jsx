@@ -1,110 +1,106 @@
 import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { personalInfo, achievements, roles, values } from '../data/mock';
 import { scrollToId } from '../utils/motion';
 
 const About = () => {
   return (
-    <section id="sobre-mi" className="bg-gradient-to-b from-black to-gray-900 py-16 sm:py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-12 max-w-3xl sm:mb-16">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
-            Sobre mí
-          </p>
-          <h2 className="text-3xl font-bold leading-tight tracking-[-0.025em] text-white sm:text-4xl md:text-5xl">
-            Diseño interfaces y las llevo a producto.
-          </h2>
+    <section id="sobre-mi" className="bg-[#f4f3ef] text-black dark:bg-[#080808] dark:text-white">
+      <div className="mx-auto max-w-[1600px] px-5 pb-24 pt-28 sm:px-8 sm:pb-32 sm:pt-36 lg:px-12">
+        <div data-reveal className="reveal-up border-t border-black/15 pt-5 dark:border-white/15">
+          <div className="grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-16">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-black/45 dark:text-white/45">
+              01 — About me
+            </p>
+            <h2 className="max-w-5xl text-[clamp(2.9rem,7vw,7.8rem)] font-black uppercase leading-[.88] tracking-[-.065em]">
+              Diseño experiencias digitales y las llevo hasta producto.
+            </h2>
+          </div>
         </div>
 
-        <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-          <div className="space-y-5">
-            <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+        <div className="mt-16 grid gap-12 border-t border-black/15 pt-10 dark:border-white/15 lg:grid-cols-[1fr_1fr] lg:gap-20">
+          <div data-reveal className="reveal-up max-w-xl">
+            <p className="text-xl leading-relaxed sm:text-2xl">
               {personalInfo.bio}
             </p>
-            <p className="text-base leading-relaxed text-gray-400 sm:text-lg">
+            <p className="mt-7 text-base leading-relaxed text-black/55 dark:text-white/55 sm:text-lg">
               {personalInfo.extendedBio}
             </p>
           </div>
 
-          <div className="mx-auto flex w-full max-w-sm items-center justify-center">
-            <img
-              src={personalInfo.avatar}
-              alt={personalInfo.name}
-              className="h-auto max-h-[460px] w-auto max-w-full object-contain drop-shadow-[0_18px_30px_rgba(15,23,42,0.16)] dark:drop-shadow-[0_18px_30px_rgba(0,0,0,0.28)]"
-              loading="lazy"
-              decoding="async"
-            />
+          <div data-reveal className="reveal-up reveal-delay-1">
+            <div className="grid border-y border-black/15 dark:border-white/15 sm:grid-cols-3">
+              {achievements.map((achievement, index) => (
+                <div
+                  key={achievement.label}
+                  className={`py-6 ${index > 0 ? 'border-t border-black/15 dark:border-white/15 sm:border-l sm:border-t-0 sm:pl-6' : ''}`}
+                >
+                  <div className="text-4xl font-black tracking-[-.05em] sm:text-5xl">{achievement.number}</div>
+                  <div className="mt-2 text-sm font-semibold uppercase tracking-[.08em]">{achievement.label}</div>
+                  <p className="mt-2 text-xs leading-relaxed text-black/45 dark:text-white/45">{achievement.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="mt-14 border-y border-white/10 sm:mt-16">
-          <div className="grid sm:grid-cols-3">
-            {achievements.map((achievement, index) => (
-              <div
-                key={achievement.label}
-                className={`py-6 text-left sm:px-6 ${index > 0 ? 'border-t border-white/10 sm:border-l sm:border-t-0' : ''}`}
-              >
-                <div className="text-2xl font-semibold tracking-[-0.02em] text-white sm:text-3xl">
-                  {achievement.number}
-                </div>
-                <div className="mt-1 text-sm font-medium text-gray-300">
-                  {achievement.label}
-                </div>
-                <div className="mt-1 text-xs leading-relaxed text-gray-500 sm:text-sm">
-                  {achievement.description}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <h3 className="mb-6 text-2xl font-semibold tracking-[-0.02em] text-white">
-              Áreas en las que trabajo
-            </h3>
-            <div className="divide-y divide-white/10 border-y border-white/10">
-              {roles.map((role) => (
-                <div key={role.title} className="py-5">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h4 className="font-semibold text-white">{role.title}</h4>
-                    <span className="text-sm text-gray-500">{role.skills.join(' · ')}</span>
+        <div className="mt-24 grid gap-16 lg:grid-cols-2">
+          <div data-reveal className="reveal-up">
+            <div className="mb-5 flex items-center justify-between border-b border-black/15 pb-4 dark:border-white/15">
+              <h3 className="text-xl font-black uppercase tracking-[-.02em]">What I do</h3>
+              <span className="text-xs text-black/40 dark:text-white/40">01—{String(roles.length).padStart(2, '0')}</span>
+            </div>
+            <div>
+              {roles.map((role, index) => (
+                <article key={role.title} className="group border-b border-black/15 py-5 dark:border-white/15">
+                  <div className="flex items-start gap-4">
+                    <span className="mt-1 text-xs text-black/35 dark:text-white/35">0{index + 1}</span>
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-2xl font-semibold tracking-[-.03em] sm:text-3xl">{role.title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-black/50 dark:text-white/50">{role.description}</p>
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[.12em] text-black/35 dark:text-white/35">
+                        {role.skills.join(' · ')}
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-400">
-                    {role.description}
-                  </p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="mb-6 text-2xl font-semibold tracking-[-0.02em] text-white">
-              Cómo tomo decisiones de diseño
-            </h3>
-            <div className="divide-y divide-white/10 border-y border-white/10">
-              {values.map((value) => (
-                <div key={value.title} className="py-5">
-                  <h4 className="font-semibold text-white">{value.title}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-400">
-                    {value.description}
-                  </p>
-                </div>
+          <div data-reveal className="reveal-up reveal-delay-1">
+            <div className="mb-5 flex items-center justify-between border-b border-black/15 pb-4 dark:border-white/15">
+              <h3 className="text-xl font-black uppercase tracking-[-.02em]">How I decide</h3>
+              <span className="text-xs text-black/40 dark:text-white/40">Principles</span>
+            </div>
+            <div>
+              {values.map((value, index) => (
+                <article key={value.title} className="border-b border-black/15 py-5 dark:border-white/15">
+                  <div className="flex gap-4">
+                    <span className="mt-1 text-xs text-black/35 dark:text-white/35">0{index + 1}</span>
+                    <div>
+                      <h4 className="text-xl font-semibold tracking-[-.02em] sm:text-2xl">{value.title}</h4>
+                      <p className="mt-2 text-sm leading-relaxed text-black/50 dark:text-white/50">{value.description}</p>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h3 className="text-xl font-semibold text-white">¿Tienes un proyecto en mente?</h3>
-            <p className="mt-1 text-sm text-gray-400">Podemos hablar de producto, interfaz o implementación.</p>
+      <div className="bg-black text-white dark:bg-[#f4f3ef] dark:text-black">
+        <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12">
+          <div data-reveal className="reveal-up flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <h3 className="max-w-5xl text-[clamp(2.7rem,7vw,7rem)] font-black uppercase leading-[.88] tracking-[-.065em]">
+              Las ideas se vuelven reales cuando diseño y código trabajan juntos.
+            </h3>
+            <button type="button" onClick={() => scrollToId('contacto')} className="editorial-cta-inverse shrink-0">
+              Hablemos
+              <ArrowUpRight className="h-4 w-4" />
+            </button>
           </div>
-          <button
-            onClick={() => scrollToId('contacto')}
-            className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-blue-400 active:scale-[0.98]"
-          >
-            Hablemos
-          </button>
         </div>
       </div>
     </section>
