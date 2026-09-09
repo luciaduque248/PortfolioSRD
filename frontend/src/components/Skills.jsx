@@ -27,7 +27,7 @@ const SkillRow = ({ skill, index }) => {
   return (
     <article data-reveal className="reveal-up group border-b border-black/15 py-6 dark:border-white/15 sm:py-7">
       <div className="grid items-start gap-4 sm:grid-cols-[60px_1fr_1fr] sm:gap-8">
-        <span className="text-xs font-black" style={{ color }}>{String(index + 1).padStart(2, '0')}</span>
+        <span className="text-xs font-black" style={{ color: accent }}>{String(index + 1).padStart(2, '0')}</span>
         <div className="flex items-center gap-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-full text-xl text-white shadow-sm" style={{ backgroundColor: accent }} aria-hidden="true">
             {skill.icon}
