@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">ServiChat Mobile App</title>
+  <desc id="desc">Portada visual para el proyecto móvil ServiChat.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1F2450"/>
+      <stop offset="0.55" stop-color="#4B3AA7"/>
+      <stop offset="1" stop-color="#7667E9"/>
+    </linearGradient>
+    <linearGradient id="bubble" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8CD8FF"/>
+      <stop offset="1" stop-color="#B9A7FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#0D102C" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <circle cx="1070" cy="80" r="210" fill="#FFFFFF" opacity="0.06"/>
+  <circle cx="90" cy="560" r="230" fill="#8CD8FF" opacity="0.08"/>
+
+  <g filter="url(#shadow)" transform="translate(735 55)">
+    <rect x="0" y="0" width="300" height="500" rx="48" fill="#11162F"/>
+    <rect x="15" y="15" width="270" height="470" rx="38" fill="#F7F8FF"/>
+    <rect x="112" y="28" width="76" height="10" rx="5" fill="#11162F" opacity="0.6"/>
+
+    <rect x="46" y="88" width="208" height="88" rx="26" fill="url(#bubble)"/>
+    <circle cx="78" cy="122" r="16" fill="#FFFFFF" opacity="0.9"/>
+    <rect x="108" y="108" width="104" height="10" rx="5" fill="#FFFFFF" opacity="0.9"/>
+    <rect x="108" y="130" width="78" height="8" rx="4" fill="#FFFFFF" opacity="0.72"/>
+
+    <rect x="46" y="207" width="208" height="92" rx="24" fill="#FFFFFF" stroke="#D8DBF4" stroke-width="3"/>
+    <rect x="66" y="229" width="56" height="50" rx="15" fill="#6555D7" opacity="0.12"/>
+    <path d="M82 253h24M94 241v24" stroke="#6555D7" stroke-width="6" stroke-linecap="round"/>
+    <rect x="140" y="230" width="84" height="9" rx="4.5" fill="#343858" opacity="0.75"/>
+    <rect x="140" y="251" width="68" height="8" rx="4" fill="#7E829D" opacity="0.55"/>
+
+    <rect x="46" y="328" width="208" height="92" rx="24" fill="#FFFFFF" stroke="#D8DBF4" stroke-width="3"/>
+    <circle cx="94" cy="374" r="25" fill="#42B7D8" opacity="0.15"/>
+    <path d="M84 373l8 8 15-18" fill="none" stroke="#42B7D8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="140" y="351" width="84" height="9" rx="4.5" fill="#343858" opacity="0.75"/>
+    <rect x="140" y="372" width="59" height="8" rx="4" fill="#7E829D" opacity="0.55"/>
+  </g>
+
+  <g transform="translate(120 132)">
+    <path d="M88 90c0-48 39-87 87-87s87 39 87 87v20c0 18-8 35-22 46l-11 9 4 33-39-20c-6 1-12 2-19 2-48 0-87-39-87-87Z" fill="url(#bubble)" opacity="0.98"/>
+    <circle cx="143" cy="89" r="10" fill="#313765"/>
+    <circle cx="176" cy="89" r="10" fill="#313765"/>
+    <circle cx="209" cy="89" r="10" fill="#313765"/>
+  </g>
+
+  <text x="115" y="355" fill="#FFFFFF" font-family="Montserrat, Arial, sans-serif" font-size="76" font-weight="700">ServiChat</text>
+  <text x="118" y="410" fill="#D9D4FF" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="600" letter-spacing="5">MOBILE APP</text>
+  <text x="118" y="467" fill="#D8E9FF" font-family="Montserrat, Arial, sans-serif" font-size="24">Comunicación y gestión para clínicas</text>
+</svg>
