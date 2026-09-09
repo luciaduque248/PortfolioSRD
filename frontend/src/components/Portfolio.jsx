@@ -8,7 +8,7 @@ import Contact from './Contact';
 
 const Portfolio = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="portfolio-shell min-h-screen bg-slate-50 text-slate-900 dark:bg-black dark:text-white transition-colors duration-300">
       <Navbar />
       <Hero />
       <About />
