@@ -2,22 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  color-scheme: light;
-  background: #f4f3ef;
+:root {
+  --paper: #eeeaff;
+  --paper-2: #f7f5ff;
+  --ink: #0a0a0d;
+  --blue: #3157ff;
+  --blue-2: #6ea8ff;
+  --violet: #7c3aed;
+  --violet-2: #b96cff;
+  --magenta: #d946ef;
+  --night: #0c0913;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+html {
+  color-scheme: light;
+  background: var(--paper);
+}
+
 html.dark {
   color-scheme: dark;
-  background: #080808;
+  --paper: #0b0811;
+  --paper-2: #120d1b;
+  --ink: #f8f7ff;
+  background: var(--paper);
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background: #f4f3ef;
+  background: var(--paper);
+  color: var(--ink);
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial,
     sans-serif;
@@ -25,18 +41,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html.dark body {
-  background: #080808;
-}
-
 ::selection {
-  background: #111;
+  background: var(--violet);
   color: #fff;
-}
-
-html.dark ::selection {
-  background: #fff;
-  color: #111;
 }
 
 button,
@@ -50,8 +57,100 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--blue);
   outline-offset: 3px;
+}
+
+.hero-editorial {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 30%),
+    var(--paper);
+}
+
+.hero-color-field {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-color-field-blue {
+  left: -8vw;
+  top: 8vh;
+  width: min(48vw, 680px);
+  height: min(34vh, 340px);
+  border-radius: 0 999px 999px 0;
+  background: var(--blue);
+  opacity: 0.98;
+}
+
+.hero-color-field-violet {
+  right: -9vw;
+  bottom: 6vh;
+  width: min(42vw, 560px);
+  height: min(30vh, 300px);
+  border-radius: 999px 0 0 999px;
+  background: var(--violet-2);
+  opacity: 0.96;
+}
+
+.hero-arc {
+  position: absolute;
+  left: 50%;
+  top: 14%;
+  z-index: 1;
+  width: min(91vw, 1160px);
+  height: 45vh;
+  transform: translateX(-50%);
+  border-radius: 36px 36px 50% 50% / 28px 28px 34% 34%;
+  background: #0c0c10;
+  box-shadow: 0 28px 80px rgba(38, 31, 84, 0.18);
+}
+
+html.dark .hero-arc {
+  background: #17111f;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.5);
+}
+
+.hero-word {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: clamp(3.05rem, 11.8vw, 11.7rem);
+  font-weight: 950;
+  line-height: 0.8;
+  letter-spacing: -0.082em;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+.hero-word-frontend {
+  color: #4f74ff;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.hero-word-developer {
+  color: #c47aff;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.hero-portrait-shell {
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 46% 46% 0 0 / 18% 18% 0 0;
+  background: #f8f7f4;
+  box-shadow:
+    0 24px 70px rgba(16, 12, 34, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+
+.hero-portrait-photo {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  mix-blend-mode: multiply;
+}
+
+html.dark .hero-portrait-shell {
+  background: #f8f7f4;
 }
 
 .hero-icon-link,
@@ -62,9 +161,9 @@ textarea:focus-visible {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  color: rgba(0, 0, 0, 0.62);
-  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(10, 10, 13, 0.16);
+  color: rgba(10, 10, 13, 0.7);
+  background: rgba(255, 255, 255, 0.78);
   transition:
     transform 150ms var(--ease-out),
     border-color 150ms var(--ease-out),
@@ -73,19 +172,32 @@ textarea:focus-visible {
 }
 
 .hero-icon-link:hover {
-  border-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(49, 87, 255, 0.46);
   background: #fff;
-  color: #000;
+  color: var(--blue);
+}
+
+html.dark .hero-icon-link {
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(11, 8, 17, 0.58);
+}
+
+html.dark .hero-icon-link:hover {
+  border-color: rgba(185, 108, 255, 0.65);
+  color: #fff;
+  background: rgba(124, 58, 237, 0.28);
 }
 
 .contact-social {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: transparent;
-  color: rgba(255, 255, 255, 0.58);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .contact-social:hover {
-  border-color: rgba(255, 255, 255, 0.42);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }
 
@@ -104,7 +216,7 @@ textarea:focus-visible {
   border-radius: 999px;
   padding: 0 20px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition:
@@ -115,22 +227,24 @@ textarea:focus-visible {
 }
 
 .editorial-cta {
-  background: #0a0a0a;
+  background: #0b0b0f;
   color: #fff;
+  box-shadow: 0 10px 30px rgba(12, 9, 19, 0.16);
 }
 
 .editorial-cta:hover {
-  background: #262626;
+  background: var(--blue);
 }
 
 .editorial-cta-inverse {
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   background: #fff;
-  color: #0a0a0a;
+  color: #0a0a0d;
 }
 
 .editorial-cta-inverse:hover {
-  background: #deded8;
+  background: #e8ddff;
+  color: #3f1a78;
 }
 
 .editorial-cta:active,
@@ -140,10 +254,10 @@ textarea:focus-visible {
 
 [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 28px, 0);
+  transform: translate3d(0, 30px, 0);
   transition:
-    opacity 650ms var(--ease-out),
-    transform 650ms var(--ease-out);
+    opacity 620ms var(--ease-out),
+    transform 620ms var(--ease-out);
 }
 
 [data-reveal].is-visible {
@@ -196,6 +310,40 @@ section {
 }
 
 @media (max-width: 767px) {
+  .hero-editorial {
+    height: 150svh;
+  }
+
+  .hero-color-field-blue {
+    left: -34vw;
+    top: 13vh;
+    width: 84vw;
+    height: 22vh;
+  }
+
+  .hero-color-field-violet {
+    right: -42vw;
+    bottom: 9vh;
+    width: 92vw;
+    height: 24vh;
+  }
+
+  .hero-arc {
+    top: 18%;
+    width: 94vw;
+    height: 38vh;
+    border-radius: 26px 26px 52% 52% / 24px 24px 35% 35%;
+  }
+
+  .hero-word {
+    font-size: clamp(2.55rem, 12.3vw, 4.25rem);
+  }
+
+  .hero-portrait-shell {
+    width: min(95vw, 620px);
+    border-radius: 42% 42% 0 0 / 12% 12% 0 0;
+  }
+
   #inicio .hero-icon-link:nth-of-type(1),
   #inicio .hero-icon-link:nth-of-type(2),
   #inicio .hero-icon-link:nth-of-type(3) {
