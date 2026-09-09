@@ -1,9 +1,15 @@
-import cafecomImg from "../images/CAFECOM.png";
+import countryExplorerImg from "../images/project-covers/country-explorer.svg";
+import musicPlayerImg from "../images/project-covers/music-player.svg";
+import agroinnovaImg from "../images/project-covers/agroinnova-cover.svg";
+import cafecomUxImg from "../images/project-covers/cafecom-ux.svg";
+import hoteliaImg from "../images/project-covers/hotelia-cover.svg";
+import manageImg from "../images/project-covers/manage-cover.svg";
+import virtuosaWebImg from "../images/project-covers/virtuosa-web.svg";
+import virtuosaUxImg from "../images/project-covers/virtuosa-ux.svg";
+import pensumImg from "../images/project-covers/pensum-cover.svg";
 import cafecomMobileImg from "../images/cafecom-mobile.svg";
 import servichatMobileImg from "../images/servichat-mobile.svg";
-import MiPensumUnicauca from "../images/MiPensum.png";
-import AgroinnovaDemo from "../images/agroinnova.png";
-import ManageLandingPage from "../images/manageio.png";
+
 // Mock data para el portafolio de Sara Duque
 export const personalInfo = {
     name: "Sara Duque",
@@ -20,61 +26,11 @@ export const personalInfo = {
 };
 
 export const projects = [
-    // {
-    //     id: 1,
-    //     name: "EcoTracker Dashboard",
-    //     description: "Dashboard interactivo para seguimiento de huella de carbono con visualizaciones en tiempo real",
-    //     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
-    //     technologies: ["React", "TypeScript", "Chart.js", "Tailwind CSS"],
-    //     demoUrl: "https://demo-ecotracker.com",
-    //     githubUrl: "https://github.com/saraduque/ecotracker",
-    //     category: "Web App"
-    // },
-    // {
-    //     id: 2,
-    //     name: "FinTech Mobile UI",
-    //     description: "Diseño y desarrollo de interfaz móvil para aplicación de banca digital con animaciones fluidas",
-    //     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop",
-    //     technologies: ["React Native", "Framer Motion", "Figma", "TypeScript"],
-    //     demoUrl: "https://demo-fintech.com",
-    //     githubUrl: "https://github.com/saraduque/fintech-ui",
-    //     category: "Mobile"
-    // },
-    // {
-    //     id: 3,
-    //     name: "AI Content Generator",
-    //     description: "Plataforma web para generación de contenido usando IA con interfaz intuitiva y moderna",
-    //     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop",
-    //     technologies: ["Next.js", "OpenAI API", "Prisma", "PostgreSQL"],
-    //     demoUrl: "https://demo-aicontent.com",
-    //     githubUrl: "https://github.com/saraduque/ai-content",
-    //     category: "AI/ML"
-    // },
-    // {
-    //     id: 4,
-    //     name: "E-Learning Platform",
-    //     description: "Plataforma educativa interactiva con sistema de progreso y gamificación",
-    //     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&h=300&fit=crop",
-    //     technologies: ["Vue.js", "Node.js", "MongoDB", "Socket.io"],
-    //     demoUrl: "https://demo-elearning.com",
-    //     githubUrl: "https://github.com/saraduque/elearning",
-    //     category: "Education"
-    // },
-    // {
-    //     id: 5,
-    //     name: "Health & Wellness App",
-    //     description: "Aplicación móvil para seguimiento de hábitos saludables con diseño centrado en el usuario",
-    //     image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=500&h=300&fit=crop",
-    //     technologies: ["Flutter", "Dart", "Firebase", "Lottie"],
-    //     demoUrl: "https://demo-healthapp.com",
-    //     githubUrl: "https://github.com/saraduque/healthapp",
-    //     category: "Mobile"
-    // },
     {
         id: 6,
         name: "Country Explorer",
         description: "Sitio web para explorar países del mundo, con filtros por nombre y región,",
-        image: "https://upload.wikimedia.org/wikipedia/commons/8/87/Flag_Map_of_The_World.png",
+        image: countryExplorerImg,
         technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
         demoUrl: "https://countries-app-eta-seven.vercel.app/",
         githubUrl: "https://github.com/luciaduque248/CountriesApp.git",
@@ -84,7 +40,7 @@ export const projects = [
         id: 7,
         name: "Music Player",
         description: "Reproductor de música desarrollado con HTML, CSS y JavaScript. Permite reproducir, pausar, cambiar de canción y controlar el progreso de audio con una interfaz moderna y responsive.",
-        image: "https://images.unsplash.com/photo-1616356607338-fd87169ecf1a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: musicPlayerImg,
         technologies: ["HTML", "CSS", "JavaScript"],
         demoUrl: "https://luciaduque248.github.io/ReproductorDeMusica/",
         githubUrl: "https://github.com/luciaduque248/ReproductorDeMusica.git",
@@ -95,7 +51,7 @@ export const projects = [
         name: "AgroInnova",
         description:
             "Plataforma digital orientada a la innovación agropecuaria. Integra marketplace, gestión de emprendimientos y procesos de incubación, con interfaces diferenciadas para clientes, emprendedores, mentores, coordinadores y administradores.",
-        image: AgroinnovaDemo,
+        image: agroinnovaImg,
         technologies: [
             "React",
             "TypeScript",
@@ -113,7 +69,7 @@ export const projects = [
         id: 9,
         name: "CafeCom",
         description: "Diseño UX/UI de una plataforma digital orientada al sector cafetero. El proyecto fue desarrollado en Figma, enfocándose en investigación de usuarios, arquitectura de información y diseño de interfaces para la comercialización y gestión de productos de café. Actualmente en fase de diseño, sin implementación en código.",
-        image: cafecomImg,
+        image: cafecomUxImg,
         technologies: ["Figma", "UX Research", "UI Design", "Prototyping"],
         demoUrl: "https://www.figma.com/proto/F9Fljzi1eZS5S76IIiQtAC/CafeCom?node-id=3-4&p=f&t=1ARjMevGkg2cU5OT-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A20",
         githubUrl: null,
@@ -123,7 +79,7 @@ export const projects = [
         id: 10,
         name: "HOTELIA",
         description: "Diseño UX/UI de una plataforma web para reservas hoteleras. El proyecto aborda el flujo completo de búsqueda, selección de habitaciones, reservas y gestión de estancias, priorizando usabilidad, claridad visual y experiencia del usuario. Desarrollado en Figma como prototipo interactivo.",
-        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&h=300&fit=crop",
+        image: hoteliaImg,
         technologies: ["Figma", "UX/UI Design", "User Flows", "Wireframing", "Prototyping"],
         demoUrl: "https://www.figma.com/proto/aGuHBirVEIo2JphyaklEcw/Hotelia?node-id=86-142&p=f&t=72XCj9WGnym9XwA2-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=86%3A142&show-proto-sidebar=1",
         githubUrl: "https://github.com/luciaduque248/HoteliaHL.git",
@@ -134,20 +90,18 @@ export const projects = [
         name: "Manage — Landing Page",
         description:
             "Landing page minimalista para presentar Manage. Communica de forma clara el valor del producto: “Manage makes it simple for software teams to plan day-to-day tasks while keeping the large team goals in view”.",
-        image:
-            ManageLandingPage,
+        image: manageImg,
         technologies: ["HTML", "CSS", "JavaScript"],
         demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
         githubUrl: "https://github.com/luciaduque248/Proyecto-Manage.git",
-        category: "Web App",
+        category: "Web App"
     },
     {
         id: 12,
         name: "Virtuosa",
         description:
             "Tienda online de ropa y maquillaje orientada a una experiencia de compra elegante y sencilla. Diseño enfocado en identidad de marca, navegación intuitiva y presentación visual de productos.",
-        image:
-            "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=300&fit=crop",
+        image: virtuosaWebImg,
         technologies: ["React", "Tailwind CSS", "E-commerce UI"],
         demoUrl: "https://virtuosa-crud.vercel.app/VirtuosaCrud/",
         githubUrl: "https://github.com/luciaduque248/VirtuosaCrud.git",
@@ -158,19 +112,18 @@ export const projects = [
         name: "Virtuosa",
         description:
             "Tienda online de ropa y maquillaje orientada a una experiencia de compra elegante y sencilla. Diseño enfocado en identidad de marca, navegación intuitiva y presentación visual de productos.",
-        image:
-            "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&h=300&fit=crop",
+        image: virtuosaUxImg,
         technologies: ["Figma", "UX/UI Design", "Prototyping"],
         category: "UX/UI",
         demoUrl: "https://www.figma.com/proto/77kBTXLVhpGbghkWRoRINb/VIRTUOSA?node-id=439-1931&p=f&t=hJKfr0Oc8jl4GpZk-9&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=439%3A1931&show-proto-sidebar=1",
-        githubUrl: null,
+        githubUrl: null
     },
     {
         id: 14,
         name: "Mi Pensum Interactivo",
         description:
             "Plataforma web para gestionar el progreso académico de Ingeniería Electrónica y Telecomunicaciones en la Universidad del Cauca. Permite consultar el pensum, prerrequisitos, notas, horarios e historial académico, con persistencia de datos e integración por voz mediante Alexa.",
-        image: MiPensumUnicauca,
+        image: pensumImg,
         technologies: [
             "React",
             "TypeScript",
