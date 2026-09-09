@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, Moon, Sun, X } from 'lucide-react';
+import { scrollToId } from '../utils/motion';
 
 const getInitialTheme = () => {
   if (typeof window === 'undefined') return 'dark';
@@ -41,11 +42,8 @@ const Navbar = () => {
   };
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
+    scrollToId(sectionId);
+    setIsMobileMenuOpen(false);
   };
 
   const navItems = [
@@ -62,7 +60,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-300 ${
+      className={`fixed top-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
         isScrolled
           ? 'bg-white/82 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:bg-black/72 dark:shadow-[0_8px_30px_rgba(0,0,0,0.22)]'
           : 'bg-white/60 backdrop-blur-lg dark:bg-black/25'
@@ -70,9 +68,14 @@ const Navbar = () => {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent">
+          <button
+            type="button"
+            onClick={() => scrollToSection('inicio')}
+            className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-2xl font-bold text-transparent active:scale-[0.97]"
+            aria-label="Ir al inicio"
+          >
             SD
-          </span>
+          </button>
 
           <div className="flex items-center gap-2 md:gap-4">
             <div className="hidden md:block">
@@ -82,7 +85,7 @@ const Navbar = () => {
                     key={item.id}
                     type="button"
                     onClick={() => scrollToSection(item.id)}
-                    className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-900/[0.04] hover:text-slate-950 active:scale-[0.97] dark:text-gray-300 dark:hover:bg-white/[0.05] dark:hover:text-white"
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-slate-900/[0.04] hover:text-slate-950 active:scale-[0.97] dark:text-gray-300 dark:hover:bg-white/[0.05] dark:hover:text-white"
                   >
                     {item.label}
                   </button>
@@ -93,7 +96,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={toggleTheme}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-900/[0.05] text-slate-700 transition-colors hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:text-gray-200 dark:hover:bg-white/[0.12]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900/[0.05] text-slate-700 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:text-gray-200 dark:hover:bg-white/[0.12]"
               aria-label={themeButtonLabel}
               title={themeButtonLabel}
             >
@@ -108,9 +111,10 @@ const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen((open) => !open)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-900/[0.05] transition-colors hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:hover:bg-white/[0.12]"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900/[0.05] transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:hover:bg-white/[0.12]"
                 aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
                 aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation"
               >
                 {isMobileMenuOpen ? (
                   <X className="h-5 w-5 text-slate-800 dark:text-white" />
@@ -122,22 +126,26 @@ const Navbar = () => {
           </div>
         </div>
 
-        {isMobileMenuOpen && (
-          <div className="pb-3 md:hidden">
-            <div className="overflow-hidden rounded-2xl bg-white/95 p-2 shadow-xl backdrop-blur-xl dark:bg-gray-950/95">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => scrollToSection(item.id)}
-                  className="block w-full rounded-xl px-4 py-3 text-left text-base font-medium text-slate-700 transition-colors hover:bg-slate-900/[0.04] active:scale-[0.99] dark:text-gray-300 dark:hover:bg-white/[0.05]"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+        <div
+          id="mobile-navigation"
+          className="mobile-menu-shell absolute left-4 right-4 top-16 md:hidden"
+          data-open={isMobileMenuOpen ? 'true' : 'false'}
+          aria-hidden={!isMobileMenuOpen}
+        >
+          <div className="overflow-hidden rounded-2xl bg-white/95 p-2 shadow-xl backdrop-blur-xl dark:bg-gray-950/95">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                tabIndex={isMobileMenuOpen ? 0 : -1}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full rounded-xl px-4 py-3 text-left text-base font-medium text-slate-700 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-slate-900/[0.04] active:scale-[0.99] dark:text-gray-300 dark:hover:bg-white/[0.05]"
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
