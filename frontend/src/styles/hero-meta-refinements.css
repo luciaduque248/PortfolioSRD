@@ -1,72 +1,94 @@
-/* Compact hero metadata rail.
-   Keeps profile context visible without covering the FRONTEND / DEVELOPER headline. */
+/* Hero supporting content.
+   Keep the headline and portrait dominant; supporting information sits in one
+   compact white editorial card instead of covering DEVELOPER. */
 
-.hero-meta-stack.hero-meta-compact {
-  top: 13.6%;
+.hero-intro-panel.hero-intro-panel-right {
+  left: auto;
   right: var(--page-pad);
-  width: min(34rem, 44vw);
-  transform: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: stretch;
-  border: 1px solid var(--line);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
-  box-shadow: 0 10px 30px rgba(11, 9, 18, 0.05);
+  bottom: 8%;
+  width: min(20rem, 24vw);
+  padding: 1rem 1.1rem 1.15rem;
+  border: 1px solid rgba(10, 10, 13, 0.14);
+  background: #fff;
+  color: #0a0a0d;
+  box-shadow: 0 16px 34px rgba(10, 8, 20, 0.08);
 }
 
-.hero-meta-compact .hero-meta-card {
-  min-height: 54px;
-  padding: 0.55rem 0.7rem 0.6rem;
-  border: 0;
-  justify-content: flex-start;
-  gap: 0.42rem;
+.hero-intro-panel-right .eyebrow {
+  color: #0a0a0d;
 }
 
-.hero-meta-compact .hero-meta-card + .hero-meta-card {
-  margin-top: 0;
-  border-left: 1px solid var(--line);
+.hero-intro-panel-right .hero-intro-copy {
+  color: #68656c;
 }
 
-.hero-meta-compact .hero-meta-card span {
-  font-size: 0.46rem;
-  line-height: 1;
-  letter-spacing: 0.14em;
+.hero-intro-panel-right .hero-intro-copy strong {
+  color: #0a0a0d;
 }
 
-.hero-meta-compact .hero-meta-card strong {
-  margin-top: 0;
-  font-size: 0.66rem;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
+.hero-intro-panel-right .hero-area-list {
+  border-top-color: rgba(10, 10, 13, 0.16);
 }
 
-.hero-meta-compact .hero-meta-dark {
-  border-color: transparent;
+.hero-intro-panel-right .hero-area-list span {
+  border-bottom-color: rgba(10, 10, 13, 0.14);
+  color: #0a0a0d;
 }
 
-.hero-meta-compact .hero-meta-violet {
-  border-color: transparent;
+/* One-time restrained typewriter reveal. The text remains real DOM text for
+   accessibility; only its visible width animates. */
+.hero-typewriter {
+  min-height: 1.1em;
+}
+
+.hero-typewriter span {
+  display: inline-block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border-right: 1px solid currentColor;
+  white-space: nowrap;
+  animation:
+    heroTyping 1.15s steps(15, end) 480ms forwards,
+    heroCaret 700ms step-end 480ms 3;
+}
+
+@keyframes heroTyping {
+  from { width: 0; }
+  to { width: 15ch; }
+}
+
+@keyframes heroCaret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: currentColor; }
+}
+
+/* The former left column is now free, so actions balance the right-hand card. */
+.hero-actions {
+  left: var(--page-pad);
+  right: auto;
 }
 
 @media (max-width: 1099px) and (min-width: 768px) {
-  .hero-meta-stack.hero-meta-compact {
-    top: 13.8%;
+  .hero-intro-panel.hero-intro-panel-right {
     right: 1rem;
-    width: min(31rem, 55vw);
-  }
-
-  .hero-meta-compact .hero-meta-card {
-    min-height: 50px;
-    padding: 0.48rem 0.58rem 0.52rem;
-  }
-
-  .hero-meta-compact .hero-meta-card strong {
-    font-size: 0.61rem;
+    bottom: 8.5%;
+    width: min(17rem, 29vw);
+    padding: 0.85rem 0.9rem 1rem;
   }
 }
 
 @media (max-width: 767px) {
-  .hero-meta-stack.hero-meta-compact {
-    display: none;
+  .hero-actions {
+    left: 1.15rem;
+    right: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-typewriter span {
+    width: auto;
+    border-right: 0;
+    animation: none;
   }
 }
