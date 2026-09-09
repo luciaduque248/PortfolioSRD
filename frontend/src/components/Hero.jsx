@@ -132,8 +132,8 @@ const Hero = () => {
           />
         </div>
 
-        <aside className="hero-intro-panel" data-hero-detail>
-          <p className="eyebrow">Hello, I'm Sara</p>
+        <aside className="hero-intro-panel hero-intro-panel-right" data-hero-detail>
+          <p className="eyebrow hero-typewriter"><span>Hello, I'm Sara</span></p>
           <p className="hero-intro-copy">
             Diseño y desarrollo productos digitales para <strong>web</strong> y <strong>mobile</strong>.
           </p>
@@ -142,21 +142,6 @@ const Hero = () => {
             <span>Mobile Applications</span>
             <span>UX/UI Design</span>
             <span>Software Development</span>
-          </div>
-        </aside>
-
-        <aside className="hero-meta-stack hero-meta-compact" aria-label="Perfil profesional" data-hero-detail>
-          <div className="hero-meta-card hero-meta-light">
-            <span>01 / Focus</span>
-            <strong>Web + Mobile</strong>
-          </div>
-          <div className="hero-meta-card hero-meta-dark">
-            <span>02 / Role</span>
-            <strong>Frontend Developer</strong>
-          </div>
-          <div className="hero-meta-card hero-meta-violet">
-            <span>03 / Design</span>
-            <strong>UX/UI + Product</strong>
           </div>
         </aside>
 
