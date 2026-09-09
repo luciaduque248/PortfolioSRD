@@ -80,7 +80,7 @@ const Projects = () => {
                   key={category}
                   onClick={() => handleFilterChange(category)}
                   aria-pressed={isActive}
-                  className={`rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] ${
+                  className={`rounded-lg px-4 py-2 text-sm font-medium transition-[background-color,color,transform] duration-150 ease-portfolio-out active:scale-[0.98] ${
                     isActive
                       ? 'bg-white text-gray-950 dark:bg-white dark:text-gray-950'
                       : 'bg-transparent text-gray-400 hover:bg-white/[0.05] hover:text-white'
@@ -139,7 +139,7 @@ const Projects = () => {
                       <button
                         type="button"
                         onClick={() => openProjectDemo(project)}
-                        className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-blue-400 active:scale-[0.98]"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-blue-400 active:scale-[0.98]"
                       >
                         <ExternalLink className="h-4 w-4" />
                         Ver demo
@@ -155,7 +155,7 @@ const Projects = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-gray-300 transition-[border-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-white/20 hover:text-white active:scale-[0.98]"
+                        className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-gray-300 transition-[border-color,color,transform] duration-150 ease-portfolio-out hover:border-white/20 hover:text-white active:scale-[0.98]"
                       >
                         <Github className="h-4 w-4" />
                         Código
@@ -175,7 +175,7 @@ const Projects = () => {
                 type="button"
                 onClick={() => goToPage(Math.max(currentPage - 1, 1))}
                 disabled={currentPage === 1}
-                className="min-h-11 rounded-lg px-3 py-2 text-sm text-gray-400 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.05] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 active:scale-[0.98]"
+                className="min-h-11 rounded-lg px-3 py-2 text-sm text-gray-400 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.05] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 active:scale-[0.98]"
               >
                 Anterior
               </button>
@@ -190,7 +190,7 @@ const Projects = () => {
                     key={page}
                     onClick={() => goToPage(page)}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`h-11 w-11 rounded-lg text-sm font-medium transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-95 ${
+                    className={`h-11 w-11 rounded-lg text-sm font-medium transition-[background-color,color,transform] duration-150 ease-portfolio-out active:scale-95 ${
                       isActive
                         ? 'bg-white text-gray-950'
                         : 'text-gray-500 hover:bg-white/[0.05] hover:text-white'
@@ -205,7 +205,7 @@ const Projects = () => {
                 type="button"
                 onClick={() => goToPage(Math.min(currentPage + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="min-h-11 rounded-lg px-3 py-2 text-sm text-gray-400 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.05] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 active:scale-[0.98]"
+                className="min-h-11 rounded-lg px-3 py-2 text-sm text-gray-400 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.05] hover:text-white disabled:cursor-not-allowed disabled:opacity-30 active:scale-[0.98]"
               >
                 Siguiente
               </button>
@@ -241,7 +241,7 @@ const Projects = () => {
                 <Dialog.Close asChild>
                   <button
                     type="button"
-                    className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-gray-500 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.06] hover:text-white active:scale-95"
+                    className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-gray-500 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.06] hover:text-white active:scale-95"
                     aria-label="Cerrar aviso"
                   >
                     <X className="h-5 w-5" />
@@ -257,7 +257,7 @@ const Projects = () => {
                 <Dialog.Close asChild>
                   <button
                     type="button"
-                    className="min-h-11 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-400 transition-[background-color,color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.05] hover:text-white active:scale-[0.98]"
+                    className="min-h-11 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-400 transition-[background-color,color,transform] duration-150 ease-portfolio-out hover:bg-white/[0.05] hover:text-white active:scale-[0.98]"
                   >
                     Cancelar
                   </button>
@@ -265,7 +265,7 @@ const Projects = () => {
                 <button
                   type="button"
                   onClick={continueToDemo}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-blue-400 active:scale-[0.98]"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-[background-color,transform] duration-150 ease-portfolio-out hover:bg-blue-400 active:scale-[0.98]"
                 >
                   <ExternalLink className="h-4 w-4" />
                   Continuar a la demo
