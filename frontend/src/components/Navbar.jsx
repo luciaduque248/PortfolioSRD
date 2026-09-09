@@ -18,10 +18,8 @@ const Navbar = () => {
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 32);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -34,7 +32,7 @@ const Navbar = () => {
     try {
       window.localStorage.setItem('portfolio-theme', theme);
     } catch {
-      // El cambio visual sigue funcionando aunque el navegador bloquee localStorage.
+      // El cambio visual sigue funcionando aunque localStorage no esté disponible.
     }
   }, [theme]);
 
@@ -63,29 +61,28 @@ const Navbar = () => {
     : 'Activar modo oscuro';
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      isScrolled
-        ? 'bg-white/90 dark:bg-black/90 backdrop-blur-md border-b border-slate-200/80 dark:border-purple-500/20 shadow-sm dark:shadow-none'
-        : 'bg-white/75 dark:bg-transparent backdrop-blur-sm md:backdrop-blur-none'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent">
-              SD
-            </span>
-          </div>
+    <nav
+      className={`fixed top-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-300 ${
+        isScrolled
+          ? 'bg-white/82 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:bg-black/72 dark:shadow-[0_8px_30px_rgba(0,0,0,0.22)]'
+          : 'bg-white/60 backdrop-blur-lg dark:bg-black/25'
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent">
+            SD
+          </span>
 
           <div className="flex items-center gap-2 md:gap-4">
-            {/* Desktop Navigation */}
             <div className="hidden md:block">
-              <div className="flex items-baseline space-x-3 lg:space-x-6">
+              <div className="flex items-center gap-1 lg:gap-3">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
+                    type="button"
                     onClick={() => scrollToSection(item.id)}
-                    className="text-slate-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-colors duration-300 hover:bg-purple-500/10 rounded-lg"
+                    className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-900/[0.04] hover:text-slate-950 active:scale-[0.97] dark:text-gray-300 dark:hover:bg-white/[0.05] dark:hover:text-white"
                   >
                     {item.label}
                   </button>
@@ -93,11 +90,10 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Theme toggle */}
             <button
               type="button"
               onClick={toggleTheme}
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/80 text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-400 hover:text-purple-600 hover:shadow-md dark:border-purple-500/20 dark:bg-purple-500/10 dark:text-gray-200 dark:shadow-none dark:hover:bg-purple-500/20 dark:hover:text-white"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-900/[0.05] text-slate-700 transition-colors hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:text-gray-200 dark:hover:bg-white/[0.12]"
               aria-label={themeButtonLabel}
               title={themeButtonLabel}
             >
@@ -108,33 +104,33 @@ const Navbar = () => {
               )}
             </button>
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <button
                 type="button"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 transition-colors duration-300"
+                onClick={() => setIsMobileMenuOpen((open) => !open)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-900/[0.05] transition-colors hover:bg-slate-900/[0.09] active:scale-95 dark:bg-white/[0.07] dark:hover:bg-white/[0.12]"
                 aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? (
-                  <X className="h-6 w-6 text-slate-800 dark:text-white" />
+                  <X className="h-5 w-5 text-slate-800 dark:text-white" />
                 ) : (
-                  <Menu className="h-6 w-6 text-slate-800 dark:text-white" />
+                  <Menu className="h-5 w-5 text-slate-800 dark:text-white" />
                 )}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 dark:bg-black/95 border border-slate-200/70 dark:border-purple-500/10 shadow-xl dark:shadow-none backdrop-blur-md rounded-lg mt-2">
+          <div className="pb-3 md:hidden">
+            <div className="overflow-hidden rounded-2xl bg-white/95 p-2 shadow-xl backdrop-blur-xl dark:bg-gray-950/95">
               {navItems.map((item) => (
                 <button
                   key={item.id}
+                  type="button"
                   onClick={() => scrollToSection(item.id)}
-                  className="text-slate-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 block px-3 py-2 text-base font-medium transition-colors duration-300 hover:bg-purple-500/10 rounded-lg w-full text-left"
+                  className="block w-full rounded-xl px-4 py-3 text-left text-base font-medium text-slate-700 transition-colors hover:bg-slate-900/[0.04] active:scale-[0.99] dark:text-gray-300 dark:hover:bg-white/[0.05]"
                 >
                   {item.label}
                 </button>
