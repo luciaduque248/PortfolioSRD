@@ -1,144 +1,89 @@
 import React from 'react';
-import { Code, Wrench } from 'lucide-react';
+import { Code2, PenTool, Smartphone, Wrench } from 'lucide-react';
 import { skills } from '../data/mock';
 
-const SkillBar = ({ skill }) => {
-  return (
-    <div className="space-y-2">
-      <div className="flex justify-between items-center">
-        <span className="text-white font-medium flex items-center">
-          <span className="mr-2">{skill.icon}</span>
-          {skill.name}
-        </span>
-        <span className="text-blue-400 font-semibold">{skill.level}%</span>
-      </div>
-      <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-1000 ease-out"
-          style={{ width: `${skill.level}%` }}
-        ></div>
+const SkillList = ({ title, description, items, icon: Icon }) => (
+  <div className="border-t border-white/10 pt-6">
+    <div className="mb-5 flex items-start gap-3">
+      <Icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-400" />
+      <div>
+        <h3 className="text-xl font-semibold tracking-[-0.015em] text-white">{title}</h3>
+        <p className="mt-1 text-sm leading-relaxed text-gray-400">{description}</p>
       </div>
     </div>
-  );
-};
+
+    <div className="divide-y divide-white/10 border-y border-white/10">
+      {items.map((skill) => (
+        <div key={skill.name} className="flex items-center justify-between gap-4 py-4">
+          <div className="flex items-center gap-3">
+            <span className="text-lg" aria-hidden="true">{skill.icon}</span>
+            <span className="font-medium text-white">{skill.name}</span>
+          </div>
+          <span className="text-xs text-gray-500 sm:text-sm">Uso en proyectos reales</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const Skills = () => {
   return (
-    <section id="habilidades" className="py-20 bg-gradient-to-b from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-600 bg-clip-text text-transparent">
-              Habilidades
-            </span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Tecnologías y herramientas que domino para crear experiencias digitales excepcionales
+    <section id="habilidades" className="bg-gradient-to-b from-gray-900 to-black py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-14 max-w-3xl">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400 sm:text-sm">
+            Habilidades
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mt-6"></div>
+          <h2 className="text-3xl font-bold leading-tight tracking-[-0.025em] text-white sm:text-4xl md:text-5xl">
+            Herramientas que uso para diseñar y construir producto.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-400 sm:text-lg">
+            Prefiero mostrar dónde aplico una tecnología antes que asignarle un porcentaje arbitrario.
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Frameworks & Tools */}
-          <div className="space-y-8">
-            <div className="text-center lg:text-left">
-              <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center lg:justify-start">
-                <Wrench className="h-8 w-8 text-purple-400 mr-3" />
-                Frameworks & Herramientas
-              </h3>
-              <p className="text-gray-400 mb-8">
-                Tecnologías modernas que uso para construir aplicaciones robustas y escalables
-              </p>
-            </div>
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <SkillList
+            title="Frameworks y herramientas"
+            description="Stack que utilizo para construir interfaces, prototipos y productos web o móviles."
+            items={skills.frameworks}
+            icon={Wrench}
+          />
 
-            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-purple-500/20">
-              <div className="space-y-6">
-                {skills.frameworks.map((skill, index) => (
-                  <div
-                    key={skill.name}
-                    className="opacity-0 animate-fade-in"
-                    style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}
-                  >
-                    <SkillBar skill={skill} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Languages */}
-          <div className="space-y-8">
-            <div className="text-center lg:text-left">
-              <h3 className="text-3xl font-bold text-white mb-4 flex items-center justify-center lg:justify-start">
-                <Code className="h-8 w-8 text-blue-400 mr-3" />
-                Lenguajes
-              </h3>
-              <p className="text-gray-400 mb-8">
-                Lenguajes de programación que manejo para el desarrollo frontend y backend
-              </p>
-            </div>
-
-            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-blue-500/20">
-              <div className="space-y-6">
-                {skills.languages.map((skill, index) => (
-                  <div
-                    key={skill.name}
-                    className="opacity-0 animate-fade-in"
-                    style={{ animationDelay: `${(index + skills.frameworks.length) * 0.1}s`, animationFillMode: 'forwards' }}
-                  >
-                    <SkillBar skill={skill} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <SkillList
+            title="Lenguajes"
+            description="Lenguajes que forman parte de mi trabajo de frontend, datos y lógica de aplicación."
+            items={skills.languages}
+            icon={Code2}
+          />
         </div>
 
-        {/* Additional Skills Section */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-center text-white mb-8">
-            Otras competencias
-          </h3>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center p-6 bg-gradient-to-br from-blue-500/10 to-transparent rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300">
-              <div className="text-4xl mb-4">🎨</div>
-              <h4 className="text-white font-semibold mb-2">UI/UX Design</h4>
-              <p className="text-gray-400 text-sm">Diseño centrado en el usuario con herramientas como Figma</p>
-            </div>
-            
-            <div className="text-center p-6 bg-gradient-to-br from-purple-500/10 to-transparent rounded-xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300">
-              <div className="text-4xl mb-4">⚡</div>
-              <h4 className="text-white font-semibold mb-2">Performance</h4>
-              <p className="text-gray-400 text-sm">Optimización de aplicaciones para máximo rendimiento</p>
-            </div>
-            
-            <div className="text-center p-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl border border-gray-500/20 hover:border-gray-400/40 transition-all duration-300">
-              <div className="text-4xl mb-4">🚀</div>
-              <h4 className="text-white font-semibold mb-2">Deployment</h4>
-              <p className="text-gray-400 text-sm">Despliegue y CI/CD con Vercel, Netlify y GitHub Actions</p>
-            </div>
+        <div className="mt-16 grid gap-8 border-t border-white/10 pt-8 md:grid-cols-3">
+          <div>
+            <PenTool className="mb-4 h-6 w-6 text-purple-400" />
+            <h3 className="font-semibold text-white">UX/UI</h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-400">
+              Arquitectura de información, flujos, prototipos y diseño visual en Figma.
+            </p>
+          </div>
+
+          <div>
+            <Smartphone className="mb-4 h-6 w-6 text-blue-400" />
+            <h3 className="font-semibold text-white">Mobile</h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-400">
+              React Native, Expo y diseño responsive pensado para interacción táctil real.
+            </p>
+          </div>
+
+          <div>
+            <Code2 className="mb-4 h-6 w-6 text-gray-300" />
+            <h3 className="font-semibold text-white">Implementación</h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-400">
+              Del diseño a código mantenible, cuidando rendimiento, accesibilidad y detalle visual.
+            </p>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.6s ease-out;
-        }
-      `}</style>
     </section>
   );
 };
