@@ -35,8 +35,6 @@
   color: #0a0a0d;
 }
 
-/* React renders complete characters; the caret is a separate element so the
-   final letter can never be clipped by width-based animation. */
 .hero-typewriter {
   display: flex;
   min-height: 1.1em;
@@ -63,8 +61,7 @@
   46%, 100% { opacity: 0; }
 }
 
-/* Softly dissolves the portrait into the next section instead of ending on a
-   hard crop. The blur is masked so the face and torso stay sharp. */
+/* Desktop/tablet dissolve at the bottom of the hero. */
 .hero-bottom-fade {
   position: absolute;
   inset: auto 0 0;
@@ -83,7 +80,6 @@
   mask-image: linear-gradient(to bottom, transparent 0%, #000 52%, #000 100%);
 }
 
-/* The former left column is now free, so actions balance the right-hand card. */
 .hero-actions {
   left: var(--page-pad);
   right: auto;
@@ -99,159 +95,273 @@
 }
 
 @media (max-width: 767px) {
-  /* Mobile is a vertical editorial cover, not a compressed desktop hero.
-     The complete title owns the top zone and the portrait begins below it,
-     so the face never masks FRONTEND / DEVELOPER. */
+  /* Mobile is deliberately taller than one viewport. This gives the title,
+     portrait and content card their own zones instead of squeezing everything
+     into the first screen. Scroll remains native and uninterrupted. */
+  .hero-stage {
+    height: 118svh !important;
+    min-height: 820px !important;
+    overflow: clip !important;
+  }
+
+  .hero-sticky {
+    position: relative !important;
+    top: auto !important;
+    height: 118svh !important;
+    min-height: 820px !important;
+    overflow: hidden !important;
+  }
+
+  /* Remove desktop decoration that competes with the portrait on a phone. */
+  .hero-orbit {
+    display: none;
+  }
+
+  .hero-background::before {
+    inset: 7.1rem 0.85rem 1rem;
+    border-color: color-mix(in srgb, var(--line) 78%, transparent);
+  }
+
+  .hero-kicker {
+    inset: 7.2rem 1rem auto;
+    justify-content: flex-start;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-kicker span:last-child {
+    display: none;
+  }
+
+  /* Title owns a clean block above the portrait. */
   .hero-type {
-    top: clamp(7.8rem, 15svh, 9rem);
-    inset-inline: 0.9rem;
-    z-index: 6;
-    gap: 0.1rem;
+    top: 9.2rem;
+    inset-inline: 1rem;
+    z-index: 7;
+    gap: 0.18rem;
   }
 
   .hero-type-word {
     width: 100%;
-    max-width: calc(100vw - 1.8rem);
-    font-size: clamp(3rem, 15.2vw, 4.7rem);
-    line-height: 0.82;
+    max-width: calc(100vw - 2rem);
+    font-size: clamp(2.85rem, 13.2vw, 4.1rem);
+    line-height: 0.84;
+    letter-spacing: -0.07em;
   }
 
   .hero-type-frontend {
     width: fit-content;
-    max-width: calc(100vw - 1.8rem);
+    max-width: calc(100vw - 2rem);
+    padding: 0.06em 0.12em 0.025em;
+  }
+
+  .hero-type-frontend::before {
+    inset: -0.025em -0.02em 0.02em;
+    box-shadow: none;
   }
 
   .hero-type-developer {
-    margin-top: 0.08em;
-    font-size: clamp(3rem, 15vw, 4.65rem);
-    line-height: 0.84;
+    margin-top: 0.02em;
+    font-size: clamp(2.75rem, 12.8vw, 4rem);
+    line-height: 0.87;
+    letter-spacing: -0.06em;
     text-align: right;
   }
 
+  /* Portrait begins clearly below the title. It is larger than before so the
+     person feels intentional instead of like a small cutout in the middle. */
   .hero-person {
-    top: clamp(12.7rem, 29svh, 15.5rem);
+    top: 18.9rem;
     bottom: auto;
-    width: min(88vw, 440px);
-    height: min(48svh, 500px);
+    width: min(94vw, 470px);
+    height: min(52svh, 545px);
     z-index: 4;
+    overflow: visible;
   }
 
   .hero-person-image {
+    position: relative;
+    z-index: 1;
     object-fit: contain;
     object-position: center top;
+    filter: drop-shadow(0 20px 34px rgba(10, 8, 20, 0.12));
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 79%,
+      rgba(0, 0, 0, 0.92) 86%,
+      rgba(0, 0, 0, 0.42) 94%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 79%,
+      rgba(0, 0, 0, 0.92) 86%,
+      rgba(0, 0, 0, 0.42) 94%,
+      transparent 100%
+    );
   }
 
-  .hero-bottom-fade {
-    z-index: 5;
-    height: 11.5rem;
+  /* Localized blur only at the lower edge of the portrait. Face, hair and
+     upper body remain untouched. */
+  .hero-person::after {
+    content: "";
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 0;
+    z-index: 2;
+    height: 22%;
+    pointer-events: none;
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      color-mix(in srgb, var(--bg) 48%, transparent) 38%,
-      var(--bg) 88%
+      color-mix(in srgb, var(--bg) 28%, transparent) 44%,
+      color-mix(in srgb, var(--bg) 78%, transparent) 78%,
+      var(--bg) 100%
     );
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%);
   }
 
-  /* Product summary becomes an intentional white editorial card on touch. */
+  /* The global fade is unnecessary on mobile now that the portrait has its
+     own precise dissolve. */
+  .hero-bottom-fade {
+    display: none;
+  }
+
+  /* White information card sits after the visual portrait zone. */
   .hero-mobile-summary {
-    inset: auto 1rem 4.85rem;
-    z-index: 8;
+    inset: 84svh 1rem auto;
+    z-index: 9;
     border: 1px solid rgba(10, 10, 13, 0.13);
-    background: rgba(255, 255, 255, 0.96);
-    padding: 0.78rem 0.85rem 0.82rem;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 0.9rem 0.92rem 0.95rem;
     color: #0a0a0d;
-    box-shadow: 0 14px 34px rgba(10, 8, 20, 0.1);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    box-shadow: 0 16px 36px rgba(10, 8, 20, 0.09);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
   }
 
   .hero-mobile-summary p {
-    max-width: none;
+    max-width: 31rem;
+    margin: 0;
     color: #0a0a0d;
-    font-size: 0.73rem;
+    font-size: 0.76rem;
     line-height: 1.42;
   }
 
   .hero-mobile-tags {
     gap: 0.35rem;
-    margin-top: 0.58rem;
+    margin-top: 0.65rem;
   }
 
   .hero-mobile-tags span {
     border: 1px solid rgba(10, 10, 13, 0.14);
     background: #f6f5fa;
-    padding: 0.28rem 0.42rem;
+    padding: 0.3rem 0.46rem;
     color: #0a0a0d;
-    font-size: 0.49rem;
+    font-size: 0.5rem;
     letter-spacing: 0.1em;
   }
 
   .hero-actions {
     left: 1rem;
     right: 1rem;
-    bottom: 0.85rem;
+    bottom: 1.15rem;
+    justify-content: space-between;
   }
 
   .hero-actions .editorial-link-button {
-    min-height: 40px;
+    min-height: 42px;
+  }
+
+  .hero-socials a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-scroll {
+    display: none;
   }
 }
 
 @media (max-width: 380px) {
+  .hero-stage,
+  .hero-sticky {
+    height: 122svh !important;
+    min-height: 800px !important;
+  }
+
   .hero-type {
-    top: 7.65rem;
+    top: 8.95rem;
   }
 
   .hero-type-word,
   .hero-type-developer {
-    font-size: clamp(2.75rem, 14.7vw, 3.95rem);
+    font-size: clamp(2.55rem, 12.9vw, 3.55rem);
   }
 
   .hero-person {
-    top: 12.25rem;
-    width: 86vw;
-    height: 44svh;
+    top: 18rem;
+    width: 92vw;
+    height: 49svh;
   }
 
   .hero-mobile-summary {
-    bottom: 4.7rem;
-    padding: 0.68rem 0.72rem 0.72rem;
+    top: 83svh;
+    padding: 0.78rem 0.8rem 0.84rem;
+  }
+
+  .hero-mobile-summary p {
+    font-size: 0.7rem;
+  }
+
+  .hero-mobile-tags span {
+    font-size: 0.47rem;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .hero-stage,
+  .hero-sticky {
+    height: 128svh !important;
+    min-height: 790px !important;
+  }
+
+  .hero-kicker {
+    top: 6.9rem;
+  }
+
+  .hero-type {
+    top: 8.45rem;
+  }
+
+  .hero-type-word,
+  .hero-type-developer {
+    font-size: clamp(2.45rem, 12.4vw, 3.45rem);
+  }
+
+  .hero-person {
+    top: 16.8rem;
+    width: min(88vw, 410px);
+    height: 46svh;
+  }
+
+  .hero-mobile-summary {
+    top: 82svh;
+    padding-block: 0.7rem;
   }
 
   .hero-mobile-summary p {
     font-size: 0.68rem;
   }
-}
-
-@media (max-width: 767px) and (max-height: 700px) {
-  .hero-type {
-    top: 7.35rem;
-  }
-
-  .hero-type-word,
-  .hero-type-developer {
-    font-size: clamp(2.7rem, 14.3vw, 3.75rem);
-  }
-
-  .hero-person {
-    top: 11.8rem;
-    width: min(80vw, 390px);
-    height: 41svh;
-  }
-
-  .hero-mobile-summary {
-    bottom: 4.55rem;
-    padding-block: 0.62rem;
-  }
-
-  .hero-mobile-summary p {
-    font-size: 0.66rem;
-  }
 
   .hero-mobile-tags {
-    margin-top: 0.42rem;
+    margin-top: 0.46rem;
   }
 }
 
