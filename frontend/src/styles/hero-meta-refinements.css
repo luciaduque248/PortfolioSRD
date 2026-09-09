@@ -365,6 +365,55 @@
   }
 }
 
+/* Final mobile compaction pass: reduce the framed hero height and keep the
+   summary card close to the CTA instead of leaving a large empty lower zone. */
+@media (max-width: 767px) {
+  .hero-stage,
+  .hero-sticky {
+    height: 108svh !important;
+    min-height: 760px !important;
+  }
+
+  .hero-background::before {
+    inset: 7.1rem 0.85rem 0.7rem;
+  }
+
+  .hero-mobile-summary {
+    top: auto !important;
+    bottom: 5.7rem !important;
+  }
+
+  .hero-actions {
+    bottom: 0.95rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-stage,
+  .hero-sticky {
+    height: 110svh !important;
+    min-height: 740px !important;
+  }
+
+  .hero-mobile-summary {
+    top: auto !important;
+    bottom: 5.4rem !important;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .hero-stage,
+  .hero-sticky {
+    height: 112svh !important;
+    min-height: 740px !important;
+  }
+
+  .hero-mobile-summary {
+    top: auto !important;
+    bottom: 5.3rem !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-typewriter-caret {
     display: none;
