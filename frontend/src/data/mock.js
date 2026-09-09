@@ -1,4 +1,6 @@
 import cafecomImg from "../images/CAFECOM.png";
+import cafecomMobileImg from "../images/cafecom-mobile.svg";
+import servichatMobileImg from "../images/servichat-mobile.svg";
 import MiPensumUnicauca from "../images/MiPensum.png";
 import AgroinnovaDemo from "../images/agroinnova.png";
 import ManageLandingPage from "../images/manageio.png";
@@ -179,6 +181,41 @@ export const projects = [
         demoUrl: "https://pensum-unicauca.vercel.app/",
         githubUrl: "https://github.com/luciaduque248/PensumUnicauca",
         category: "Web App"
+    },
+    {
+        id: 15,
+        name: "CafeCom — Mobile App",
+        description:
+            "Aplicación móvil Android orientada a caficultores registrados en la plataforma. Integra autenticación, perfiles, gestión de lotes, protocolos e información del café, con Firebase/Firestore y carga de imágenes en Cloudinary. El desarrollo prioriza una experiencia usable en contextos rurales y conectividad limitada.",
+        image: cafecomMobileImg,
+        technologies: [
+            "React Native",
+            "Expo",
+            "TypeScript",
+            "Firebase",
+            "Firestore",
+            "Cloudinary"
+        ],
+        demoUrl: null,
+        githubUrl: null,
+        category: "Mobile App"
+    },
+    {
+        id: 16,
+        name: "ServiChat — Mobile App",
+        description:
+            "Aplicación móvil para la gestión y comunicación de clínicas y consultorios. El proyecto adapta la experiencia de WhatSender a móvil e integra recordatorios, toma de citas, envíos masivos y diagnóstico, con flujos diferenciados para propietarios, administradores, profesionales y pacientes. Actualmente se encuentra en fase de diseño funcional y UX/UI.",
+        image: servichatMobileImg,
+        technologies: [
+            "Figma",
+            "UX/UI Design",
+            "Mobile UX",
+            "User Flows",
+            "Prototyping"
+        ],
+        demoUrl: null,
+        githubUrl: null,
+        category: "Mobile App"
     }
 ];
 
