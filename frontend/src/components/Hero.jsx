@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 import { scrollToId } from '../utils/motion';
-import saraHeroPhoto from '../images/portraits/sara-hero.webp';
+import saraHeroPhoto from '../images/portraits/Portrait_Sara_sinfondo.PNG';
 
 const Hero = () => {
   const sectionRef = useRef(null);
