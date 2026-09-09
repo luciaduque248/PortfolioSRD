@@ -1,0 +1,36 @@
+:root {
+  --bg: #f4f3ef;
+  --bg-soft: #ebe8ff;
+  --surface: #ffffff;
+  --surface-strong: #111116;
+  --text: #0a0a0d;
+  --text-soft: rgba(10, 10, 13, 0.58);
+  --line: rgba(10, 10, 13, 0.15);
+  --blue: #3157ff;
+  --blue-soft: #7695ff;
+  --violet: #7c3aed;
+  --violet-soft: #c9a7ff;
+  --magenta: #cf4be8;
+  --white: #ffffff;
+  --black: #08080b;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --page-pad: clamp(1.25rem, 4vw, 3rem);
+  --section-space: clamp(6rem, 12vw, 10rem);
+  --max-width: 100rem;
+}
+
+html.dark {
+  --bg: #09080d;
+  --bg-soft: #14101f;
+  --surface: #111018;
+  --surface-strong: #f5f4f0;
+  --text: #f7f5fb;
+  --text-soft: rgba(247, 245, 251, 0.62);
+  --line: rgba(247, 245, 251, 0.16);
+  --blue: #6f8cff;
+  --blue-soft: #a8b9ff;
+  --violet: #9f67ff;
+  --violet-soft: #d5baff;
+  --magenta: #e37af4;
+}
