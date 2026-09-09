@@ -1,0 +1,42 @@
+/* Final mobile-only sizing pass for the white hero summary card. */
+@media (max-width: 767px) {
+  .hero-mobile-summary {
+    left: 50% !important;
+    right: auto !important;
+    width: min(calc(100vw - 3rem), 22rem);
+    transform: translateX(-50%);
+    padding: 0.72rem 0.78rem 0.76rem;
+  }
+
+  .hero-mobile-summary p {
+    max-width: 29rem;
+    font-size: 0.71rem;
+    line-height: 1.38;
+  }
+
+  .hero-mobile-tags {
+    gap: 0.28rem;
+    margin-top: 0.52rem;
+  }
+
+  .hero-mobile-tags span {
+    padding: 0.25rem 0.38rem;
+    font-size: 0.47rem;
+    letter-spacing: 0.09em;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-mobile-summary {
+    width: min(calc(100vw - 2.5rem), 20.5rem);
+    padding: 0.66rem 0.7rem 0.7rem;
+  }
+
+  .hero-mobile-summary p {
+    font-size: 0.67rem;
+  }
+
+  .hero-mobile-tags span {
+    font-size: 0.45rem;
+  }
+}
