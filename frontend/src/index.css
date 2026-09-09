@@ -3,240 +3,174 @@
 @tailwind utilities;
 
 html {
-  color-scheme: dark;
-  background: #000000;
+  color-scheme: light;
+  background: #f4f3ef;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-html.light {
-  color-scheme: light;
-  background: #f8fafc;
+html.dark {
+  color-scheme: dark;
+  background: #080808;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+  background: #f4f3ef;
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial,
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+html.dark body {
+  background: #080808;
 }
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
+::selection {
+  background: #111;
+  color: #fff;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
+html.dark ::selection {
+  background: #fff;
+  color: #111;
 }
 
-/* =========================================================
-   PORTFOLIO LIGHT / DARK THEME
-========================================================= */
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
 
-body,
-.App,
-.portfolio-shell,
-#inicio,
-#sobre-mi,
-#proyectos,
-#habilidades,
-#contacto {
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.hero-icon-link,
+.contact-social {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  color: rgba(0, 0, 0, 0.62);
+  background: rgba(255, 255, 255, 0.55);
   transition:
-    background-color 220ms var(--ease-out),
-    color 220ms var(--ease-out),
-    border-color 220ms var(--ease-out);
+    transform 150ms var(--ease-out),
+    border-color 150ms var(--ease-out),
+    background-color 150ms var(--ease-out),
+    color 150ms var(--ease-out);
 }
 
-html.light body,
-html.light .App,
-html.light .portfolio-shell {
-  background: #f8fafc !important;
-  color: #0f172a !important;
+.hero-icon-link:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+  background: #fff;
+  color: #000;
 }
 
-html.light #inicio {
-  background-color: #f2f2ef !important;
+.contact-social {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.58);
 }
 
-html.light #sobre-mi {
-  background-image: linear-gradient(to bottom, #f8fafc, #f1f5f9) !important;
+.contact-social:hover {
+  border-color: rgba(255, 255, 255, 0.42);
+  color: #fff;
 }
 
-html.light #proyectos {
-  background-color: #f1f5f9 !important;
+.hero-icon-link:active,
+.contact-social:active {
+  transform: scale(0.95);
 }
 
-html.light #habilidades {
-  background-image: linear-gradient(to bottom, #f1f5f9, #ffffff) !important;
+.editorial-cta,
+.editorial-cta-inverse {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 0 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    transform 150ms var(--ease-out),
+    background-color 150ms var(--ease-out),
+    color 150ms var(--ease-out),
+    border-color 150ms var(--ease-out);
 }
 
-html.light #contacto {
-  background-color: #ffffff !important;
+.editorial-cta {
+  background: #0a0a0a;
+  color: #fff;
 }
 
-html.light section .text-white {
-  color: #0f172a !important;
+.editorial-cta:hover {
+  background: #262626;
 }
 
-html.light section .text-gray-200,
-html.light section .text-gray-300 {
-  color: #334155 !important;
+.editorial-cta-inverse {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: #fff;
+  color: #0a0a0a;
 }
 
-html.light section .text-gray-400 {
-  color: #64748b !important;
+.editorial-cta-inverse:hover {
+  background: #deded8;
 }
 
-html.light section .text-gray-500 {
-  color: #64748b !important;
+.editorial-cta:active,
+.editorial-cta-inverse:active {
+  transform: scale(0.98);
 }
 
-html.light section button.text-white,
-html.light section a.text-white,
-html.light section [class*="from-blue-500"][class*="to-purple-"][class*="text-white"],
-html.light section [class*="from-purple-500"][class*="to-blue-"][class*="text-white"],
-html.light section [class*="bg-blue-500"][class*="text-white"],
-html.light section [class*="bg-purple-500"][class*="text-white"],
-html.light section [class*="bg-green-500"][class*="text-white"] {
-  color: #ffffff !important;
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 650ms var(--ease-out),
+    transform 650ms var(--ease-out);
 }
 
-html.light section [class*="bg-gray-800/"] {
-  background-color: rgba(255, 255, 255, 0.82) !important;
-  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.06);
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
-html.light section [class*="bg-gray-700/"] {
-  background-color: rgba(226, 232, 240, 0.78) !important;
+.reveal-delay-1 {
+  transition-delay: 90ms;
 }
 
-html.light section [class*="bg-gray-900/"] {
-  background-color: rgba(241, 245, 249, 0.92) !important;
+.reveal-delay-2 {
+  transition-delay: 180ms;
 }
 
-html.light section [class*="border-gray-"] {
-  border-color: rgba(148, 163, 184, 0.38) !important;
+@media (min-width: 1024px) {
+  .portfolio-panel-editorial {
+    position: sticky;
+    top: calc(92px + min(var(--panel-index), 5) * 5px);
+  }
 }
 
-html.light #proyectos article {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(148, 163, 184, 0.28) !important;
-  box-shadow: 0 14px 38px rgba(15, 23, 42, 0.07);
-}
-
-html.light #proyectos article:hover {
-  border-color: rgba(100, 116, 139, 0.42) !important;
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1) !important;
-}
-
-html.light #contacto input,
-html.light #contacto textarea {
-  background: rgba(255, 255, 255, 0.94) !important;
-  color: #0f172a !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-}
-
-html.light #contacto input::placeholder,
-html.light #contacto textarea::placeholder {
-  color: #94a3b8 !important;
-}
-
-html.light #contacto input:focus,
-html.light #contacto textarea:focus {
-  border-color: #60a5fa !important;
-}
-
-html.light #inicio a[class*="bg-gray-800"],
-html.light #contacto a[class*="bg-gray-800"] {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(203, 213, 225, 0.8);
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-}
-
-html.light #inicio [class*="bg-gray-950"],
-html.light #inicio [class*="bg-black"] {
-  color: #ffffff;
-}
-
-html.light #inicio [aria-label="Carrusel de proyectos seleccionados"] article {
-  background: #030712 !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
-}
-
-/* Mobile navigation materializes from its trigger instead of teleporting in. */
 .mobile-menu-shell {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-4px) scale(0.98);
+  transform: translateY(-5px) scale(0.985);
   transform-origin: top right;
   transition:
     opacity 180ms var(--ease-out),
@@ -250,16 +184,28 @@ html.light #inicio [aria-label="Carrusel de proyectos seleccionados"] article {
   pointer-events: auto;
   transform: translateY(0) scale(1);
   transition-delay: 0s;
-  will-change: transform, opacity;
+}
+
+.portfolio-shell,
+nav,
+section {
+  transition:
+    background-color 220ms var(--ease-out),
+    color 220ms var(--ease-out),
+    border-color 220ms var(--ease-out);
+}
+
+@media (max-width: 767px) {
+  #inicio .hero-icon-link:nth-of-type(1),
+  #inicio .hero-icon-link:nth-of-type(2),
+  #inicio .hero-icon-link:nth-of-type(3) {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
-  }
-
-  #inicio {
-    height: 100svh !important;
   }
 
   *,
@@ -270,6 +216,16 @@ html.light #inicio [aria-label="Carrusel de proyectos seleccionados"] article {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .portfolio-panel-editorial {
+    position: relative !important;
+    top: auto !important;
+  }
 }
 
 @layer base {
@@ -277,7 +233,7 @@ html.light #inicio [aria-label="Carrusel de proyectos seleccionados"] article {
     display: contents !important;
   }
 
-  [data-debug-wrapper="true"]>* {
+  [data-debug-wrapper="true"] > * {
     margin-left: inherit;
     margin-right: inherit;
     margin-top: inherit;
