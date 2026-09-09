@@ -25,14 +25,14 @@ const About = () => {
             </p>
           </div>
 
-          <div className="mx-auto w-full max-w-sm">
-            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-gray-950">
-              <img
-                src={personalInfo.avatar}
-                alt={personalInfo.name}
-                className="aspect-square w-full object-cover"
-              />
-            </div>
+          <div className="mx-auto flex w-full max-w-sm items-center justify-center">
+            <img
+              src={personalInfo.avatar}
+              alt={personalInfo.name}
+              className="h-auto max-h-[460px] w-auto max-w-full object-contain drop-shadow-[0_18px_30px_rgba(15,23,42,0.16)] dark:drop-shadow-[0_18px_30px_rgba(0,0,0,0.28)]"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
 
