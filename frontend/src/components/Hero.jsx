@@ -44,7 +44,6 @@ const Hero = () => {
           return;
         }
 
-        // Reinicia el gesto aproximadamente cada 5 s sin recortar caracteres.
         cycleTimer = window.setTimeout(runCycle, 3900);
       };
 
@@ -117,7 +116,7 @@ const Hero = () => {
 
       const mobile = window.innerWidth < 768;
       const maxTravel = mobile
-        ? Math.min(window.innerWidth * 0.11, 40)
+        ? Math.min(window.innerWidth * 0.07, 26)
         : Math.min(window.innerWidth * 0.19, 285);
 
       frontend.style.transform = `translate3d(${-maxTravel * progress}px, 0, 0)`;
