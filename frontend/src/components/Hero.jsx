@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import { personalInfo } from '../data/mock';
 import { scrollToId } from '../utils/motion';
 import saraHeroPhoto from '../images/portraits/Portrait_Sara_sinfondo.PNG';
 import '../styles/hero-meta-refinements.css';
+
+const introLabel = "Hello, I'm Sara";
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -11,6 +13,38 @@ const Hero = () => {
   const developerRef = useRef(null);
   const portraitRef = useRef(null);
   const progressRef = useRef(null);
+  const [typedIntro, setTypedIntro] = useState('');
+  const [typingComplete, setTypingComplete] = useState(false);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reducedMotion) {
+      setTypedIntro(introLabel);
+      setTypingComplete(true);
+      return undefined;
+    }
+
+    let intervalId;
+    const startId = window.setTimeout(() => {
+      let index = 0;
+      intervalId = window.setInterval(() => {
+        index += 1;
+        setTypedIntro(introLabel.slice(0, index));
+
+        if (index >= introLabel.length) {
+          window.clearInterval(intervalId);
+          setTypedIntro(introLabel);
+          setTypingComplete(true);
+        }
+      }, 72);
+    }, 480);
+
+    return () => {
+      window.clearTimeout(startId);
+      if (intervalId) window.clearInterval(intervalId);
+    };
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -133,7 +167,9 @@ const Hero = () => {
         </div>
 
         <aside className="hero-intro-panel hero-intro-panel-right" data-hero-detail>
-          <p className="eyebrow hero-typewriter"><span>Hello, I'm Sara</span></p>
+          <p className="eyebrow hero-typewriter" aria-label={introLabel}>
+            <span aria-hidden="true" className={typingComplete ? 'is-complete' : ''}>{typedIntro}</span>
+          </p>
           <p className="hero-intro-copy">
             Diseño y desarrollo productos digitales para <strong>web</strong> y <strong>mobile</strong>.
           </p>
