@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  color-scheme: dark;
+  background: #000000;
+}
+
+html.light {
+  color-scheme: light;
+  background: #f8fafc;
+}
+
 body {
   margin: 0;
   font-family:
@@ -82,6 +92,147 @@ code {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* =========================================================
+   PORTFOLIO LIGHT / DARK THEME
+   The original portfolio was designed dark-first, so these
+   overrides map its existing utility classes to a coherent
+   light palette without altering project cover artwork.
+========================================================= */
+
+body,
+.App,
+.portfolio-shell,
+#inicio,
+#sobre-mi,
+#proyectos,
+#habilidades,
+#contacto {
+  transition:
+    background-color 300ms ease,
+    background-image 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
+}
+
+html.light body,
+html.light .App,
+html.light .portfolio-shell {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light #inicio {
+  background-color: #f8fafc !important;
+}
+
+html.light #sobre-mi {
+  background-image: linear-gradient(to bottom, #f8fafc, #f1f5f9) !important;
+}
+
+html.light #proyectos {
+  background-color: #f1f5f9 !important;
+}
+
+html.light #habilidades {
+  background-image: linear-gradient(to bottom, #f1f5f9, #ffffff) !important;
+}
+
+html.light #contacto {
+  background-color: #ffffff !important;
+}
+
+/* Hard-coded dark text utilities become readable in light mode. */
+html.light section .text-white {
+  color: #0f172a !important;
+}
+
+html.light section .text-gray-200,
+html.light section .text-gray-300 {
+  color: #334155 !important;
+}
+
+html.light section .text-gray-400 {
+  color: #64748b !important;
+}
+
+html.light section .text-gray-500 {
+  color: #64748b !important;
+}
+
+/* Keep white foreground on accent/CTA elements. */
+html.light section button.text-white,
+html.light section a.text-white,
+html.light section [class*="from-blue-500"][class*="to-purple-"][class*="text-white"],
+html.light section [class*="from-purple-500"][class*="to-blue-"][class*="text-white"],
+html.light section [class*="bg-blue-500"][class*="text-white"],
+html.light section [class*="bg-purple-500"][class*="text-white"],
+html.light section [class*="bg-green-500"][class*="text-white"] {
+  color: #ffffff !important;
+}
+
+/* Cards and soft surfaces. */
+html.light section [class*="bg-gray-800/"] {
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.06);
+}
+
+html.light section [class*="bg-gray-700/"] {
+  background-color: rgba(226, 232, 240, 0.78) !important;
+}
+
+html.light section [class*="bg-gray-900/"] {
+  background-color: rgba(241, 245, 249, 0.92) !important;
+}
+
+html.light section [class*="border-gray-"] {
+  border-color: rgba(148, 163, 184, 0.38) !important;
+}
+
+/* Project cards stay crisp while preserving their brand cover images. */
+html.light #proyectos article {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(148, 163, 184, 0.28) !important;
+  box-shadow: 0 14px 38px rgba(15, 23, 42, 0.07);
+}
+
+html.light #proyectos article:hover {
+  border-color: rgba(168, 85, 247, 0.38) !important;
+  box-shadow: 0 20px 48px rgba(99, 102, 241, 0.12) !important;
+}
+
+/* Contact fields. */
+html.light #contacto input,
+html.light #contacto textarea {
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+html.light #contacto input::placeholder,
+html.light #contacto textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html.light #contacto input:focus,
+html.light #contacto textarea:focus {
+  border-color: #60a5fa !important;
+}
+
+/* Social/icon tiles. */
+html.light #inicio a[class*="bg-gray-800"],
+html.light #contacto a[class*="bg-gray-800"] {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+/* Preserve intentionally dark device/browser frames inside the 3D showcase. */
+html.light #inicio [class*="bg-gray-950"],
+html.light #inicio [class*="bg-black"] {
+  color: #ffffff;
 }
 
 @layer base {
