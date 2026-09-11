@@ -33,12 +33,14 @@ const ProjectVisual = ({ project }) => {
           <span>Mobile product</span>
           <span>Portrait composition</span>
         </div>
-        <img
-          src={project.image}
-          alt={`Portada del proyecto móvil ${project.name}`}
-          loading="lazy"
-          className="work-v2-mobile-art"
-        />
+        {project.image && (
+          <img
+            src={project.image}
+            alt={`Portada del proyecto móvil ${project.name}`}
+            loading="lazy"
+            className="work-v2-mobile-art"
+          />
+        )}
       </div>
     );
   }
