@@ -124,7 +124,8 @@ export const projects = [
     technologies: ["React Native", "Expo", "TypeScript", "Firebase", "Firestore", "Cloudinary"],
     demoUrl: null,
     githubUrl: null,
-    category: "Mobile App"
+    category: "Mobile App",
+    inDevelopment: true
   },
   {
     id: 16,
@@ -134,7 +135,8 @@ export const projects = [
     technologies: ["Figma", "UX/UI Design", "Mobile UX", "User Flows", "Prototyping"],
     demoUrl: null,
     githubUrl: null,
-    category: "Mobile App"
+    category: "Mobile App",
+    inDevelopment: true
   }
 ];
 
