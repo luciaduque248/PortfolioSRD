@@ -1,12 +1,3 @@
-import countryExplorerImg from "../images/project-covers/country-explorer.svg";
-import musicPlayerImg from "../images/project-covers/music-player.svg";
-import agroinnovaImg from "../images/project-covers/agroinnova-cover.svg";
-import cafecomUxImg from "../images/project-covers/cafecom-ux.svg";
-import hoteliaImg from "../images/project-covers/hotelia-cover.svg";
-import manageImg from "../images/project-covers/manage-cover.svg";
-import virtuosaWebImg from "../images/project-covers/virtuosa-web.svg";
-import virtuosaUxImg from "../images/project-covers/virtuosa-ux.svg";
-import pensumImg from "../images/project-covers/pensum-cover.svg";
 import saraAboutImg from "../images/portraits/Portrait_Sara_fondoBlanco.PNG";
 
 export const personalInfo = {
@@ -28,7 +19,7 @@ export const projects = [
     id: 6,
     name: "Country Explorer",
     description: "Sitio web para explorar países del mundo, con filtros por nombre y región.",
-    image: countryExplorerImg,
+    image: null,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://countries-app-eta-seven.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/CountriesApp",
@@ -38,7 +29,7 @@ export const projects = [
     id: 7,
     name: "Music Player",
     description: "Reproductor musical web desarrollado con JavaScript, HTML y CSS.",
-    image: musicPlayerImg,
+    image: null,
     technologies: ["JavaScript", "HTML", "CSS"],
     demoUrl: "https://luciaduque248.github.io/music-player/",
     githubUrl: "https://github.com/luciaduque248/music-player",
@@ -48,7 +39,7 @@ export const projects = [
     id: 8,
     name: "AgroInnova",
     description: "Plataforma web orientada al sector agropecuario para conectar tecnología, información y usuarios.",
-    image: agroinnovaImg,
+    image: null,
     technologies: ["React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://agro-innova-demo.vercel.app/",
     githubUrl: null,
@@ -58,7 +49,7 @@ export const projects = [
     id: 9,
     name: "CafeCom — UX/UI",
     description: "Diseño UX/UI de la experiencia móvil de CafeCom, con flujos y pantallas para caficultores.",
-    image: cafecomUxImg,
+    image: null,
     technologies: ["Figma", "UX/UI", "Mobile UX", "Prototyping"],
     demoUrl: "https://www.figma.com/design/F9Fljzi1eZS5S76IIiQtAC/CafeCom?node-id=0-1",
     githubUrl: null,
@@ -68,7 +59,7 @@ export const projects = [
     id: 10,
     name: "HOTELIA",
     description: "Experiencia web para hotelería con una interfaz editorial y enfoque responsive.",
-    image: hoteliaImg,
+    image: null,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://hotelia-hl.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/HoteliaHL",
@@ -78,7 +69,7 @@ export const projects = [
     id: 11,
     name: "Manage — Landing Page",
     description: "Landing page minimalista para presentar Manage. Comunica de forma clara el valor del producto y organiza la información en una experiencia web responsive.",
-    image: manageImg,
+    image: null,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
     githubUrl: "https://github.com/luciaduque248/Proyecto-Manage",
@@ -88,7 +79,7 @@ export const projects = [
     id: 12,
     name: "Virtuosa — Web",
     description: "Sitio web de identidad visual y contenido editorial para una marca creativa.",
-    image: virtuosaWebImg,
+    image: null,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://virtuosa-crud.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/VirtuosaCrud",
@@ -98,7 +89,7 @@ export const projects = [
     id: 13,
     name: "Virtuosa — UX/UI",
     description: "Propuesta UX/UI para Virtuosa, enfocada en identidad, jerarquía y experiencia visual.",
-    image: virtuosaUxImg,
+    image: null,
     technologies: ["Figma", "UX/UI", "Visual Design"],
     demoUrl: "https://www.figma.com/design/77kBTXLVhpGbghkWRoRINb/VIRTUOSA?node-id=0-1",
     githubUrl: null,
@@ -108,7 +99,7 @@ export const projects = [
     id: 14,
     name: "Mi Pensum Interactivo",
     description: "Aplicación web para visualizar y explorar un pensum académico de forma interactiva.",
-    image: pensumImg,
+    image: null,
     technologies: ["React", "JavaScript", "CSS"],
     demoUrl: "https://pensum-unicauca.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/PensumUnicauca",
