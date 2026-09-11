@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowRight, ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
 
-const spotlightOrder = [15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
+const spotlightOrder = [17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
 
 const categoryLabel = (category) => {
   if (category === 'Web App') return 'WEB APPLICATION';
@@ -47,12 +47,14 @@ const ProjectVisual = ({ project }) => {
 
   return (
     <div className="work-v2-full-canvas">
-      <img
-        src={project.image}
-        alt={`${categoryLabel(project.category)} — ${project.name}`}
-        loading="lazy"
-        className="work-v2-full-art"
-      />
+      {project.image && (
+        <img
+          src={project.image}
+          alt={`${categoryLabel(project.category)} — ${project.name}`}
+          loading="lazy"
+          className="work-v2-full-art"
+        />
+      )}
       <div className="work-v2-image-caption" aria-hidden="true">
         <span>{project.category === 'Web App' ? 'Widescreen presentation' : 'Design presentation'}</span>
       </div>
