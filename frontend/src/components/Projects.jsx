@@ -136,7 +136,7 @@ const Projects = () => {
                 key={project.id}
                 className={`work-v2-card work-v2-card--${project.category.toLowerCase().replace(/[^a-z]+/g, '-')}`}
                 data-reveal
-                data-cursor={project.demoUrl ? 'VIEW PROJECT' : 'VIEW'}
+                data-cursor={project.demoUrl ? 'VIEW PROJECT' : project.inDevelopment ? 'IN PROGRESS' : 'COMPLETED'}
                 role="listitem"
               >
                 <div className="work-v2-media">
@@ -167,8 +167,10 @@ const Projects = () => {
                       <button type="button" onClick={() => openProjectDemo(project)} className="work-v2-primary-action">
                         View project <ArrowUpRight />
                       </button>
-                    ) : (
+                    ) : project.inDevelopment ? (
                       <span className="work-v2-status">En desarrollo</span>
+                    ) : (
+                      <span className="work-v2-status">Finalizado</span>
                     )}
                     {project.githubUrl && (
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="work-v2-code-link">
