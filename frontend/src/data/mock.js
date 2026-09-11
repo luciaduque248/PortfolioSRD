@@ -102,7 +102,7 @@ export const projects = [
     description: "Propuesta UX/UI para Virtuosa, enfocada en identidad, jerarquía y experiencia visual.",
     image: virtuosaUxImg,
     technologies: ["Figma", "UX/UI", "Visual Design"],
-    demoUrl: null,
+    demoUrl: "https://www.figma.com/design/77kBTXLVhpGbghkWRoRINb/VIRTUOSA?node-id=0-1",
     githubUrl: null,
     category: "UX/UI"
   },
