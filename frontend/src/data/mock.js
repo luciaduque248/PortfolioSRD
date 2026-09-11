@@ -33,7 +33,7 @@ export const projects = [
     image: countryExplorerImg,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://countries-app-eta-seven.vercel.app/",
-    githubUrl: "https://github.com/luciaduque248/countries-app",
+    githubUrl: "https://github.com/luciaduque248/CountriesApp",
     category: "Web App"
   },
   {
@@ -52,7 +52,7 @@ export const projects = [
     description: "Plataforma web orientada al sector agropecuario para conectar tecnología, información y usuarios.",
     image: agroinnovaImg,
     technologies: ["React", "TypeScript", "Tailwind CSS"],
-    demoUrl: "https://agroinnova.vercel.app/",
+    demoUrl: "https://agro-innova-demo.vercel.app/",
     githubUrl: null,
     category: "Web App"
   },
@@ -72,8 +72,8 @@ export const projects = [
     description: "Experiencia web para hotelería con una interfaz editorial y enfoque responsive.",
     image: hoteliaImg,
     technologies: ["HTML", "CSS", "JavaScript"],
-    demoUrl: null,
-    githubUrl: null,
+    demoUrl: "https://hotelia-hl.vercel.app/",
+    githubUrl: "https://github.com/luciaduque248/HoteliaHL",
     category: "Web App"
   },
   {
@@ -92,8 +92,8 @@ export const projects = [
     description: "Sitio web de identidad visual y contenido editorial para una marca creativa.",
     image: virtuosaWebImg,
     technologies: ["HTML", "CSS", "JavaScript"],
-    demoUrl: null,
-    githubUrl: null,
+    demoUrl: "https://virtuosa-crud.vercel.app/",
+    githubUrl: "https://github.com/luciaduque248/VirtuosaCrud",
     category: "Web App"
   },
   {
