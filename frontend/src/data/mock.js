@@ -1,4 +1,10 @@
 import saraAboutImg from "../images/portraits/Portrait_Sara_fondoBlanco.PNG";
+import countriesCoverImg from "../images/cover_projects/countries_portada.png";
+import agroinnovaCoverImg from "../images/cover_projects/agroinnova_portada.png";
+import manageCoverImg from "../images/cover_projects/manage_portada.png";
+import pensumCoverImg from "../images/cover_projects/pensumUnicauca__portada.png";
+import cafecomCoverImg from "../images/cover_projects/cafecom_portada.png";
+import novaCoverImg from "../images/cover_projects/nova_portada.png";
 
 export const personalInfo = {
   name: "Sara Duque",
@@ -19,7 +25,7 @@ export const projects = [
     id: 6,
     name: "Country Explorer",
     description: "Sitio web para explorar países del mundo, con filtros por nombre y región.",
-    image: null,
+    image: countriesCoverImg,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://countries-app-eta-seven.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/CountriesApp",
@@ -39,7 +45,7 @@ export const projects = [
     id: 8,
     name: "AgroInnova",
     description: "Plataforma web orientada al sector agropecuario para conectar tecnología, información y usuarios.",
-    image: null,
+    image: agroinnovaCoverImg,
     technologies: ["React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://agro-innova-demo.vercel.app/",
     githubUrl: null,
@@ -69,7 +75,7 @@ export const projects = [
     id: 11,
     name: "Manage — Landing Page",
     description: "Landing page minimalista para presentar Manage. Comunica de forma clara el valor del producto y organiza la información en una experiencia web responsive.",
-    image: null,
+    image: manageCoverImg,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
     githubUrl: "https://github.com/luciaduque248/Proyecto-Manage",
@@ -99,7 +105,7 @@ export const projects = [
     id: 14,
     name: "Mi Pensum Interactivo",
     description: "Aplicación web para visualizar y explorar un pensum académico de forma interactiva.",
-    image: null,
+    image: pensumCoverImg,
     technologies: ["React", "JavaScript", "CSS"],
     demoUrl: "https://pensum-unicauca.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/PensumUnicauca",
@@ -109,7 +115,7 @@ export const projects = [
     id: 15,
     name: "CafeCom — Mobile App",
     description: "Aplicación móvil Android orientada a caficultores registrados en la plataforma. Integra autenticación, perfiles, gestión de lotes, protocolos e información del café, con Firebase/Firestore y carga de imágenes en Cloudinary. El desarrollo prioriza una experiencia usable en contextos rurales y conectividad limitada.",
-    image: null,
+    image: cafecomCoverImg,
     technologies: ["React Native", "Expo", "TypeScript", "Firebase", "Firestore", "Cloudinary"],
     demoUrl: null,
     githubUrl: null,
@@ -126,6 +132,16 @@ export const projects = [
     githubUrl: null,
     category: "Mobile App",
     inDevelopment: true
+  },
+  {
+    id: 17,
+    name: "NOVA Residences",
+    description: "Landing page inmobiliaria premium enfocada en generación de leads, experiencia responsive y una dirección visual editorial.",
+    image: novaCoverImg,
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    demoUrl: "https://nova-residences-landing.vercel.app/",
+    githubUrl: "https://github.com/luciaduque248/nova-residences-landing",
+    category: "Web App"
   }
 ];
 
