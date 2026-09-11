@@ -4,6 +4,9 @@ import agroinnovaCoverImg from "../images/cover_projects/agroinnova_portada.png"
 import manageCoverImg from "../images/cover_projects/manage_portada.png";
 import pensumCoverImg from "../images/cover_projects/pensumUnicauca__portada.png";
 import cafecomCoverImg from "../images/cover_projects/cafecom_portada.png";
+import cafecomUxUiCoverImg from "../images/cover_projects/cafecom_UXUI_portada.png";
+import virtuosaWebCoverImg from "../images/cover_projects/virtuosa_portada.png";
+import virtuosaUxUiCoverImg from "../images/cover_projects/virtuosa_portada_UXUI.png";
 import novaCoverImg from "../images/cover_projects/nova_portada.png";
 
 export const personalInfo = {
@@ -55,7 +58,7 @@ export const projects = [
     id: 9,
     name: "CafeCom — UX/UI",
     description: "Diseño UX/UI de la experiencia móvil de CafeCom, con flujos y pantallas para caficultores.",
-    image: null,
+    image: cafecomUxUiCoverImg,
     technologies: ["Figma", "UX/UI", "Mobile UX", "Prototyping"],
     demoUrl: "https://www.figma.com/design/F9Fljzi1eZS5S76IIiQtAC/CafeCom?node-id=0-1",
     githubUrl: null,
@@ -85,7 +88,7 @@ export const projects = [
     id: 12,
     name: "Virtuosa — Web",
     description: "Sitio web de identidad visual y contenido editorial para una marca creativa.",
-    image: null,
+    image: virtuosaWebCoverImg,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://virtuosa-crud.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/VirtuosaCrud",
@@ -95,7 +98,7 @@ export const projects = [
     id: 13,
     name: "Virtuosa — UX/UI",
     description: "Propuesta UX/UI para Virtuosa, enfocada en identidad, jerarquía y experiencia visual.",
-    image: null,
+    image: virtuosaUxUiCoverImg,
     technologies: ["Figma", "UX/UI", "Visual Design"],
     demoUrl: "https://www.figma.com/design/77kBTXLVhpGbghkWRoRINb/VIRTUOSA?node-id=0-1",
     githubUrl: null,
