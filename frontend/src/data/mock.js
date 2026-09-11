@@ -37,8 +37,8 @@ export const projects = [
     description: "Reproductor musical web desarrollado con JavaScript, HTML y CSS.",
     image: null,
     technologies: ["JavaScript", "HTML", "CSS"],
-    demoUrl: "https://luciaduque248.github.io/music-player/",
-    githubUrl: "https://github.com/luciaduque248/music-player",
+    demoUrl: "https://luciaduque248.github.io/ReproductorDeMusica/",
+    githubUrl: "https://github.com/luciaduque248/ReproductorDeMusica",
     category: "Web App"
   },
   {
