@@ -112,8 +112,8 @@ export const projects = [
     description: "Aplicación web para visualizar y explorar un pensum académico de forma interactiva.",
     image: pensumImg,
     technologies: ["React", "JavaScript", "CSS"],
-    demoUrl: null,
-    githubUrl: null,
+    demoUrl: "https://pensum-unicauca.vercel.app/",
+    githubUrl: "https://github.com/luciaduque248/PensumUnicauca",
     category: "Web App"
   },
   {
