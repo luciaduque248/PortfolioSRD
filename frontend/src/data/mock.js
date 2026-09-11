@@ -7,8 +7,6 @@ import manageImg from "../images/project-covers/manage-cover.svg";
 import virtuosaWebImg from "../images/project-covers/virtuosa-web.svg";
 import virtuosaUxImg from "../images/project-covers/virtuosa-ux.svg";
 import pensumImg from "../images/project-covers/pensum-cover.svg";
-import cafecomMobileImg from "../images/cafecom-mobile.svg";
-import servichatMobileImg from "../images/servichat-mobile.svg";
 import saraAboutImg from "../images/portraits/Portrait_Sara_fondoBlanco.PNG";
 
 export const personalInfo = {
@@ -120,7 +118,7 @@ export const projects = [
     id: 15,
     name: "CafeCom — Mobile App",
     description: "Aplicación móvil Android orientada a caficultores registrados en la plataforma. Integra autenticación, perfiles, gestión de lotes, protocolos e información del café, con Firebase/Firestore y carga de imágenes en Cloudinary. El desarrollo prioriza una experiencia usable en contextos rurales y conectividad limitada.",
-    image: cafecomMobileImg,
+    image: null,
     technologies: ["React Native", "Expo", "TypeScript", "Firebase", "Firestore", "Cloudinary"],
     demoUrl: null,
     githubUrl: null,
@@ -131,7 +129,7 @@ export const projects = [
     id: 16,
     name: "ServiChat — Mobile App",
     description: "Aplicación móvil para la gestión y comunicación de clínicas y consultorios. El proyecto adapta la experiencia de WhatSender a móvil e integra recordatorios, toma de citas, envíos masivos y diagnóstico, con flujos diferenciados para propietarios, administradores, profesionales y pacientes. Actualmente se encuentra en fase de diseño funcional y UX/UI.",
-    image: servichatMobileImg,
+    image: null,
     technologies: ["Figma", "UX/UI Design", "Mobile UX", "User Flows", "Prototyping"],
     demoUrl: null,
     githubUrl: null,
