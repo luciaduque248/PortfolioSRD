@@ -4,6 +4,7 @@ import "@/index.css";
 import "@/styles/editorial-refinements.css";
 import "@/styles/desktop-navbar.css";
 import "@/styles/project-card-fixes.css";
+import "@/styles/project-cover-frame.css";
 import App from "@/App";
 
 // Aplica el tema antes de montar React para evitar parpadeos entre modos.
