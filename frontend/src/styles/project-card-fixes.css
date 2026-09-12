@@ -1,0 +1,13 @@
+/* Project cards: keep the copy readable instead of truncating it with ellipsis. */
+.work-v2-description {
+  display: block;
+  overflow: visible;
+  -webkit-box-orient: initial;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  text-wrap: pretty;
+}
+
+.work-v2-description strong {
+  color: rgba(255, 255, 255, 0.9);
+}
