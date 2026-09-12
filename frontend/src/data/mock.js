@@ -8,6 +8,7 @@ import cafecomUxUiCoverImg from "../images/cover_projects/cafecom_UXUI_portada.p
 import virtuosaWebCoverImg from "../images/cover_projects/virtuosa_portada.png";
 import virtuosaUxUiCoverImg from "../images/cover_projects/virtuosa_portada_UXUI.png";
 import novaCoverImg from "../images/cover_projects/nova_portada.png";
+import musicPlayerCoverImg from "../images/cover_projects/reproductorMusica_portada.png";
 
 export const personalInfo = {
   name: "Sara Duque",
@@ -38,7 +39,7 @@ export const projects = [
     id: 7,
     name: "Music Player",
     description: "Reproductor musical web desarrollado con JavaScript, HTML y CSS.",
-    image: null,
+    image: musicPlayerCoverImg,
     technologies: ["JavaScript", "HTML", "CSS"],
     demoUrl: "https://luciaduque248.github.io/ReproductorDeMusica/",
     githubUrl: "https://github.com/luciaduque248/ReproductorDeMusica",
