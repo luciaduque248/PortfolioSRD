@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowRight, ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
 
-const spotlightOrder = [19, 18, 17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
+const spotlightOrder = [20, 19, 18, 17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
 
 const categoryLabel = (category) => {
   if (category === 'Web App') return 'WEB APPLICATION';
