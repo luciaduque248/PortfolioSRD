@@ -89,7 +89,7 @@ const Projects = () => {
               </h2>
             </div>
             <p>
-              Cada proyecto usa su portada completa como pieza principal, sin marcos o composiciones adicionales que compitan con el diseño original.
+              Cada portada se presenta completa dentro de un marco uniforme, respetando su proporción original y evitando recortes o desbordamientos entre proyectos.
             </p>
           </div>
 
