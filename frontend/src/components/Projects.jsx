@@ -3,6 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowRight, ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
 
+// Orden editorial de los proyectos destacados del portafolio.
 const spotlightOrder = [20, 19, 18, 17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
 
 const categoryLabel = (category) => {
