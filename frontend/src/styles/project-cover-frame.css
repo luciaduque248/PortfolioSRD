@@ -1,51 +1,68 @@
-/* Marco uniforme para todas las portadas de proyectos.
-   Evita recortes y desbordamientos entre imágenes con proporciones diferentes. */
+/* Portadas de proyectos: composición full-bleed dentro de la card.
+   Las portadas fueron diseñadas como piezas 16:9, así que el área visual usa
+   esa misma proporción para evitar marcos, franjas vacías y recortes innecesarios. */
 .work-v2-media {
-  padding: clamp(0.55rem, 1vw, 0.9rem);
-  background: #0d0a12;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #09080d;
 }
 
 .work-v2-full-canvas {
-  display: grid;
-  place-items: center;
+  position: relative;
+  display: block;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 4px;
+  border: 0;
+  border-radius: 0;
   background: #09080d;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+  box-shadow: none;
 }
 
 .work-v2-full-art {
   display: block;
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  background: #09080d;
-}
-
-/* No ampliar la portada al hacer hover: así nunca rebasa el marco. */
-.work-v2-card:hover .work-v2-full-art {
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center center;
+  background: transparent;
   transform: none;
+  transition: transform 240ms var(--ease-out);
 }
 
-/* La etiqueta, cuando existe, permanece dentro del marco. */
+/* Encuadre fino por proyecto: pequeños ajustes de foco, sin añadir marcos. */
+.work-v2-card[data-project-id="6"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="7"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="8"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="9"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="10"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="11"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="12"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="13"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="14"] .work-v2-full-art { object-position: center 48%; }
+.work-v2-card[data-project-id="15"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="16"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="17"] .work-v2-full-art { object-position: center 48%; }
+.work-v2-card[data-project-id="18"] .work-v2-full-art { object-position: center 50%; }
+.work-v2-card[data-project-id="19"] .work-v2-full-art { object-position: center 50%; }
+
+/* Hover muy sutil: mantiene el acabado editorial sin sacar la imagen de su área. */
+.work-v2-card:hover .work-v2-full-art {
+  transform: scale(1.008);
+}
+
+/* Las etiquetas superpuestas ya no se usan: la categoría vive en el contenido
+   de la card y la portada queda completamente limpia. */
 .work-v2-image-caption {
-  right: 0.65rem;
-  bottom: 0.65rem;
-  max-width: calc(100% - 1.3rem);
+  display: none;
 }
 
 @media (max-width: 767px) {
   .work-v2-media {
-    padding: 0.45rem;
-  }
-
-  .work-v2-full-canvas {
-    border-radius: 3px;
+    padding: 0;
+    aspect-ratio: 16 / 9;
   }
 }
