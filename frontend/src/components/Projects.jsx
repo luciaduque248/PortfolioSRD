@@ -25,51 +25,23 @@ const presentationLabel = (category) => {
   return 'Design presentation';
 };
 
-const mobileCanvasById = {
-  15: '#eadfc5', // CafeCom
-  16: '#20172f', // ServiChat
-  19: '#dfe8f4', // SeiSafe
-};
-
-const ProjectVisual = ({ project }) => {
-  if (project.category === 'Mobile App') {
-    return (
-      <div
-        className="work-v2-mobile-canvas"
-        style={{ '--mobile-canvas': mobileCanvasById[project.id] || '#dfe4ff' }}
-      >
-        <div className="work-v2-mobile-label" aria-hidden="true">
-          <span>Mobile product</span>
-          <span>Portrait composition</span>
-        </div>
-        {project.image && (
-          <img
-            src={project.image}
-            alt={`Portada del proyecto móvil ${project.name}`}
-            loading="lazy"
-            className="work-v2-mobile-art"
-          />
-        )}
-      </div>
-    );
-  }
-
-  return (
-    <div className="work-v2-full-canvas">
-      {project.image && (
-        <img
-          src={project.image}
-          alt={`${categoryLabel(project.category)} — ${project.name}`}
-          loading="lazy"
-          className="work-v2-full-art"
-        />
-      )}
+const ProjectVisual = ({ project }) => (
+  <div className="work-v2-full-canvas">
+    {project.image && (
+      <img
+        src={project.image}
+        alt={`${categoryLabel(project.category)} — ${project.name}`}
+        loading="lazy"
+        className="work-v2-full-art"
+      />
+    )}
+    {project.category !== 'Mobile App' && (
       <div className="work-v2-image-caption" aria-hidden="true">
         <span>{presentationLabel(project.category)}</span>
       </div>
-    </div>
-  );
-};
+    )}
+  </div>
+);
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -117,7 +89,7 @@ const Projects = () => {
               </h2>
             </div>
             <p>
-              Mobile conserva una composición pensada para producto vertical. Web apps, landing pages y UX/UI ocupan la imagen completa de la tarjeta para que el proyecto sea el protagonista.
+              Cada proyecto usa su portada completa como pieza principal, sin marcos o composiciones adicionales que compitan con el diseño original.
             </p>
           </div>
 
@@ -149,7 +121,7 @@ const Projects = () => {
                 key={project.id}
                 className={`work-v2-card work-v2-card--${project.category.toLowerCase().replace(/[^a-z]+/g, '-')}`}
                 data-reveal
-                data-cursor={project.demoUrl ? 'VIEW PROJECT' : project.inDevelopment ? 'IN PROGRESS' : 'COMPLETED'}
+                data-cursor={project.category === 'Mobile App' ? undefined : project.demoUrl ? 'VIEW PROJECT' : project.inDevelopment ? 'IN PROGRESS' : 'COMPLETED'}
                 role="listitem"
               >
                 <div className="work-v2-media">
