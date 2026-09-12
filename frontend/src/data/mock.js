@@ -9,6 +9,9 @@ import virtuosaWebCoverImg from "../images/cover_projects/virtuosa_portada.png";
 import virtuosaUxUiCoverImg from "../images/cover_projects/virtuosa_portada_UXUI.png";
 import novaCoverImg from "../images/cover_projects/nova_portada.png";
 import musicPlayerCoverImg from "../images/cover_projects/reproductorMusica_portada.png";
+import hoteliaCoverImg from "../images/cover_projects/hotelia_portada.png";
+import servichatCoverImg from "../images/cover_projects/Servichat_portada.png";
+import aureaCoverImg from "../images/cover_projects/AUREA_portada.png";
 
 export const personalInfo = {
   name: "Sara Duque",
@@ -69,7 +72,7 @@ export const projects = [
     id: 10,
     name: "HOTELIA",
     description: "Experiencia web para hotelería con una interfaz editorial y enfoque responsive.",
-    image: null,
+    image: hoteliaCoverImg,
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://hotelia-hl.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/HoteliaHL",
@@ -130,7 +133,7 @@ export const projects = [
     id: 16,
     name: "ServiChat — Mobile App",
     description: "Aplicación móvil para la gestión y comunicación de clínicas y consultorios. El proyecto adapta la experiencia de WhatSender a móvil e integra recordatorios, toma de citas, envíos masivos y diagnóstico, con flujos diferenciados para propietarios, administradores, profesionales y pacientes. Actualmente se encuentra en fase de diseño funcional y UX/UI.",
-    image: null,
+    image: servichatCoverImg,
     technologies: ["Figma", "UX/UI Design", "Mobile UX", "User Flows", "Prototyping"],
     demoUrl: null,
     githubUrl: null,
@@ -151,7 +154,7 @@ export const projects = [
     id: 18,
     name: "AUREA Skin Clinic",
     description: "Landing page premium para una clínica estética, con dirección visual beauty editorial, experiencia responsive y un funnel de valoración diseñado con comunicación responsable.",
-    image: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=1600&q=88",
+    image: aureaCoverImg,
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://aurea-skin-clinic-landing.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/aurea-skin-clinic-landing",
