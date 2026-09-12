@@ -83,7 +83,7 @@ export const projects = [
     technologies: ["HTML", "CSS", "JavaScript"],
     demoUrl: "https://luciaduque248.github.io/Proyecto-Manage/",
     githubUrl: "https://github.com/luciaduque248/Proyecto-Manage",
-    category: "Web App"
+    category: "Landing Page"
   },
   {
     id: 12,
@@ -145,7 +145,17 @@ export const projects = [
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://nova-residences-landing.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/nova-residences-landing",
-    category: "Web App"
+    category: "Landing Page"
+  },
+  {
+    id: 18,
+    name: "AUREA Skin Clinic",
+    description: "Landing page premium para una clínica estética, con dirección visual beauty editorial, experiencia responsive y un funnel de valoración diseñado con comunicación responsable.",
+    image: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=1600&q=88",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    demoUrl: "https://aurea-skin-clinic-landing.vercel.app/",
+    githubUrl: "https://github.com/luciaduque248/aurea-skin-clinic-landing",
+    category: "Landing Page"
   }
 ];
 

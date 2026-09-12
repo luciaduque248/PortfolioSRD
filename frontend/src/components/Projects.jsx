@@ -3,18 +3,26 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowRight, ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
 
-const spotlightOrder = [17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
+const spotlightOrder = [18, 17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
 
 const categoryLabel = (category) => {
   if (category === 'Web App') return 'WEB APPLICATION';
+  if (category === 'Landing Page') return 'LANDING PAGE';
   if (category === 'Mobile App') return 'MOBILE APPLICATION';
   return 'UX/UI DESIGN';
 };
 
 const roleLabel = (category) => {
   if (category === 'Web App') return 'Frontend Development';
+  if (category === 'Landing Page') return 'Frontend · Conversion Landing';
   if (category === 'Mobile App') return 'Frontend · Mobile Product';
   return 'UX/UI · Product Design';
+};
+
+const presentationLabel = (category) => {
+  if (category === 'Web App') return 'Widescreen presentation';
+  if (category === 'Landing Page') return 'Landing page presentation';
+  return 'Design presentation';
 };
 
 const mobileCanvasById = {
@@ -56,7 +64,7 @@ const ProjectVisual = ({ project }) => {
         />
       )}
       <div className="work-v2-image-caption" aria-hidden="true">
-        <span>{project.category === 'Web App' ? 'Widescreen presentation' : 'Design presentation'}</span>
+        <span>{presentationLabel(project.category)}</span>
       </div>
     </div>
   );
@@ -71,7 +79,7 @@ const Projects = () => {
     return [...projects].sort((a, b) => (ranks.get(a.id) ?? 999) - (ranks.get(b.id) ?? 999));
   }, []);
 
-  const categories = useMemo(() => ['All', 'Web App', 'Mobile App', 'UX/UI'], []);
+  const categories = useMemo(() => ['All', 'Web App', 'Landing Page', 'Mobile App', 'UX/UI'], []);
   const filteredProjects = activeFilter === 'All'
     ? orderedProjects
     : orderedProjects.filter((project) => project.category === activeFilter);
@@ -97,7 +105,7 @@ const Projects = () => {
         <div className="editorial-container">
           <div className="section-index section-index-dark" data-reveal>
             <span>03 — Selected work</span>
-            <span>Web · Mobile · UX/UI</span>
+            <span>Web Apps · Landing Pages · Mobile · UX/UI</span>
           </div>
 
           <div className="work-v2-heading" data-reveal>
@@ -108,7 +116,7 @@ const Projects = () => {
               </h2>
             </div>
             <p>
-              Mobile conserva una composición pensada para producto vertical. Web y UX/UI ocupan la imagen completa de la tarjeta para que el proyecto, no el mockup, sea el protagonista.
+              Mobile conserva una composición pensada para producto vertical. Web apps, landing pages y UX/UI ocupan la imagen completa de la tarjeta para que el proyecto sea el protagonista.
             </p>
           </div>
 
