@@ -13,6 +13,7 @@ import hoteliaCoverImg from "../images/cover_projects/hotelia_portada.png";
 import servichatCoverImg from "../images/cover_projects/Servichat_portada.png";
 import aureaCoverImg from "../images/cover_projects/AUREA_portada.png";
 import seisafeCoverImg from "../images/cover_projects/SeiSafe_portada.png";
+import synapseCoverImg from "../images/cover_projects/synapse_portada.png";
 
 export const personalInfo = {
   name: "Sara Duque",
@@ -172,6 +173,16 @@ export const projects = [
     githubUrl: "https://github.com/luciaduque248/SeiSafe-sismo-detector",
     category: "Mobile App",
     inDevelopment: true
+  },
+  {
+    id: 20,
+    name: "SYNAPSE AI",
+    description: "Experiencia B2B SaaS de inteligencia de reuniones que transforma audio, transcripciones y notas en resúmenes, decisiones, tareas, responsables, fechas límite y riesgos. Incluye un workspace interactivo y transcripción local en el navegador con Whisper Tiny, sin depender de una API de pago para convertir el audio a texto.",
+    image: synapseCoverImg,
+    technologies: ["Next.js", "React", "TypeScript", "Transformers.js", "Whisper Tiny", "Tailwind CSS"],
+    demoUrl: "https://synapse-ai-landing-nine.vercel.app",
+    githubUrl: "https://github.com/luciaduque248/synapse-ai-landing",
+    category: "Web App"
   }
 ];
 
