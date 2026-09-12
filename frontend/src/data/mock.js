@@ -182,7 +182,7 @@ export const projects = [
     technologies: ["Next.js", "React", "TypeScript", "Transformers.js", "Whisper Tiny", "Tailwind CSS"],
     demoUrl: "https://synapse-ai-landing-nine.vercel.app",
     githubUrl: "https://github.com/luciaduque248/synapse-ai-landing",
-    category: "Web App"
+    category: "Landing Page"
   }
 ];
 
