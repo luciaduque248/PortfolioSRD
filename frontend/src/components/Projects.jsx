@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { ArrowRight, ArrowUpRight, Building2, ExternalLink, Github, X } from 'lucide-react';
 import { projects } from '../data/mock';
 
-const spotlightOrder = [18, 17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
+const spotlightOrder = [19, 18, 17, 15, 8, 10, 14, 16, 13, 6, 9, 12, 11, 7];
 
 const categoryLabel = (category) => {
   if (category === 'Web App') return 'WEB APPLICATION';
@@ -28,6 +28,7 @@ const presentationLabel = (category) => {
 const mobileCanvasById = {
   15: '#eadfc5', // CafeCom
   16: '#20172f', // ServiChat
+  19: '#dfe8f4', // SeiSafe
 };
 
 const ProjectVisual = ({ project }) => {
@@ -168,6 +169,11 @@ const Projects = () => {
 
                   <p className="work-v2-role">{roleLabel(project.category)}</p>
                   <p className="work-v2-description">{project.description}</p>
+                  {project.note && (
+                    <p className="work-v2-description">
+                      <strong>Nota:</strong> {project.note}
+                    </p>
+                  )}
 
                   <div className="work-v2-stack-line">
                     <span>Stack</span>
