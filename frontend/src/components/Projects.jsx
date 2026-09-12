@@ -25,23 +25,40 @@ const presentationLabel = (category) => {
   return 'Design presentation';
 };
 
-const ProjectVisual = ({ project }) => (
-  <div className="work-v2-full-canvas">
-    {project.image && (
-      <img
-        src={project.image}
-        alt={`${categoryLabel(project.category)} — ${project.name}`}
-        loading="lazy"
-        className="work-v2-full-art"
-      />
-    )}
-    {project.category !== 'Mobile App' && (
-      <div className="work-v2-image-caption" aria-hidden="true">
-        <span>{presentationLabel(project.category)}</span>
-      </div>
-    )}
-  </div>
-);
+// Algunas portadas tienen una proporción suficientemente cercana al marco como
+// para ocuparlo completo. El encuadre se ajusta por proyecto para evitar cortar
+// títulos, logos, dispositivos o elementos principales de la composición.
+const coverProfiles = {
+  14: { fit: 'cover', position: 'center 48%' }, // Mi Pensum
+  16: { fit: 'cover', position: 'center center' }, // ServiChat
+  17: { fit: 'cover', position: 'center center' }, // NOVA Residences
+};
+
+const ProjectVisual = ({ project }) => {
+  const coverProfile = coverProfiles[project.id];
+
+  return (
+    <div className="work-v2-full-canvas">
+      {project.image && (
+        <img
+          src={project.image}
+          alt={`${categoryLabel(project.category)} — ${project.name}`}
+          loading="lazy"
+          className="work-v2-full-art"
+          style={coverProfile ? {
+            objectFit: coverProfile.fit,
+            objectPosition: coverProfile.position,
+          } : undefined}
+        />
+      )}
+      {project.category !== 'Mobile App' && (
+        <div className="work-v2-image-caption" aria-hidden="true">
+          <span>{presentationLabel(project.category)}</span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -89,7 +106,7 @@ const Projects = () => {
               </h2>
             </div>
             <p>
-              Cada portada se presenta completa dentro de un marco uniforme, respetando su proporción original y evitando recortes o desbordamientos entre proyectos.
+              Cada portada se encuadra según su composición: las que admiten recorte ocupan todo el marco y las que necesitan preservar su contenido se muestran completas, evitando desbordamientos.
             </p>
           </div>
 
