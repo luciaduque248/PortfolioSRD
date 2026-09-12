@@ -12,6 +12,7 @@ import musicPlayerCoverImg from "../images/cover_projects/reproductorMusica_port
 import hoteliaCoverImg from "../images/cover_projects/hotelia_portada.png";
 import servichatCoverImg from "../images/cover_projects/Servichat_portada.png";
 import aureaCoverImg from "../images/cover_projects/AUREA_portada.png";
+import seisafeCoverImg from "../images/cover_projects/SeiSafe_portada.png";
 
 export const personalInfo = {
   name: "Sara Duque",
@@ -159,6 +160,18 @@ export const projects = [
     demoUrl: "https://aurea-skin-clinic-landing.vercel.app/",
     githubUrl: "https://github.com/luciaduque248/aurea-skin-clinic-landing",
     category: "Landing Page"
+  },
+  {
+    id: 19,
+    name: "SeiSafe — Alerta Sísmica",
+    description: "Aplicación móvil para iOS y Android enfocada en alerta sísmica temprana. SeiSafe busca aprovechar la detección de un evento sísmico y la conectividad de los teléfonos para avisar a las personas y, cuando la distancia lo permita, ofrecer algunos segundos de anticipación antes de la llegada de las ondas más fuertes para que puedan protegerse.",
+    note: "La inspiración del proyecto nació a partir del terremoto ocurrido en Colombia el 10 de agosto de 2026 y de la necesidad de convertir esos segundos críticos en una oportunidad real de reacción. SeiSafe no pretende predecir sismos: su objetivo es emitir una alerta temprana una vez detectado el evento.",
+    image: seisafeCoverImg,
+    technologies: ["Flutter", "Dart", "iOS", "Android", "GitHub"],
+    demoUrl: null,
+    githubUrl: "https://github.com/luciaduque248/SeiSafe-sismo-detector",
+    category: "Mobile App",
+    inDevelopment: true
   }
 ];
 
